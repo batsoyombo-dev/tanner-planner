@@ -6,9 +6,22 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
+<BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.tanner.planner.controllers.HomeController"
             prefHeight="400.0" prefWidth="600.0">
 
-</AnchorPane>
+    <left>
+        <fx:include source="../partials/sidebar_partial.fxml" />
+    </left>
+    
+    <center>
+        <AnchorPane>
+            <VBox AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
+                <fx:include source="../partials/home_header_partial.fxml" />
+                <fx:include source="../partials/home_panel_container_partial.fxml" />
+            </VBox>
+        </AnchorPane>
+    </center>
+
+</BorderPane>

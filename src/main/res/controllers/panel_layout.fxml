@@ -12,13 +12,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1024.0" prefWidth="1440.0" styleClass="hamburgerMenu" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tanner.planner.controllers.PanelController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1024.0" prefWidth="1440.0" styleClass="main" stylesheets="@../css/panel_layout.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tanner.planner.controllers.PanelController">
    <top>
       <VBox prefHeight="160.0" prefWidth="1440.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox prefHeight="80.0" prefWidth="1440.0">
+            <HBox prefHeight="80.0" prefWidth="1440.0" styleClass="top">
                <children>
-                  <Button fx:id="btnHamburgerMenu" maxHeight="40.0" maxWidth="40.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" styleClass="hamburgerMenu">
+                  <Button fx:id="btnHamburgerMenu" maxHeight="40.0" maxWidth="40.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0">
                      <HBox.margin>
                         <Insets left="20.0" top="20.0" />
                      </HBox.margin>
@@ -26,7 +26,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Label minHeight="56.0" prefHeight="56.0" prefWidth="152.0" text="tanner">
+                  <Label fx:id="txtLogo" minHeight="56.0" prefHeight="56.0" prefWidth="152.0" styleClass="text" text="tanner">
                      <HBox.margin>
                         <Insets left="40.0" top="10.0" />
                      </HBox.margin>
@@ -37,7 +37,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Label>
-                  <TextField prefHeight="60.0" prefWidth="310.0" promptText="Search">
+                  <TextField prefHeight="60.0" prefWidth="310.0" promptText="Search" styleClass="search">
                      <HBox.margin>
                         <Insets left="719.0" top="10.0" />
                      </HBox.margin>
@@ -48,7 +48,7 @@
                         <Cursor fx:constant="TEXT" />
                      </cursor>
                   </TextField>
-                  <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0">
+                  <Button fx:id="btnHelp" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0">
                      <HBox.margin>
                         <Insets left="39.0" top="20.0" />
                      </HBox.margin>
@@ -56,7 +56,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0">
+                  <Button fx:id="btnNotification" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0">
                      <HBox.margin>
                         <Insets left="20.0" top="20.0" />
                      </HBox.margin>
@@ -66,9 +66,9 @@
                   </Button>
                </children>
             </HBox>
-            <HBox prefHeight="80.0" prefWidth="1440.0">
+            <HBox prefHeight="80.0" prefWidth="1440.0" styleClass="top">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0">
+                  <Button fx:id="btnAnalysis" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0">
                      <HBox.margin>
                         <Insets left="20.0" top="20.0" />
                      </HBox.margin>
@@ -76,7 +76,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Label minHeight="33.0" prefHeight="33.0" prefWidth="76.0" text="Panel">
+                  <Label fx:id="txtPanel" minHeight="33.0" prefHeight="33.0" prefWidth="76.0" styleClass="text" text="Panel">
                      <HBox.margin>
                         <Insets left="40.0" top="27.0" />
                      </HBox.margin>
@@ -84,7 +84,7 @@
                         <Font name="System Bold" size="28.0" />
                      </font>
                   </Label>
-                  <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0">
+                  <Button fx:id="btnFavourite" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0">
                      <HBox.margin>
                         <Insets left="1144.0" top="20.0" />
                      </HBox.margin>
@@ -92,7 +92,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0">
+                  <Button fx:id="btnSettings" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0">
                      <HBox.margin>
                         <Insets left="20.0" top="20.0" />
                      </HBox.margin>
@@ -108,7 +108,7 @@
    <center>
       <TilePane prefHeight="864.0" prefWidth="1440.0" BorderPane.alignment="CENTER">
          <children>
-            <VBox prefHeight="291.0" prefWidth="320.0">
+            <VBox fx:id="vboxBucket" prefHeight="291.0" prefWidth="320.0" styleClass="bucket">
                <TilePane.margin>
                   <Insets left="70.0" top="50.0" />
                </TilePane.margin>
@@ -121,37 +121,49 @@
                         <Font name="System Bold" size="24.0" />
                      </font>
                   </Label>
-                  <Button alignment="BASELINE_LEFT" contentDisplay="RIGHT" minHeight="50.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="300.0" text="Task">
+                  <Button fx:id="btnTask" alignment="BASELINE_LEFT" contentDisplay="RIGHT" minHeight="50.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="300.0" styleClass="task" text="Task">
                      <VBox.margin>
                         <Insets left="10.0" top="10.0" />
                      </VBox.margin>
                      <font>
                         <Font size="24.0" />
                      </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" minHeight="50.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="300.0" text="Task">
+                  <Button fx:id="btnTask" alignment="BASELINE_LEFT" minHeight="50.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="300.0" styleClass="task" text="Task">
                      <font>
                         <Font size="24.0" />
                      </font>
                      <VBox.margin>
                         <Insets left="10.0" top="10.0" />
                      </VBox.margin>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" minHeight="50.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="300.0" text="Task">
+                  <Button fx:id="btnTask" alignment="BASELINE_LEFT" minHeight="50.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="300.0" styleClass="task" text="Task">
                      <font>
                         <Font size="24.0" />
                      </font>
                      <VBox.margin>
                         <Insets left="10.0" top="10.0" />
                      </VBox.margin>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Button>
-                  <Button alignment="CENTER" minHeight="50.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="300.0" text="+Add Task">
+                  <Button fx:id="btnAddTask" alignment="CENTER" minHeight="50.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="300.0" styleClass="addTask" text="+Add Task">
                      <font>
                         <Font size="24.0" />
                      </font>
                      <VBox.margin>
                         <Insets left="10.0" top="10.0" />
                      </VBox.margin>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Button>
                </children>
             </VBox>
@@ -160,10 +172,13 @@
                   <Insets left="70.0" top="50.0" />
                </TilePane.margin>
                <children>
-                  <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="320.0" text="+Add Bucket">
+                  <Button fx:id="btnAddBucket" mnemonicParsing="false" prefHeight="60.0" prefWidth="320.0" styleClass="addBucket" text="+Add Bucket">
                      <font>
                         <Font size="24.0" />
                      </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Button>
                </children>
             </Pane>

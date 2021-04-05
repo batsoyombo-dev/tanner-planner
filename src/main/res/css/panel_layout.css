@@ -12,3 +12,23 @@
 .search{
     -fx-background-radius: 30;
 }
+.bucket{
+    -fx-background-color: white;
+    -fx-background-radius: 10;
+    -fx-text-fill: black;
+}
+.task{
+    -fx-background-color: white;
+    -fx-border-color: black;
+    -fx-border-radius: 10;
+}
+.addTask{
+    -fx-background-color: #489FB5;
+    -fx-text-fill: white;
+    -fx-background-radius: 10;
+}
+.addBucket{
+    -fx-background-color: #083c5c;
+    -fx-text-fill: white;
+    -fx-background-radius: 10;
+}

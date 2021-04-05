@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.tanner.planner.controllers.partials.SidebarController"
+            prefHeight="0" prefWidth="300" stylesheets="@../css/sidebar_partial.css">
+
+    <BorderPane styleClass="main-container" AnchorPane.rightAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.bottomAnchor="0" AnchorPane.topAnchor="0">
+        <top>
+            <VBox alignment="CENTER" styleClass="sub-container">
+                <Label styleClass="logo" text="tanner" />
+            </VBox>
+        </top>
+        <center>
+            <VBox styleClass="sub-container">
+                <Label styleClass="sub-container-title" text="Category" />
+                <Button styleClass="nav-btn, selected" text="Panels" />
+                <Button styleClass="nav-btn" text="Panels" />
+                <Button styleClass="nav-btn" text="Panels" />
+                <Button styleClass="nav-btn" text="Panels" />
+                <Button styleClass="nav-btn" text="Panels" />
+            </VBox>
+        </center>
+        <bottom>
+            <HBox>
+                <Button styleClass="footer-btn" text="S" />
+                <Button styleClass="footer-btn" text="B" />
+            </HBox>
+        </bottom>
+    </BorderPane>
+
+</AnchorPane>
