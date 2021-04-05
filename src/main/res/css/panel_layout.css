@@ -1,0 +1,14 @@
+
+.main{
+    -fx-background-color: #084C61;
+}
+.text{
+    -fx-text-fill: white;
+}
+.top{
+    -fx-border-color: white;
+    -fx-border-width: 0 0 1 0;
+}
+.search{
+    -fx-background-radius: 30;
+}

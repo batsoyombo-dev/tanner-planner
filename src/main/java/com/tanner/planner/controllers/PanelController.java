@@ -20,11 +20,6 @@ public class PanelController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        ImageView menu = new ImageView("/images/menu.png");
-        menu.setFitHeight(20);
-        menu.setFitWidth(20);
-        //menu.setPreserveRatio(true);
-        //btnHamburgerMenu.setGraphic(menu);
 
         Image image = new Image("/images/menu.png", btnHamburgerMenu.getWidth(), btnHamburgerMenu.getHeight(), false, true, true);
         BackgroundImage bImage = new BackgroundImage(image, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(btnHamburgerMenu.getWidth(), btnHamburgerMenu.getHeight(), true, true, true, false));
