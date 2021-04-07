@@ -1,0 +1,35 @@
+@font-face {
+
+}
+
+.header {
+    -fx-padding: 10 30px;
+    -fx-spacing: 25px;
+}
+.btn {
+    -fx-background-color: none;
+    -fx-graphic: url("../images/circle.png");
+}
+
+.search-container {
+    -fx-background-radius: 16px;
+    -fx-pref-width: 300px;
+    -fx-alignment: center;
+    -fx-border-width: 1px;
+    -fx-border-color: #3d3f56;
+    -fx-border-radius: 30px;
+    -fx-padding: 0 5px;
+}
+
+.btn-container {
+    -fx-spacing: 10px;
+    -fx-alignment: center;
+}
+
+.search-input {
+    -fx-max-width: infinity;
+    -fx-pref-height: 32px;
+    -fx-background-color: none;
+    -fx-border-color: none;
+    -fx-font-size: 20px;
+}

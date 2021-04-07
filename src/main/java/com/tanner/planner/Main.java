@@ -16,6 +16,7 @@ public class Main extends Application {
         primaryStage.setTitle("Tanner");
         Scene scene = new Scene(root, 1440, 1024);
         primaryStage.setScene(scene);
+        primaryStage.setMaximized(true);
         primaryStage.show();
     }
 

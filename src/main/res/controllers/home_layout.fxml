@@ -19,7 +19,9 @@
         <AnchorPane>
             <VBox AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
                 <fx:include source="../partials/home_header_partial.fxml" />
-                <fx:include source="../partials/home_panel_container_partial.fxml" />
+                <ScrollPane fitToWidth="true" style="-fx-background-color: transparent; -fx-max-width: infinity;">
+                    <fx:include source="../partials/home_panel_container_partial.fxml" />
+                </ScrollPane>
             </VBox>
         </AnchorPane>
     </center>

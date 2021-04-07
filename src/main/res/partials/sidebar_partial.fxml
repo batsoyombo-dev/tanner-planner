@@ -11,7 +11,7 @@
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.tanner.planner.controllers.partials.SidebarController"
-            prefHeight="0" prefWidth="300" stylesheets="@../css/sidebar_partial.css">
+            prefHeight="0" prefWidth="300" stylesheets="@../css/sidebar_partial.css, @../css/global.css">
 
     <BorderPane styleClass="main-container" AnchorPane.rightAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.bottomAnchor="0" AnchorPane.topAnchor="0">
         <top>
@@ -19,20 +19,35 @@
                 <Label styleClass="logo" text="tanner" />
             </VBox>
         </top>
+
         <center>
-            <VBox styleClass="sub-container">
-                <Label styleClass="sub-container-title" text="Category" />
-                <Button styleClass="nav-btn, selected" text="Panels" />
-                <Button styleClass="nav-btn" text="Panels" />
-                <Button styleClass="nav-btn" text="Panels" />
-                <Button styleClass="nav-btn" text="Panels" />
-                <Button styleClass="nav-btn" text="Panels" />
+            <VBox spacing="25">
+                <VBox styleClass="sub-container">
+                    <Label styleClass="sub-container-title" text="Category" />
+                    <Button styleClass="nav-btn, selected" text="Panels" />
+                    <Button styleClass="nav-btn" text="Panels" />
+                    <Button styleClass="nav-btn" text="Panels" />
+                    <Button styleClass="nav-btn" text="Panels" />
+                    <Button styleClass="nav-btn" text="Panels" />
+                </VBox>
+                <VBox styleClass="sub-container">
+                    <Label styleClass="sub-container-title" text="Recent Activities" />
+                    <Label styleClass="nav-item" text="Panels" />
+                    <Label styleClass="nav-item" text="Panels" />
+                    <Label styleClass="nav-item" text="Panels" />
+                    <Label styleClass="nav-item" text="Panels" />
+                </VBox>
             </VBox>
         </center>
+
         <bottom>
-            <HBox>
-                <Button styleClass="footer-btn" text="S" />
-                <Button styleClass="footer-btn" text="B" />
+            <HBox styleClass="footer-container">
+                <VBox styleClass="footer-sub-container" HBox.hgrow="ALWAYS">
+                    <Button styleClass="footer-btn" />
+                </VBox>
+                <VBox styleClass="footer-sub-container" HBox.hgrow="ALWAYS" alignment="CENTER_RIGHT">
+                    <Button styleClass="footer-btn" />
+                </VBox>
             </HBox>
         </bottom>
     </BorderPane>

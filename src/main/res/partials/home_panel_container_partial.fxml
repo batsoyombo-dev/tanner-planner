@@ -6,11 +6,35 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
 <GridPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.tanner.planner.controllers.partials.HomePanelContainerController"
-            prefHeight="400.0" prefWidth="600.0">
+          xmlns:fx="http://javafx.com/fxml"
+          fx:controller="com.tanner.planner.controllers.partials.HomePanelContainerController"
+          styleClass="main" stylesheets="@../css/home_panel_container_partial.css" >
 
+    <columnConstraints>
+        <ColumnConstraints percentWidth="20" />
+        <ColumnConstraints percentWidth="20" />
+        <ColumnConstraints percentWidth="20" />
+        <ColumnConstraints percentWidth="20" />
+        <ColumnConstraints percentWidth="20" />
+    </columnConstraints>
+
+    <VBox style="-fx-background-color: #084C61;" styleClass="panel-container" GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS" >
+        <Label styleClass="panel-title" text="dwq" />
+    </VBox>
+
+    <VBox style="-fx-background-color: #DB504A;" styleClass="panel-container" GridPane.columnIndex="1" GridPane.rowIndex="0" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS" >
+        <Label styleClass="panel-title" text="dwq" />
+    </VBox>
+    <VBox style="-fx-background-color: #EAC435;" styleClass="panel-container" GridPane.columnIndex="2" GridPane.rowIndex="0" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS" >
+        <Label styleClass="panel-title" text="dwq" />
+    </VBox>
+    <VBox style="-fx-background-color: #3d3f56;" styleClass="panel-container" GridPane.columnIndex="3" GridPane.rowIndex="0" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS" >
+        <Label styleClass="panel-title" text="dwq" />
+    </VBox>
 
 
 </GridPane>

@@ -9,8 +9,16 @@
 <HBox xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.tanner.planner.controllers.partials.HomeHeaderController"
-            prefHeight="400.0" prefWidth="600.0">
+            styleClass="header" alignment="CENTER_RIGHT" stylesheets="@../css/home_header_partial.css, @../css/global.css">
 
+    <HBox styleClass="search-container, sub-container">
+        <TextField promptText="Search..." styleClass="search-input"  HBox.hgrow="ALWAYS" />
+        <Button styleClass="btn, search-btn" />
+    </HBox>
 
+    <HBox styleClass="btn-container, sub-container">
+        <Button styleClass="btn"/>
+        <Button styleClass="btn"/>
+    </HBox>
 
 </HBox>

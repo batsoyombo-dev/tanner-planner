@@ -4,22 +4,24 @@
 }
 
 @font-face {
-    font-family: Raleway-Bold;
+    font-family: Raleway-Semi-Bold;
     src: url("../fonts/Raleway-Bold.ttf");
 }
 
-/** {*/
-/*    -fx-font-family: Raleway;*/
-/*}*/
+* {
+    -fx-font-family: Raleway;
+}
 
 .main-container {
-    -fx-background-color: #6c63ff;
+    -fx-background-color: #489FB5;
     -fx-padding: 10px;
     -fx-spacing: 25px;
 }
 
 .logo {
     -fx-text-fill: #fff;
+    -fx-font-family: Raleway-Semi-Bold;
+    -fx-font-weight: bold;
     -fx-font-size: 72px;
 }
 
@@ -36,8 +38,16 @@
     -fx-background-color: none;
 }
 
+.nav-item {
+    -fx-padding: 10px 20px;
+    -fx-max-width: infinity;
+    -fx-font-size: 20px;
+    -fx-text-fill: #f2f2f2;
+}
+
+
 .selected {
-    -fx-background-color: #8888ff;
+    -fx-background-color: rgba(100, 170, 190, 1);
 }
 
 .sub-container {
@@ -48,7 +58,20 @@
 .sub-container-title {
     -fx-font-size: 20px;
     -fx-text-fill: #f2f2f2;
+    -fx-font-family: Raleway-Semi-Bold;
+    -fx-font-weight: bold;
 }
 
+.footer-container {
+
+}
+
+.footer-sub-container {
+    -fx-max-height: infinity;
+}
+
+
 .footer-btn {
+    -fx-background-color: none;
+    -fx-graphic: url("../images/white-circle.png");
 }
