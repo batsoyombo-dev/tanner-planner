@@ -8,7 +8,6 @@
 
 <HBox xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.tanner.planner.controllers.partials.HomeHeaderController"
             styleClass="header" alignment="CENTER_RIGHT" stylesheets="@../css/home_header_partial.css, @../css/global.css">
 
     <HBox styleClass="search-container, sub-container">
@@ -17,7 +16,7 @@
     </HBox>
 
     <HBox styleClass="btn-container, sub-container">
-        <Button styleClass="btn"/>
+        <Button styleClass="btn" onMouseClicked="#handleNewPanelClick"/>
         <Button styleClass="btn"/>
     </HBox>
 

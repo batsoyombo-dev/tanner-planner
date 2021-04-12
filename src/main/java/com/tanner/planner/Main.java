@@ -1,5 +1,6 @@
 package com.tanner.planner;
 
+import com.tanner.planner.controllers.HomeController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -12,12 +13,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/controllers/home_layout.fxml"));
-        primaryStage.setTitle("Tanner");
-        Scene scene = new Scene(root, 1440, 1024);
-        primaryStage.setScene(scene);
-        primaryStage.setMaximized(true);
-        primaryStage.show();
+        new HomeController(primaryStage);
     }
 
     public static void main(String[] args) {

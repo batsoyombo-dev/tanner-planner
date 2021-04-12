@@ -8,22 +8,17 @@
 
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.tanner.planner.controllers.HomeController"
             prefHeight="400.0" prefWidth="600.0">
-
-    <left>
-        <fx:include source="../partials/sidebar_partial.fxml" />
-    </left>
     
     <center>
-        <AnchorPane>
-            <VBox AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
+        <BorderPane>
+            <top>
                 <fx:include source="../partials/home_header_partial.fxml" />
-                <ScrollPane fitToWidth="true" style="-fx-background-color: transparent; -fx-max-width: infinity;">
-                    <fx:include source="../partials/home_panel_container_partial.fxml" />
-                </ScrollPane>
-            </VBox>
-        </AnchorPane>
+            </top>
+            <center>
+                <fx:include source="../partials/home_panel_container_partial.fxml" />
+            </center>
+        </BorderPane>
     </center>
 
 </BorderPane>
