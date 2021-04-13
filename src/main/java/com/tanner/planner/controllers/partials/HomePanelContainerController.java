@@ -62,12 +62,9 @@ public class HomePanelContainerController implements Initializable, Inflatable<P
     }
 
     public void addNewPanelItemToTheContainer(Panel panel) {
-        int panelId = this.panelDAO.addPanel(panel);
-        if (panelId != -1) {
-            panel.setId(panelId);
-            this.gp_panelItemContainer.add(newPanelItemContainer(panel), this.totalPanelItems % this.totalItemsInRow, this.totalPanelItems / this.totalItemsInRow, 1, 1);
-            this.totalPanelItems++;
-        }
+        this.panelDAO.addPanelConcurrently(panel);
+        this.gp_panelItemContainer.add(newPanelItemContainer(panel), this.totalPanelItems % this.totalItemsInRow, this.totalPanelItems / this.totalItemsInRow, 1, 1);
+        this.totalPanelItems++;
     }
 
     public VBox newPanelItemContainer(Panel panel) {

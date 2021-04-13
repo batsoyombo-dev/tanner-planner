@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.UUID;
 
 public class AddPanelDialogController implements Initializable {
 
@@ -60,7 +61,7 @@ public class AddPanelDialogController implements Initializable {
                 || colorField.isEmpty())
             return;
 
-        this.createdPanel = new Panel(-1, HomeController.authenticatedUserId, titleField, descField, categoryField, colorField);
+        this.createdPanel = new Panel(UUID.randomUUID().toString(), HomeController.authenticatedUserId, titleField, descField, categoryField, colorField);
         this.stage.close();
     }
 

@@ -2,10 +2,10 @@ package com.tanner.planner.models;
 
 public class Panel {
 
-    private int id, userId;
-    private String title, description, category, colorConfig;
+    private int userId;
+    private String id, title, description, category, colorConfig;
 
-    public Panel(int id, int userId, String title, String description, String category, String colorConfig) {
+    public Panel(String id, int userId, String title, String description, String category, String colorConfig) {
         this.id = id;
         this.userId = userId;
         this.title = title;
@@ -22,11 +22,11 @@ public class Panel {
         this.colorConfig = colorConfig;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
