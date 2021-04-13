@@ -25,10 +25,13 @@ public class SidebarController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         this.btn_currentChosen = this.btn_defaultNavBtn;
+        this.panelContainer.inflatePanelItemContainer(this.currentCategory);
     }
 
     @FXML
     public void handleNavigation(MouseEvent e) {
+        if (this.panelContainer.isPanelLoading())
+            return;
         Button btn_navBtn = ((Button)(e.getSource()));
         String newCategory = btn_navBtn.getId();
         if(newCategory.equals(this.currentCategory))
@@ -37,7 +40,7 @@ public class SidebarController implements Initializable {
         this.btn_currentChosen.getStyleClass().remove("selected");
         this.currentCategory = newCategory;
         this.btn_currentChosen = btn_navBtn;
-        this.panelContainer.inflateLayoutWithPanel(newCategory);
+        this.panelContainer.inflatePanelItemContainer(newCategory);
     }
 
 }

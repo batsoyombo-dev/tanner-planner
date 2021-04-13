@@ -51,8 +51,4 @@ public class HomeController implements Initializable {
 
     }
 
-    public void navigateTo(String category) {
-        this.panelContainerController.inflateLayoutWithPanel(category);
-    }
-
 }

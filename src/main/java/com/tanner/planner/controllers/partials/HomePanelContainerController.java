@@ -25,6 +25,7 @@ public class HomePanelContainerController implements Initializable, Inflatable<P
     private PanelDAO panelDAO;
     private int totalPanelItems = 0;
     private int totalItemsInRow = 5;
+    private boolean isLoading = false;
 
     public HomePanelContainerController() {
         this.panelDAO = new PanelDAO();
@@ -33,15 +34,13 @@ public class HomePanelContainerController implements Initializable, Inflatable<P
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        inflateLayoutWithPanel("all");
-
     }
 
     @Override
     public void inflate(List<Panel> objects) {
+        this.isLoading = false;
         if(objects == null || objects.size() == 0) {
-            this.gp_panelItemContainer.getChildren().clear();
-            this.totalPanelItems = 0;
+            this.clearPanelItemContainer();
         } else
             for(Panel panel : objects) {
                 this.gp_panelItemContainer.add(newPanelItemContainer(panel), this.totalPanelItems % this.totalItemsInRow, this.totalPanelItems / this.totalItemsInRow, 1, 1);
@@ -49,16 +48,14 @@ public class HomePanelContainerController implements Initializable, Inflatable<P
             }
     }
 
-    public void inflateLayoutWithPanel(String category) {
+    public void inflatePanelItemContainer(String category) {
+        this.isLoading = true;
         this.panelDAO.getPanelsConcurrently(category, this);
-//        List<Panel> panels = this.panelDAO.getPanels(category);
-//        if(panels == null) {
-//            this.gp_panelItemContainer.getChildren().clear();
-//        } else
-//            for(Panel panel : panels) {
-//            this.gp_panelItemContainer.add(newPanelItemContainer(panel), this.totalPanelItems % this.totalItemsInRow, this.totalPanelItems / this.totalItemsInRow, 1, 1);
-//            this.totalPanelItems++;
-//        }
+    }
+
+    public void clearPanelItemContainer() {
+        this.gp_panelItemContainer.getChildren().clear();
+        this.totalPanelItems = 0;
     }
 
     public void addNewPanelItemToTheContainer(Panel panel) {
@@ -76,6 +73,10 @@ public class HomePanelContainerController implements Initializable, Inflatable<P
         container.setStyle("-fx-background-color: " + panel.getColorConfig() + ";");
         container.getChildren().add(title);
         return container;
+    }
+
+    public boolean isPanelLoading() {
+        return this.isLoading;
     }
 
 }
