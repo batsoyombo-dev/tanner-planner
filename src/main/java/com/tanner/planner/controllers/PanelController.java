@@ -1,13 +1,19 @@
 package com.tanner.planner.controllers;
 
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -86,5 +92,21 @@ public class PanelController implements Initializable {
 
 
 
+
+
+    }
+
+    @FXML
+    void clickedAddBucket(ActionEvent event) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/dialogs/add_bucket_dialog.fxml"));
+            Stage CustomersStage = new Stage();
+            CustomersStage.setTitle("Add Bucket");
+            CustomersStage.setScene(new Scene(root, 400, 100));
+            CustomersStage.setResizable(false);
+            CustomersStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

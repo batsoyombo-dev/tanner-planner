@@ -172,7 +172,7 @@
                   <Insets left="70.0" top="50.0" />
                </TilePane.margin>
                <children>
-                  <Button fx:id="btnAddBucket" mnemonicParsing="false" prefHeight="60.0" prefWidth="320.0" styleClass="addBucket" text="+Add Bucket">
+                  <Button fx:id="btnAddBucket" mnemonicParsing="false" onAction="#clickedAddBucket" prefHeight="60.0" prefWidth="320.0" styleClass="addBucket" text="+Add Bucket">
                      <font>
                         <Font size="24.0" />
                      </font>
