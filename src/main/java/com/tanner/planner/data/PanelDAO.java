@@ -38,12 +38,8 @@ public class PanelDAO {
         Thread newPanelThread = new Thread(() -> {
             String query = "insert into panel(" + COLUMN_ID + ", " + COLUMN_USER_ID + ", " + COLUMN_TITLE + ", " + COLUMN_DESC + ", " + COLUMN_CATEGORY + ", " + COLUMN_COLOR + ")" +
                     "value ('" + panel.getId() + "', " + panel.getUserId() + ", '" + panel.getTitle() + "', '" + panel.getDescription() + "', '" + panel.getCategory() + "', '" + panel.getColorConfig() + "');";
-            try (Connection con = DBConnection.getConnection(); PreparedStatement statement = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
-                statement.executeUpdate();
-                ResultSet resultSet = statement.getGeneratedKeys();
-                if (resultSet.next()) {
-                    System.out.println("key " + resultSet.getInt(1));
-                }
+            try (Connection con = DBConnection.getConnection(); Statement statement = con.createStatement()) {
+                statement.execute(query);
             } catch (SQLException e) {
                 e.printStackTrace();
             }

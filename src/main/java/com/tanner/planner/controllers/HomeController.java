@@ -20,14 +20,14 @@ public class HomeController implements Initializable {
 
     private BorderPane root;
     private HomePanelContainerController panelContainerController;
+    private Stage stage;
 
     public static int authenticatedUserId = 1;
-//    @FXML
-//    private ScrollPane sp_
 
     public HomeController(Stage stage) throws IOException {
+        this.stage = stage;
         this.root = new BorderPane();
-        this.panelContainerController = new HomePanelContainerController();
+        this.panelContainerController = new HomePanelContainerController(this);
         BorderPane bp_mainContainer = new BorderPane();
         FXMLLoader sidebarLoader = new FXMLLoader(super.getClass().getResource("/partials/sidebar_partial.fxml"));
         FXMLLoader headerLoader = new FXMLLoader(super.getClass().getResource("/partials/home_header_partial.fxml"));
@@ -39,16 +39,23 @@ public class HomeController implements Initializable {
         bp_mainContainer.setCenter(panelContainerLoader.load());
         this.root.setLeft(sidebarLoader.load());
         this.root.setCenter(bp_mainContainer);
-        stage.setTitle("Tanner");
+        this.stage.setTitle("Tanner");
         Scene scene = new Scene(this.root);
-        stage.setScene(scene);
-        stage.setMaximized(true);
-        stage.show();
+        this.stage.setScene(scene);
+        this.stage.setMaximized(true);
+        this.stage.show();
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+    }
+
+    public void toggleStage(boolean shouldShow) {
+        if (shouldShow)
+            this.stage.show();
+        else
+            this.stage.hide();
     }
 
 }

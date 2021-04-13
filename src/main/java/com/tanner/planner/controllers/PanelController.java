@@ -1,6 +1,7 @@
 package com.tanner.planner.controllers;
 
 
+import com.tanner.planner.models.Panel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
@@ -18,6 +20,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class PanelController implements Initializable {
+
+    private BorderPane root;
 
     @FXML
     private Button btnHamburgerMenu;
@@ -55,6 +59,27 @@ public class PanelController implements Initializable {
     @FXML
     private Button btnAddBucket;
 
+    private Panel panel;
+    private HomeController homeController;
+    private Stage stage;
+
+    public PanelController(HomeController homeController, Panel panel) throws IOException {
+        this.panel = panel;
+        this.homeController = homeController;
+        FXMLLoader loader = new FXMLLoader(super.getClass().getResource("/controllers/panel_layout.fxml"));
+        loader.setController(this);
+        this.root = loader.load();
+        Scene scene = new Scene(this.root, 1440, 1024);
+        this.stage = new Stage();
+        this.stage.setScene(scene);
+        this.stage.setTitle(panel.getTitle());
+        this.stage.setResizable(false);
+        this.stage.setOnCloseRequest(e -> {
+            homeController.toggleStage(true);
+        });
+        this.stage.show();
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -88,12 +113,11 @@ public class PanelController implements Initializable {
         BackgroundImage bImage6 = new BackgroundImage(image6, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(btnSettings.getWidth(), btnSettings.getHeight(), true, true, true, false));
         Background backGround6 = new Background(bImage6);
         btnSettings.setBackground(backGround6);
+    }
 
-
-
-
-
-
+    public void handleBackToHomeClick(MouseEvent e) {
+        this.stage.close();
+        this.homeController.toggleStage(true);
     }
 
     @FXML

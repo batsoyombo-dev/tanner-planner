@@ -5,7 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
-public class AddBucketController {
+public class AddBucketDialogController {
 
     @FXML
     private Button btnCreate;
