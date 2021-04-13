@@ -1,23 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
 
-<HBox xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            styleClass="header" alignment="CENTER_RIGHT" stylesheets="@../css/home_header_partial.css, @../css/global.css">
+<HBox alignment="CENTER_RIGHT" styleClass="header" stylesheets="@../css/home_header_partial.css, @../css/global.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
 
     <HBox styleClass="search-container, sub-container">
-        <TextField promptText="Search..." styleClass="search-input"  HBox.hgrow="ALWAYS" />
+        <TextField promptText="Search..." styleClass="search-input" HBox.hgrow="ALWAYS" />
         <Button styleClass="btn, search-btn" />
     </HBox>
 
     <HBox styleClass="btn-container, sub-container">
-        <Button styleClass="btn" onMouseClicked="#handleNewPanelClick"/>
-        <Button styleClass="btn"/>
+        <Button fx:id="btnHelp" onMouseClicked="#handleNewPanelClick" />
+        <Button styleClass="btn" />
     </HBox>
 
 </HBox>

@@ -58,12 +58,12 @@ public class PanelController implements Initializable {
         Background backGround1 = new Background(bImage1);
         btnHamburgerMenu.setBackground(backGround1);
 
-        Image image2 = new Image("/images/help.png", btnHelp.getWidth(), btnHelp.getHeight(), false, true, true);
+        Image image2 = new Image("/images/help_white.png", btnHelp.getWidth(), btnHelp.getHeight(), false, true, true);
         BackgroundImage bImage2 = new BackgroundImage(image2, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(btnHelp.getWidth(), btnHelp.getHeight(), true, true, true, false));
         Background backGround2 = new Background(bImage2);
         btnHelp.setBackground(backGround2);
 
-        Image image3 = new Image("/images/notification.png", btnNotification.getWidth(), btnNotification.getHeight(), false, true, true);
+        Image image3 = new Image("/images/notification_white.png", btnNotification.getWidth(), btnNotification.getHeight(), false, true, true);
         BackgroundImage bImage3 = new BackgroundImage(image3, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(btnNotification.getWidth(), btnNotification.getHeight(), true, true, true, false));
         Background backGround3 = new Background(bImage3);
         btnNotification.setBackground(backGround3);
