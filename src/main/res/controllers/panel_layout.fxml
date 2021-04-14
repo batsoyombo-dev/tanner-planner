@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1024.0" prefWidth="1440.0" styleClass="main" stylesheets="@../css/panel_layout.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1024.0" prefWidth="1440.0" styleClass="main" stylesheets="@../css/panel_layout.css" xmlns="https://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
    <top>
       <VBox prefHeight="160.0" prefWidth="1440.0" BorderPane.alignment="CENTER">
          <children>

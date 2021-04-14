@@ -48,19 +48,17 @@ public class HomePanelContainerController implements Initializable, Inflatable<P
     @Override
     public void inflate(List<Panel> objects) {
         this.isLoading = false;
-        if(objects == null || objects.size() == 0) {
-            this.clearPanelItemContainer();
-        } else
+        this.clearPanelItemContainer();
+        if(objects != null) {
             for(Panel panel : objects) {
                 this.gp_panelItemContainer.add(newPanelItemContainer(panel), this.totalPanelItems % this.totalItemsInRow, this.totalPanelItems / this.totalItemsInRow, 1, 1);
                 this.totalPanelItems++;
             }
+        }
     }
 
     public void inflatePanelItemContainer(String category) {
         this.isLoading = true;
-
-        this.clearPanelItemContainer();
         this.panelDAO.getPanelsConcurrently(category, this);
     }
 

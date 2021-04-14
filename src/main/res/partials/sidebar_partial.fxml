@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="0" prefWidth="300" stylesheets="@../css/sidebar_partial.css, @../css/global.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="0" prefWidth="300" stylesheets="@../css/sidebar_partial.css, @../css/global.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
 
     <BorderPane styleClass="main-container" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
         <top>
