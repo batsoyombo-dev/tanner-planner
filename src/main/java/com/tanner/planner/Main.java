@@ -1,6 +1,9 @@
 package com.tanner.planner;
 
+import com.tanner.planner.controllers.AuthController;
 import com.tanner.planner.controllers.HomeController;
+import com.tanner.planner.data.UserDAO;
+import com.tanner.planner.models.User;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -19,7 +22,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        new HomeController(primaryStage);
+        new AuthController(primaryStage);
     }
 
     public static void main(String[] args) {

@@ -31,6 +31,7 @@ public class HomePanelContainerController implements Initializable, Inflatable<P
     private int totalPanelItems = 0;
     private int totalItemsInRow = 5;
     private boolean isLoading = false;
+    private String currentCategory = "none";
 
     /**
      * @param homeController Controller for home window
@@ -59,6 +60,7 @@ public class HomePanelContainerController implements Initializable, Inflatable<P
 
     public void inflatePanelItemContainer(String category) {
         this.isLoading = true;
+        this.currentCategory = category;
         this.panelDAO.getPanelsConcurrently(category, this);
     }
 
@@ -69,6 +71,8 @@ public class HomePanelContainerController implements Initializable, Inflatable<P
 
     public void addNewPanelItemToTheContainer(Panel panel) {
         this.panelDAO.addPanelConcurrently(panel);
+        if (!this.currentCategory.equals(panel.getCategory()))
+            return;
         this.gp_panelItemContainer.add(newPanelItemContainer(panel), this.totalPanelItems % this.totalItemsInRow, this.totalPanelItems / this.totalItemsInRow, 1, 1);
         this.totalPanelItems++;
     }

@@ -3,11 +3,11 @@ package com.tanner.planner.models;
 public class Bucket {
 
 
-    private String id, panel_id, title;
+    private String id, panelId, title;
 
-    public Bucket(String id, String panel_id, String title) {
+    public Bucket(String id, String panelId, String title) {
         this.id = id;
-        this.panel_id = panel_id;
+        this.panelId = panelId;
         this.title = title;
     }
 
@@ -20,11 +20,11 @@ public class Bucket {
     }
 
     public String getPanel_id() {
-        return panel_id;
+        return panelId;
     }
 
-    public void setPanel_id(String panel_id) {
-        this.panel_id = panel_id;
+    public void setPanel_id(String panelId) {
+        this.panelId = panelId;
     }
 
     public String getTitle() {

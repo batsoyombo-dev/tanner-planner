@@ -3,6 +3,7 @@ package com.tanner.planner.controllers;
 import com.tanner.planner.controllers.partials.HomeHeaderController;
 import com.tanner.planner.controllers.partials.HomePanelContainerController;
 import com.tanner.planner.controllers.partials.SidebarController;
+import com.tanner.planner.models.User;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -22,9 +23,10 @@ public class HomeController implements Initializable {
     private HomePanelContainerController panelContainerController;
     private Stage stage;
 
-    public static int authenticatedUserId = 1;
+    private static User user = null;
 
-    public HomeController(Stage stage) throws IOException {
+    public HomeController(Stage stage, User authenticatedUser) throws IOException {
+        user = authenticatedUser;
         this.stage = stage;
         this.root = new BorderPane();
         this.panelContainerController = new HomePanelContainerController(this);
@@ -49,6 +51,10 @@ public class HomeController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+    }
+
+    public static User getUser() {
+        return user;
     }
 
     public void toggleStage(boolean shouldShow) {

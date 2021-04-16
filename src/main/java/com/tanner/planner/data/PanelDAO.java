@@ -1,5 +1,6 @@
 package com.tanner.planner.data;
 
+import com.tanner.planner.controllers.HomeController;
 import com.tanner.planner.models.Panel;
 import com.tanner.planner.utils.Inflatable;
 import javafx.application.Platform;
@@ -49,14 +50,13 @@ public class PanelDAO {
 
     public void getPanelsConcurrently(String category, Inflatable<Panel> callback) {
         Thread listPanelsThread = new Thread(() -> {
-            String query;
-            switch (category) {
-                case "all" -> query = "SELECT * FROM " + TABLE_NAME + ";";
-                case "inp", "com" -> query = "SELECT * FROM " + TABLE_NAME + " where category = '" + category + "';";
-                default -> {
-                    return;
-                }
+            String query = "SELECT * FROM " + TABLE_NAME;
+                    switch (category) {
+                case "all" -> query += " where " + COLUMN_USER_ID + " = " + HomeController.getUser().getId() + "";
+                case "inp", "com" -> query +=" where " + COLUMN_CATEGORY + " = '" + category + "'";
+                default -> query += " where " + COLUMN_TITLE + " = '" + category + "'";
             }
+            query += " and " + COLUMN_USER_ID + " = " + HomeController.getUser().getId() + ";";
 
             try (Connection con = DBConnection.getConnection();
                  Statement statement = con.createStatement();

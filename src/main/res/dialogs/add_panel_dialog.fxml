@@ -8,11 +8,11 @@
 
 <VBox xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            prefHeight="400.0" prefWidth="600.0">
+            prefHeight="0" prefWidth="400.0" stylesheets="@../css/global.css, @../css/add_panel_dialog.css" styleClass="main-container">
 
-    <TextField promptText="title" fx:id="inp_panelTitleField" />
-    <TextField promptText="desc" fx:id="inp_panelDescField" />
-    <TextField promptText="category" fx:id="inp_panelCategoryField" />
-    <TextField promptText="color" fx:id="inp_panelColorField" />
-<Button text="Submit" onMouseClicked="#handlePanelSubmit" />
+    <TextField promptText="Title" fx:id="inp_panelTitleField" styleClass="text-input" />
+    <TextField promptText="Description" fx:id="inp_panelDescField" styleClass="text-input" />
+    <ChoiceBox styleClass="text-input" fx:id="cb_categoryChoice" />
+    <TextField promptText="Color" text="#"  fx:id="inp_panelColorField" styleClass="text-input" />
+    <Button text="Submit" onMouseClicked="#handlePanelSubmit" styleClass="btn" />
 </VBox>

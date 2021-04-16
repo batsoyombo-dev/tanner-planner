@@ -1,0 +1,21 @@
+.main-container {
+    -fx-padding: 25px;
+    -fx-spacing: 10px;
+}
+
+.text-input {
+    -fx-padding: 10px 20px;
+    -fx-background-radius: 20px;
+    -fx-font-size: 20px;
+}
+
+.btn {
+    -fx-background-radius: 20px;
+    -fx-text-fill: #fff;
+    -fx-pref-width: infinity;
+    -fx-background-color: #489FB5;
+    -fx-padding: 10px 20px;
+    -fx-font-size: 20px;
+    -fx-font-family: Raleway-Semi-Bold;
+    -fx-font-weight: bold;
+}
