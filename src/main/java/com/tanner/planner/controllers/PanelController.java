@@ -1,11 +1,22 @@
 package com.tanner.planner.controllers;
 
 
+import com.tanner.planner.controllers.dialogs.AddBucketDialogController;
+import com.tanner.planner.controllers.dialogs.AddTaskDialogController;
+import com.tanner.planner.data.BucketDAO;
+import com.tanner.planner.data.DBConnection;
+import com.tanner.planner.data.TaskDAO;
+import com.tanner.planner.models.Bucket;
 import com.tanner.planner.models.Panel;
+import com.tanner.planner.models.Task;
+import com.tanner.planner.utils.Inflatable;
+import javafx.beans.binding.Bindings;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -13,18 +24,30 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class PanelController implements Initializable {
 
     private BorderPane root;
 
+    private BucketDAO bucketDAO;
+
+    private TaskDAO taskDAO;
+
+    ObservableList<Task> taskList;
+    @FXML
+    private BorderPane borderPane;
+
     @FXML
     private Button btnHamburgerMenu;
+
 
     @FXML
     private Label txtLogo;
@@ -59,13 +82,19 @@ public class PanelController implements Initializable {
     @FXML
     private Button btnAddBucket;
 
+    @FXML
+    private TilePane tile_Pane;
+
     private Panel panel;
     private HomeController homeController;
     private Stage stage;
+    ObservableList<Bucket> listBucket;
 
-    public PanelController(HomeController homeController, Panel panel) throws IOException {
+    public PanelController(HomeController homeController, Panel panel) throws IOException{
         this.panel = panel;
         this.homeController = homeController;
+        this.bucketDAO = new BucketDAO();
+        this.taskDAO = new TaskDAO();
         FXMLLoader loader = new FXMLLoader(super.getClass().getResource("/controllers/panel_layout.fxml"));
         loader.setController(this);
         this.root = loader.load();
@@ -82,6 +111,8 @@ public class PanelController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        //Color bg = Color.valueOf(panel.getColorConfig());
+        //borderPane.setBackground(new Background(new BackgroundFill(bg, CornerRadii.EMPTY, Insets.EMPTY)));
 
         //Setting icons in the button
         Image image1 = new Image("/images/menu.png", btnHamburgerMenu.getWidth(), btnHamburgerMenu.getHeight(), false, true, true);
@@ -113,24 +144,86 @@ public class PanelController implements Initializable {
         BackgroundImage bImage6 = new BackgroundImage(image6, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(btnSettings.getWidth(), btnSettings.getHeight(), true, true, true, false));
         Background backGround6 = new Background(bImage6);
         btnSettings.setBackground(backGround6);
+
+
+
+
+        try {
+            //DB-s Bucketuudiig listed avna, panel-idtai ni hargalzuulj
+            listBucket = bucketDAO.getBuckets(panel);
+            //bucket tus bolgond
+            for(Bucket bucket : listBucket){
+                //shine vbox uusgeed, title-iig ugnu
+                VBox vBox = newBucket(bucket.getTitle());
+                //taskuuda vbox ruu avna, DB-s taskuuda avna
+                vBox = getTasks(vBox, bucket);
+                vBox.getStylesheets().addAll("/css/bucket.css", "/css/global.css");
+                vBox.getStyleClass().add("bucket");
+                //add task button nemne
+                Button addTask = new Button("Add Task");
+                //darah ued form neegdene
+                addTask.setOnAction(e -> {
+                    try {
+                        PanelController panelController;
+                        panelController = this;
+                        new AddTaskDialogController(panelController, bucket);
+                    }
+                    catch (IOException e2) {
+                        e2.printStackTrace();
+                    }
+                });
+                addTask.getStyleClass().add("addTask");
+                vBox.getChildren().add(addTask);
+                int index = btnAddBucket.getParent().getChildrenUnmodifiable().indexOf(btnAddBucket);
+                tile_Pane.getChildren().add(index, vBox);
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+
     }
 
     public void handleBackToHomeClick(MouseEvent e) {
         this.stage.close();
         this.homeController.toggleStage(true);
     }
-
+//addbucket ued dialog neegdene
     @FXML
     void clickedAddBucket(ActionEvent event) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/dialogs/add_bucket_dialog.fxml"));
-            Stage CustomersStage = new Stage();
-            CustomersStage.setTitle("Add Bucket");
-            CustomersStage.setScene(new Scene(root, 400, 100));
-            CustomersStage.setResizable(false);
-            CustomersStage.show();
+            PanelController panelController;
+            panelController = this;
+            new AddBucketDialogController(panelController, panel);
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    //bucket-d zoriulj vbox uusgene
+    public VBox newBucket(String bucketTitle){
+        VBox vBox = new VBox();
+        Label title = new Label();
+        title.setText(bucketTitle);
+        title.getStyleClass().add("title");
+        vBox.getChildren().add(title);
+        return vBox;
+    }
+    //bucket dotorhi taskuudiig avna
+    public VBox getTasks(VBox vBox, Bucket bucket) throws SQLException{
+
+        taskList = taskDAO.getTasks(bucket);
+        for(Task task: taskList){
+            Button taskTitle = new Button();
+            taskTitle.setText(task.getTitle());
+            taskTitle.getStyleClass().add("task");
+            vBox.getChildren().add(taskTitle);
+        }
+        return vBox;
+    }
+    public TilePane getTile_Pane(){
+        return this.tile_Pane;
+    }
+    public Button getBtnAddBucket(){
+        return this.btnAddBucket;
     }
 }

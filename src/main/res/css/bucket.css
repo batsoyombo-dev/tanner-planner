@@ -1,0 +1,42 @@
+.bucket{
+    -fx-background-color: white;
+    -fx-background-radius: 10;
+    -fx-text-fill: black;
+    -fx-max-width: 300;
+    -fx-max-height: infinite;
+    -fx-font-size: 20;
+    -fx-font-family: Raleway-Semi-Bold;
+    -fx-vgap: -10;
+    -fx-padding: 26px;
+    -fx-border-insets: 26px;
+    -fx-background-insets: 26px;
+
+}
+.title{
+    -fx-font-weight: bold;
+    -fx-padding: 10px;
+}
+.task{
+    -fx-background-color: white;
+    -fx-border-color: black;
+    -fx-border-radius: 10;
+    -fx-min-width: 285;
+    -fx-min-height: 50;
+    -fx-alignment: left;
+    -fx-padding: 5px 10px 10px 10px;
+    -fx-border-insets: 5px 10px 10px 10px;
+    -fx-background-insets: 5px 10px 10px 10px;
+}
+.addTask{
+    -fx-background-color: #489FB5;
+    -fx-text-fill: white;
+    -fx-background-radius: 10;
+    -fx-border-insets: 30px;
+    -fx-min-width: 290;
+    -fx-min-height: 70;
+    -fx-padding: 5px 10px 10px 10px;
+    -fx-border-insets: 5px 10px 10px 10px;
+    -fx-background-insets: 5px 10px 10px 10px;
+
+
+}
