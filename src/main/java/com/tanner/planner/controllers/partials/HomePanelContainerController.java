@@ -71,7 +71,7 @@ public class HomePanelContainerController implements Initializable, Inflatable<P
 
     public void addNewPanelItemToTheContainer(Panel panel) {
         this.panelDAO.addPanelConcurrently(panel);
-        if (!this.currentCategory.equals(panel.getCategory()))
+        if (!this.currentCategory.equals(panel.getCategory()) && !this.currentCategory.equals("all"))
             return;
         this.gp_panelItemContainer.add(newPanelItemContainer(panel), this.totalPanelItems % this.totalItemsInRow, this.totalPanelItems / this.totalItemsInRow, 1, 1);
         this.totalPanelItems++;
