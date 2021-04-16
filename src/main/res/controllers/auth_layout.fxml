@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.shape.Line?>
+<HBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      stylesheets="@../css/auth_layout.css" styleClass="main-container">
+
+    <VBox styleClass="logo-container" HBox.hgrow="ALWAYS">
+        <Label text="tanner" styleClass="logo" />
+    </VBox>
+
+    <VBox fx:id="vbox_formContainer" HBox.hgrow="ALWAYS" alignment="CENTER">
+
+    </VBox>
+
+</HBox>

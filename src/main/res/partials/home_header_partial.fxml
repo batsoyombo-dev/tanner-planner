@@ -8,8 +8,8 @@
 <HBox alignment="CENTER_RIGHT" styleClass="header" stylesheets="@../css/home_header_partial.css, @../css/global.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
 
     <HBox styleClass="search-container, sub-container">
-        <TextField promptText="Search..." styleClass="search-input" HBox.hgrow="ALWAYS" />
-        <Button styleClass="btn, search-btn" />
+        <TextField fx:id="inp_searchField" promptText="Search..." styleClass="search-input" HBox.hgrow="ALWAYS" />
+        <Button styleClass="btn, search-btn" onMouseClicked="#handleSearchBtnClick"  />
     </HBox>
 
     <HBox styleClass="btn-container, sub-container">
