@@ -111,8 +111,8 @@ public class PanelController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        //Color bg = Color.valueOf(panel.getColorConfig());
-        //borderPane.setBackground(new Background(new BackgroundFill(bg, CornerRadii.EMPTY, Insets.EMPTY)));
+
+        borderPane.setStyle("-fx-background-color:  " +  panel.getColorConfig());
 
         //Setting icons in the button
         Image image1 = new Image("/images/menu.png", btnHamburgerMenu.getWidth(), btnHamburgerMenu.getHeight(), false, true, true);
