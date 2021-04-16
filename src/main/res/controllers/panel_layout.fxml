@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1024.0" prefWidth="1440.0" styleClass="main" stylesheets="@../css/panel_layout.css" xmlns="https://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
+<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1024.0" prefWidth="1440.0" styleClass="main" stylesheets="@../css/panel_layout.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <top>
       <VBox prefHeight="160.0" prefWidth="1440.0" BorderPane.alignment="CENTER">
          <children>
@@ -26,7 +26,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Label fx:id="txtLogo" minHeight="56.0" prefHeight="56.0" prefWidth="152.0" styleClass="text" text="tanner" onMouseClicked="#handleBackToHomeClick">
+                  <Label fx:id="txtLogo" minHeight="56.0" onMouseClicked="#handleBackToHomeClick" prefHeight="56.0" prefWidth="152.0" styleClass="text" text="tanner">
                      <HBox.margin>
                         <Insets left="40.0" top="10.0" />
                      </HBox.margin>
@@ -106,70 +106,11 @@
       </VBox>
    </top>
    <center>
-      <TilePane prefHeight="864.0" prefWidth="1440.0" BorderPane.alignment="CENTER">
+      <TilePane fx:id="tile_Pane" prefHeight="864.0" prefWidth="1440.0" BorderPane.alignment="CENTER">
          <children>
-            <VBox fx:id="vboxBucket" prefHeight="291.0" prefWidth="320.0" styleClass="bucket">
+            <Pane minWidth="145.0" prefHeight="291.0" prefWidth="319.0">
                <TilePane.margin>
-                  <Insets left="70.0" top="50.0" />
-               </TilePane.margin>
-               <children>
-                  <Label minHeight="30.0" prefHeight="30.0" prefWidth="53.0" text="Title">
-                     <VBox.margin>
-                        <Insets left="20.0" top="10.0" />
-                     </VBox.margin>
-                     <font>
-                        <Font name="System Bold" size="24.0" />
-                     </font>
-                  </Label>
-                  <Button fx:id="btnTask" alignment="BASELINE_LEFT" contentDisplay="RIGHT" minHeight="50.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="300.0" styleClass="task" text="Task">
-                     <VBox.margin>
-                        <Insets left="10.0" top="10.0" />
-                     </VBox.margin>
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
-                  <Button fx:id="btnTask" alignment="BASELINE_LEFT" minHeight="50.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="300.0" styleClass="task" text="Task">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets left="10.0" top="10.0" />
-                     </VBox.margin>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
-                  <Button fx:id="btnTask" alignment="BASELINE_LEFT" minHeight="50.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="300.0" styleClass="task" text="Task">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets left="10.0" top="10.0" />
-                     </VBox.margin>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
-                  <Button fx:id="btnAddTask" alignment="CENTER" minHeight="50.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="300.0" styleClass="addTask" text="+Add Task">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets left="10.0" top="10.0" />
-                     </VBox.margin>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
-               </children>
-            </VBox>
-            <Pane minWidth="145.0" prefHeight="291.0" prefWidth="145.0">
-               <TilePane.margin>
-                  <Insets left="70.0" top="50.0" />
+                  <Insets left="70.0" top="26.0" />
                </TilePane.margin>
                <children>
                   <Button fx:id="btnAddBucket" mnemonicParsing="false" onAction="#clickedAddBucket" prefHeight="60.0" prefWidth="320.0" styleClass="addBucket" text="+Add Bucket">
