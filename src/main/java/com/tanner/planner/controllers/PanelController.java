@@ -17,10 +17,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.geometry.Orientation;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollBar;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
@@ -81,9 +84,12 @@ public class PanelController implements Initializable {
 
     @FXML
     private Button btnAddBucket;
+    @FXML
+    private ScrollPane scroll_Pane;
+
 
     @FXML
-    private TilePane tile_Pane;
+    private HBox hBox;
 
     private Panel panel;
     private HomeController homeController;
@@ -106,14 +112,6 @@ public class PanelController implements Initializable {
         this.stage.setOnCloseRequest(e -> {
             homeController.toggleStage(true);
         });
-        this.stage.show();
-    }
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-
-        borderPane.setStyle("-fx-background-color:  " +  panel.getColorConfig());
-
         //Setting icons in the button
         Image image1 = new Image("/images/menu.png", btnHamburgerMenu.getWidth(), btnHamburgerMenu.getHeight(), false, true, true);
         BackgroundImage bImage1 = new BackgroundImage(image1, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(btnHamburgerMenu.getWidth(), btnHamburgerMenu.getHeight(), true, true, true, false));
@@ -144,8 +142,14 @@ public class PanelController implements Initializable {
         BackgroundImage bImage6 = new BackgroundImage(image6, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(btnSettings.getWidth(), btnSettings.getHeight(), true, true, true, false));
         Background backGround6 = new Background(bImage6);
         btnSettings.setBackground(backGround6);
+        this.stage.show();
+        borderPane.setStyle("-fx-background-color:  " +  panel.getColorConfig());
+        scroll_Pane.setStyle("-fx-background: " + this.panel.getColorConfig());
 
+    }
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
 
 
         try {
@@ -174,8 +178,7 @@ public class PanelController implements Initializable {
                 });
                 addTask.getStyleClass().add("addTask");
                 vBox.getChildren().add(addTask);
-                int index = btnAddBucket.getParent().getChildrenUnmodifiable().indexOf(btnAddBucket);
-                tile_Pane.getChildren().add(index, vBox);
+                hBox.getChildren().add(vBox);
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -220,8 +223,8 @@ public class PanelController implements Initializable {
         }
         return vBox;
     }
-    public TilePane getTile_Pane(){
-        return this.tile_Pane;
+    public HBox getHBox(){
+        return this.hBox;
     }
     public Button getBtnAddBucket(){
         return this.btnAddBucket;

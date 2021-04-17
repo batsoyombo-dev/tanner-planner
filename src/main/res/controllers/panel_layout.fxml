@@ -4,11 +4,9 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -37,20 +35,9 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Label>
-                  <TextField prefHeight="60.0" prefWidth="310.0" promptText="Search" styleClass="search">
-                     <HBox.margin>
-                        <Insets left="719.0" top="10.0" />
-                     </HBox.margin>
-                     <font>
-                        <Font name="System Bold" size="24.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="TEXT" />
-                     </cursor>
-                  </TextField>
                   <Button fx:id="btnHelp" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0">
                      <HBox.margin>
-                        <Insets left="39.0" top="20.0" />
+                        <Insets left="1068.0" top="20.0" />
                      </HBox.margin>
                      <cursor>
                         <Cursor fx:constant="HAND" />
@@ -84,9 +71,20 @@
                         <Font name="System Bold" size="28.0" />
                      </font>
                   </Label>
+                  <Button fx:id="btnAddBucket" mnemonicParsing="false" onAction="#clickedAddBucket" prefHeight="60.0" prefWidth="320.0" style="-fx-background-radius: 30;" styleClass="addBucket" text="+Add Bucket">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <HBox.margin>
+                        <Insets left="753.0" top="10.0" />
+                     </HBox.margin>
+                  </Button>
                   <Button fx:id="btnFavourite" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0">
                      <HBox.margin>
-                        <Insets left="1144.0" top="20.0" />
+                        <Insets left="70.0" top="20.0" />
                      </HBox.margin>
                      <cursor>
                         <Cursor fx:constant="HAND" />
@@ -106,24 +104,10 @@
       </VBox>
    </top>
    <center>
-      <TilePane fx:id="tile_Pane" prefHeight="864.0" prefWidth="1440.0" BorderPane.alignment="CENTER">
-         <children>
-            <Pane minWidth="145.0" prefHeight="291.0" prefWidth="319.0">
-               <TilePane.margin>
-                  <Insets left="70.0" top="26.0" />
-               </TilePane.margin>
-               <children>
-                  <Button fx:id="btnAddBucket" mnemonicParsing="false" onAction="#clickedAddBucket" prefHeight="60.0" prefWidth="320.0" styleClass="addBucket" text="+Add Bucket">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
-               </children>
-            </Pane>
-         </children>
-      </TilePane>
+      <ScrollPane fx:id="scroll_Pane" hbarPolicy="AS_NEEDED" maxHeight="800.0" vbarPolicy="AS_NEEDED">
+         <content>
+            <HBox fx:id="hBox" maxHeight="865.0" prefHeight="800.0" prefWidth="1440.0" BorderPane.alignment="CENTER" />
+         </content>
+      </ScrollPane>
    </center>
 </BorderPane>

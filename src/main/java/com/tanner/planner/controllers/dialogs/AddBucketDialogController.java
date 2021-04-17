@@ -60,8 +60,7 @@ public class AddBucketDialogController {
         bucketDAO.addBucket(bucket);
         Stage stage = (Stage) btnCancel.getScene().getWindow();
         stage.close();
-        panelController.getTile_Pane().getChildren().clear();
-        panelController.getTile_Pane().getChildren().add(panelController.getBtnAddBucket());
+        panelController.getHBox().getChildren().clear();
         panelController.initialize(null, null);
     }
 
