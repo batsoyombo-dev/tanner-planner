@@ -4,6 +4,7 @@
     -fx-text-fill: black;
     -fx-max-width: 300;
     /*-fx-max-height: infinite;*/
+    -fx-pref-height: 0;
     -fx-font-size: 20;
     -fx-font-family: Raleway-Semi-Bold;
     -fx-vgap: -10;

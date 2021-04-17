@@ -161,8 +161,8 @@ public class PanelController implements Initializable {
                 VBox vBox = newBucket(bucket.getTitle());
                 //taskuuda vbox ruu avna, DB-s taskuuda avna
                 vBox = getTasks(vBox, bucket);
-                vBox.getStylesheets().addAll("/css/bucket.css", "/css/global.css");
-                vBox.getStyleClass().add("bucket");
+//                vBox.getStylesheets().addAll("/css/bucket.css", "/css/global.css");
+//                vBox.getStyleClass().add("bucket");
                 //add task button nemne
                 Button addTask = new Button("Add Task");
                 //darah ued form neegdene
@@ -177,7 +177,7 @@ public class PanelController implements Initializable {
                     }
                 });
                 addTask.getStyleClass().add("addTask");
-                vBox.getChildren().add(addTask);
+                ((VBox)(vBox.getChildren().get(0))).getChildren().add(addTask);
                 hBox.getChildren().add(vBox);
             }
         } catch (SQLException throwables) {
@@ -204,12 +204,16 @@ public class PanelController implements Initializable {
     }
     //bucket-d zoriulj vbox uusgene
     public VBox newBucket(String bucketTitle){
+        VBox container = new VBox();
         VBox vBox = new VBox();
         Label title = new Label();
         title.setText(bucketTitle);
         title.getStyleClass().add("title");
         vBox.getChildren().add(title);
-        return vBox;
+        vBox.getStylesheets().addAll("/css/bucket.css", "/css/global.css");
+        vBox.getStyleClass().add("bucket");
+        container.getChildren().add(vBox);
+        return container;
     }
     //bucket dotorhi taskuudiig avna
     public VBox getTasks(VBox vBox, Bucket bucket) throws SQLException{
@@ -219,7 +223,7 @@ public class PanelController implements Initializable {
             Button taskTitle = new Button();
             taskTitle.setText(task.getTitle());
             taskTitle.getStyleClass().add("task");
-            vBox.getChildren().add(taskTitle);
+            ((VBox)(vBox.getChildren().get(0))).getChildren().add(taskTitle);
         }
         return vBox;
     }

@@ -106,7 +106,7 @@
    <center>
       <ScrollPane fx:id="scroll_Pane" hbarPolicy="AS_NEEDED" maxHeight="800.0" vbarPolicy="AS_NEEDED">
          <content>
-            <HBox fx:id="hBox" maxHeight="865.0" prefHeight="800.0" prefWidth="1440.0" BorderPane.alignment="CENTER" />
+            <HBox fx:id="hBox" maxHeight="865.0" prefHeight="0" prefWidth="1440.0" BorderPane.alignment="CENTER" />
          </content>
       </ScrollPane>
    </center>
