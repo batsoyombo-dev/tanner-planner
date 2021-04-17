@@ -81,7 +81,7 @@ public class AddPanelDialogController implements Initializable {
         String category = "nor";
         if (categoryField.equals("Important"))
             category = "inp";
-
+        System.out.println(category);
         this.createdPanel = new Panel(UUID.randomUUID().toString(), HomeController.getUser().getId(), titleField, descField, category, colorField);
         this.stage.close();
     }
