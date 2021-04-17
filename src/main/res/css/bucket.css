@@ -3,14 +3,13 @@
     -fx-background-radius: 10;
     -fx-text-fill: black;
     -fx-max-width: 300;
-    /*-fx-max-height: infinite;*/
+    -fx-pref-height: 0;
     -fx-font-size: 20;
     -fx-font-family: Raleway-Semi-Bold;
-    -fx-vgap: -10;
+    /*-fx-vgap: -10;*/
     -fx-padding: 26px;
     -fx-border-insets: 26px;
     -fx-background-insets: 26px;
-
 }
 .title{
     -fx-font-weight: bold;
@@ -22,7 +21,8 @@
     -fx-border-radius: 10;
     -fx-alignment: center-left;
     -fx-min-width: 285;
-    -fx-min-height: 50;
+    -fx-min-height: 55;
+    -fx-pref-height: 0;
     -fx-padding: 5px 10px 10px 10px;
     -fx-border-insets: 5px 10px 10px 10px;
     -fx-background-insets: 5px 10px 10px 10px;
