@@ -24,7 +24,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Label fx:id="txtLogo" minHeight="56.0" onMouseClicked="#handleBackToHomeClick" prefHeight="56.0" prefWidth="152.0" styleClass="text" text="tanner">
+                  <Label fx:id="txtLogo" minHeight="56.0" onMouseClicked="#handleBackToHomeClick" prefHeight="56.0" prefWidth="172.0" styleClass="text" text="tanner">
                      <HBox.margin>
                         <Insets left="40.0" top="10.0" />
                      </HBox.margin>
@@ -37,7 +37,7 @@
                   </Label>
                   <Button fx:id="btnHelp" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0">
                      <HBox.margin>
-                        <Insets left="1068.0" top="20.0" />
+                        <Insets left="1048.0" top="20.0" />
                      </HBox.margin>
                      <cursor>
                         <Cursor fx:constant="HAND" />
@@ -63,7 +63,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Label fx:id="txtPanel" minHeight="33.0" prefHeight="33.0" prefWidth="76.0" styleClass="text" text="Panel">
+                  <Label fx:id="txtPanel" minHeight="33.0" prefHeight="33.0" prefWidth="96.0" styleClass="text" text="Panel">
                      <HBox.margin>
                         <Insets left="40.0" top="27.0" />
                      </HBox.margin>
@@ -79,7 +79,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                      <HBox.margin>
-                        <Insets left="753.0" top="10.0" />
+                        <Insets left="733.0" top="10.0" />
                      </HBox.margin>
                   </Button>
                   <Button fx:id="btnFavourite" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0">
