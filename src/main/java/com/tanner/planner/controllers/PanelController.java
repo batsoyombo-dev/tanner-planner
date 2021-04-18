@@ -1,39 +1,29 @@
 package com.tanner.planner.controllers;
 
-
 import com.tanner.planner.controllers.dialogs.AddBucketDialogController;
 import com.tanner.planner.controllers.dialogs.AddTaskDialogController;
-import com.tanner.planner.controllers.dialogs.DeleteBucketDialogController;
-import com.tanner.planner.controllers.dialogs.DeleteTaskDialogController;
+import com.tanner.planner.controllers.dialogs.ModifyBucketDialogController;
+import com.tanner.planner.controllers.dialogs.ModifyTaskDialogController;
 import com.tanner.planner.data.BucketDAO;
-import com.tanner.planner.data.DBConnection;
 import com.tanner.planner.data.TaskDAO;
 import com.tanner.planner.models.Bucket;
 import com.tanner.planner.models.Panel;
 import com.tanner.planner.models.Task;
-import com.tanner.planner.utils.Inflatable;
-import javafx.beans.binding.Bindings;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
-import javafx.geometry.Orientation;
 import javafx.scene.Cursor;
-import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
@@ -151,7 +141,7 @@ public class PanelController implements Initializable {
         container.getChildren().add(bucketControl);
         title.setOnMouseClicked(e -> {
             try {
-                new DeleteBucketDialogController(bucket, hbox_bucketContainer, container);
+                new ModifyBucketDialogController(bucket, hbox_bucketContainer, container);
             }
             catch (IOException e2) {
                 e2.printStackTrace();
@@ -184,7 +174,7 @@ public class PanelController implements Initializable {
         btn_taskTitle.setCursor(Cursor.HAND);
         btn_taskTitle.setOnMouseClicked(e -> {
             try {
-                new DeleteTaskDialogController((VBox) container.getChildren().get(0), task, btn_taskTitle);
+                new ModifyTaskDialogController((VBox) container.getChildren().get(0), task, btn_taskTitle);
             }
             catch (IOException err) {
                 err.printStackTrace();

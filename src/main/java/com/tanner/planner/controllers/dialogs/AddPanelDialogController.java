@@ -2,25 +2,18 @@ package com.tanner.planner.controllers.dialogs;
 
 import com.tanner.planner.controllers.HomeController;
 import com.tanner.planner.models.Panel;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 import java.util.UUID;
 
-public class AddPanelDialogController implements Initializable {
+public class AddPanelDialogController {
 
     @FXML
     private TextField
@@ -32,7 +25,7 @@ public class AddPanelDialogController implements Initializable {
     private ChoiceBox<String> cb_categoryChoice;
 
     private Panel createdPanel = null;
-    private Stage stage;
+    private final Stage stage;
 
     public AddPanelDialogController() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/dialogs/add_panel_dialog.fxml"));
@@ -57,11 +50,6 @@ public class AddPanelDialogController implements Initializable {
         stage.showAndWait();
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-
-    }
-
     public Panel getCreatedPanel() {
         return this.createdPanel;
     }
@@ -81,7 +69,6 @@ public class AddPanelDialogController implements Initializable {
         String category = "nor";
         if (categoryField.equals("Important"))
             category = "inp";
-        System.out.println(category);
         this.createdPanel = new Panel(UUID.randomUUID().toString(), HomeController.getUser().getId(), titleField, descField, category, colorField);
         this.stage.close();
     }

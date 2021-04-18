@@ -12,7 +12,6 @@ import java.io.IOException;
 
 public class RegisterPartialController {
 
-    private AuthController authController;
 
     @FXML
     private TextField inp_usernameField;
@@ -21,7 +20,9 @@ public class RegisterPartialController {
             inp_passwordField,
             inp_passwordConfirmField;
 
-    public RegisterPartialController(AuthController authController) throws IOException {
+    private final AuthController authController;
+
+    public RegisterPartialController(AuthController authController) {
         this.authController = authController;
     }
 

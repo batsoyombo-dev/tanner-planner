@@ -20,16 +20,16 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class HomePanelContainerController implements Initializable, Inflatable<Panel> {
+public class HomePanelContainerController implements Inflatable<Panel> {
 
     @FXML
     private GridPane gp_panelItemContainer;
 
-    private PanelDAO panelDAO;
-    private HomeController homeController;
+    private final PanelDAO panelDAO;
+    private final HomeController homeController;
 
     private int totalPanelItems = 0;
-    private int totalItemsInRow = 5;
+    private final int totalItemsInRow = 5;
     private boolean isLoading = false;
     private String currentCategory = "none";
 
@@ -39,11 +39,6 @@ public class HomePanelContainerController implements Initializable, Inflatable<P
     public HomePanelContainerController(HomeController homeController) {
         this.panelDAO = new PanelDAO();
         this.homeController = homeController;
-    }
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-
     }
 
     @Override

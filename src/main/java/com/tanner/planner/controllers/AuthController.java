@@ -19,8 +19,8 @@ public class AuthController {
     @FXML
     private VBox vbox_formContainer;
 
-    private HBox root;
-    private Stage stage;
+    private final HBox root;
+    private final Stage stage;
 
     public AuthController(Stage stage) throws IOException {
         this.stage = stage;

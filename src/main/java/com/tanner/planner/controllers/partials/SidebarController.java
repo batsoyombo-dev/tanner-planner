@@ -14,7 +14,7 @@ public class SidebarController implements Initializable {
     @FXML
     private Button btn_defaultNavBtn;
 
-    private HomePanelContainerController panelContainer;
+    private final HomePanelContainerController panelContainer;
     private String currentCategory = "all";
     private Button btn_currentChosen;
 

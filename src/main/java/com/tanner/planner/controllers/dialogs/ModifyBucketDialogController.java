@@ -20,7 +20,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class DeleteBucketDialogController implements Initializable {
+public class ModifyBucketDialogController implements Initializable {
 
     @FXML
     private TextField txt_bucketTitle;
@@ -33,7 +33,7 @@ public class DeleteBucketDialogController implements Initializable {
     private final HBox bucketContainer;
     private final VBox bucketWrapper;
 
-    public DeleteBucketDialogController(Bucket bucket, HBox bucketContainer, VBox bucketWrapper) throws IOException {
+    public ModifyBucketDialogController(Bucket bucket, HBox bucketContainer, VBox bucketWrapper) throws IOException {
         this.bucket = bucket;
         this.bucketContainer = bucketContainer;
         this.bucketWrapper = bucketWrapper;

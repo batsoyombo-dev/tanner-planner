@@ -19,7 +19,7 @@ public class LoginPartialController {
     @FXML
     private PasswordField inp_passwordField;
 
-    private AuthController authController;
+    private final AuthController authController;
 
     public LoginPartialController(AuthController authController) {
         this.authController = authController;

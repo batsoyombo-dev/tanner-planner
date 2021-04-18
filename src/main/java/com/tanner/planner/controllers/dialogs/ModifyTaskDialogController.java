@@ -18,7 +18,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class DeleteTaskDialogController implements Initializable {
+public class ModifyTaskDialogController implements Initializable {
 
     @FXML
     private TextField inp_taskTitleField;
@@ -34,7 +34,7 @@ public class DeleteTaskDialogController implements Initializable {
     private final TaskDAO taskDAO;
     private final Stage stage;
 
-    public DeleteTaskDialogController (VBox vBox, Task task, Button taskTitle) throws IOException {
+    public ModifyTaskDialogController(VBox vBox, Task task, Button taskTitle) throws IOException {
             taskDAO = new TaskDAO();
             this.vBox = vBox;
             this.task = task;

@@ -4,24 +4,21 @@ import com.tanner.planner.controllers.partials.HomeHeaderController;
 import com.tanner.planner.controllers.partials.HomePanelContainerController;
 import com.tanner.planner.controllers.partials.SidebarController;
 import com.tanner.planner.models.User;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
-public class HomeController implements Initializable {
+/**
+ * @author Batsyombo
+ * */
 
-    private BorderPane root;
-    private HomePanelContainerController panelContainerController;
-    private Stage stage;
+public class HomeController {
+
+    private final BorderPane root;
+    private final HomePanelContainerController panelContainerController;
+    private final Stage stage;
 
     private static User user = null;
 
@@ -46,11 +43,6 @@ public class HomeController implements Initializable {
         this.stage.setScene(scene);
         this.stage.setMaximized(true);
         this.stage.show();
-    }
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-
     }
 
     public static User getUser() {
