@@ -1,5 +1,6 @@
 package com.tanner.planner.controllers.dialogs;
 
+import com.tanner.planner.controllers.PanelController;
 import com.tanner.planner.data.TaskDAO;
 import com.tanner.planner.models.Bucket;
 import com.tanner.planner.models.Task;
@@ -12,33 +13,34 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.UUID;
 
 public class AddTaskDialogController {
-    private GridPane root;
-    private Stage stage;
-    private Bucket bucket;
-    private VBox vBox;
-    TaskDAO taskDAO;
 
     @FXML
-    private TextField txtTitle;
-
+    private TextField inp_bucketTitleField;
     @FXML
-    private TextField txtDescription;
-
+    private TextField inp_bucketDescField;
     @FXML
-    private TextField txtState;
-
+    private TextField inp_bucketStateField;
     @FXML
     private Button btnAddTask;
-
     @FXML
     private Button btnCancel;
-    public AddTaskDialogController(Bucket bucket, VBox vBox) throws IOException {
+
+    private final GridPane root;
+    private final Stage stage;
+    private final Bucket bucket;
+    private final VBox vBox;
+    private final TaskDAO taskDAO;
+    private final PanelController panelController;
+
+    public AddTaskDialogController(PanelController panelController, Bucket bucket, VBox vBox) throws IOException {
+        this.panelController = panelController;
         this.bucket = bucket;
         this.vBox = vBox;
         this.taskDAO = new TaskDAO();
@@ -50,38 +52,21 @@ public class AddTaskDialogController {
         this.stage.setScene(scene);
         this.stage.setTitle(bucket.getTitle());
         this.stage.setResizable(false);
+        this.stage.initModality(Modality.APPLICATION_MODAL);
         this.stage.show();
 
     }
     @FXML
     void taskAdded(ActionEvent event) {
-        Task task = new Task( UUID.randomUUID().toString(),bucket.getID(),txtTitle.getText(),txtDescription.getText(), txtState.getText());
+        Task task = new Task( UUID.randomUUID().toString(),bucket.getID(),inp_bucketTitleField.getText(),inp_bucketDescField.getText(), inp_bucketStateField.getText());
         taskDAO.addTask(task);
-        Stage stage = (Stage) btnCancel.getScene().getWindow();
-        stage.close();
-        addTask(vBox, task);
+        this.stage.close();
+        this.panelController.newTaskContainer(task, vBox);
     }
 
     @FXML
     void taskCanceled(ActionEvent event) {
-        Stage stage = (Stage) btnCancel.getScene().getWindow();
-        stage.close();
-
-    }
-    private void addTask(VBox vBox, Task task){
-        Button taskTitle = new Button();
-        taskTitle.setText(task.getTitle());
-        taskTitle.getStyleClass().add("task");
-        taskTitle.setCursor(Cursor.HAND);
-        taskTitle.setOnMouseClicked(e -> {
-            try {
-                new DeleteTaskDialogController((VBox) vBox.getChildren().get(0), task, taskTitle);
-            }
-            catch (IOException e2) {
-                e2.printStackTrace();
-            }
-        });
-        ((VBox)(vBox.getChildren().get(0))).getChildren().add(1, taskTitle);
+        this.stage.close();
     }
 
 }

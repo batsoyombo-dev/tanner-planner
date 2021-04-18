@@ -32,3 +32,9 @@
     -fx-text-fill: white;
     -fx-background-radius: 10;
 }
+
+.scroll-bucket-container,
+.scroll-bucket-container > .viewport {
+    -fx-background-color: transparent;
+}
+

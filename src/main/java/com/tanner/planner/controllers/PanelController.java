@@ -21,12 +21,10 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.scene.Cursor;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollBar;
-import javafx.scene.control.ScrollPane;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
@@ -41,62 +39,34 @@ import java.util.ResourceBundle;
 
 public class PanelController implements Initializable {
 
+    @FXML
+    private BorderPane bp_panelMainContainer;
+    @FXML
+    private Button btn_hamburgerMenu;
+    @FXML
+    private Button btn_redirectGithub;
+    @FXML
+    private Button btn_showNotifications;
+    @FXML
+    private Button btn_showAnalysis;
+    @FXML
+    private Label txt_panelTitle;
+    @FXML
+    private Button btn_makeFavourite;
+    @FXML
+    private Button btn_showSettings;
+    @FXML
+    private Button btn_addBucket;
+    @FXML
+    private HBox hbox_bucketContainer;
+
     private BorderPane root;
-
-    private BucketDAO bucketDAO;
-
-    private TaskDAO taskDAO;
-
+    private final BucketDAO bucketDAO;
+    private final TaskDAO taskDAO;
     ObservableList<Task> taskList;
-    @FXML
-    private BorderPane borderPane;
-
-    @FXML
-    private Button btnHamburgerMenu;
-
-
-    @FXML
-    private Label txtLogo;
-
-    @FXML
-    private Button btnHelp;
-
-    @FXML
-    private Button btnNotification;
-
-    @FXML
-    private Button btnAnalysis;
-
-    @FXML
-    private Label txtPanel;
-
-    @FXML
-    private Button btnFavourite;
-
-    @FXML
-    private Button btnSettings;
-
-    @FXML
-    private VBox vboxBucket;
-
-    @FXML
-    private Button btnTask;
-
-    @FXML
-    private Button btnAddTask;
-
-    @FXML
-    private Button btnAddBucket;
-    @FXML
-    private ScrollPane scroll_Pane;
-
-
-    @FXML
-    private HBox hBox;
-
-    private Panel panel;
-    private HomeController homeController;
-    private Stage stage;
+    private final Panel panel;
+    private final HomeController homeController;
+    private final Stage stage;
     ObservableList<Bucket> listBucket;
 
     public PanelController(HomeController homeController, Panel panel) throws IOException{
@@ -112,144 +82,123 @@ public class PanelController implements Initializable {
         this.stage.setScene(scene);
         this.stage.setTitle(panel.getTitle());
         this.stage.setResizable(false);
-        this.stage.setOnCloseRequest(e -> {
-            homeController.toggleStage(true);
-        });
-        //Setting icons in the button
-        Image image1 = new Image("/images/menu.png", btnHamburgerMenu.getWidth(), btnHamburgerMenu.getHeight(), false, true, true);
-        BackgroundImage bImage1 = new BackgroundImage(image1, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(btnHamburgerMenu.getWidth(), btnHamburgerMenu.getHeight(), true, true, true, false));
-        Background backGround1 = new Background(bImage1);
-        btnHamburgerMenu.setBackground(backGround1);
+        this.stage.setOnCloseRequest(e -> homeController.toggleStage(true));
+        this.addIconToControl("/images/menu.png", btn_hamburgerMenu);
+        this.addIconToControl("/images/help_white.png", btn_redirectGithub);
+        this.addIconToControl("/images/notification_white.png", btn_showNotifications);
+        this.addIconToControl("/images/analysis.png", btn_showAnalysis);
+        this.addIconToControl("/images/favourite.png", btn_makeFavourite);
+        this.addIconToControl("/images/settings.png", btn_showSettings);
 
-        Image image2 = new Image("/images/help_white.png", btnHelp.getWidth(), btnHelp.getHeight(), false, true, true);
-        BackgroundImage bImage2 = new BackgroundImage(image2, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(btnHelp.getWidth(), btnHelp.getHeight(), true, true, true, false));
-        Background backGround2 = new Background(bImage2);
-        btnHelp.setBackground(backGround2);
-
-        Image image3 = new Image("/images/notification_white.png", btnNotification.getWidth(), btnNotification.getHeight(), false, true, true);
-        BackgroundImage bImage3 = new BackgroundImage(image3, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(btnNotification.getWidth(), btnNotification.getHeight(), true, true, true, false));
-        Background backGround3 = new Background(bImage3);
-        btnNotification.setBackground(backGround3);
-
-        Image image4 = new Image("/images/analysis.png", btnAnalysis.getWidth(), btnAnalysis.getHeight(), false, true, true);
-        BackgroundImage bImage4 = new BackgroundImage(image4, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(btnAnalysis.getWidth(), btnAnalysis.getHeight(), true, true, true, false));
-        Background backGround4 = new Background(bImage4);
-        btnAnalysis.setBackground(backGround4);
-
-        Image image5 = new Image("/images/favourite.png", btnFavourite.getWidth(), btnFavourite.getHeight(), false, true, true);
-        BackgroundImage bImage5 = new BackgroundImage(image5, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(btnFavourite.getWidth(), btnFavourite.getHeight(), true, true, true, false));
-        Background backGround5 = new Background(bImage5);
-        btnFavourite.setBackground(backGround5);
-
-        Image image6 = new Image("/images/settings.png", btnSettings.getWidth(), btnSettings.getHeight(), false, true, true);
-        BackgroundImage bImage6 = new BackgroundImage(image6, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(btnSettings.getWidth(), btnSettings.getHeight(), true, true, true, false));
-        Background backGround6 = new Background(bImage6);
-        btnSettings.setBackground(backGround6);
         this.stage.show();
-        borderPane.setStyle("-fx-background-color:  " +  panel.getColorConfig());
-        scroll_Pane.setStyle("-fx-background: " + this.panel.getColorConfig());
+        bp_panelMainContainer.setStyle("-fx-background-color:  " +  panel.getColorConfig());
 
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
-
         try {
-            //DB-s Bucketuudiig listed avna, panel-idtai ni hargalzuulj
             listBucket = bucketDAO.getBuckets(panel);
-            //bucket tus bolgond
             for(Bucket bucket : listBucket){
-                //shine vbox uusgeed, title-iig ugnu
-                VBox vBox = newBucket(bucket.getTitle(), bucket);
-                //taskuuda vbox ruu avna, DB-s taskuuda avna
-                vBox = getTasks(vBox, bucket);
-//                vBox.getStylesheets().addAll("/css/bucket.css", "/css/global.css");
-//                vBox.getStyleClass().add("bucket");
-                //add task button nemne
-                Button addTask = new Button("Add Task");
-                addTask.setCursor(Cursor.HAND);
-                //darah ued form neegdene
-                VBox finalVBox = vBox;
-                addTask.setOnAction(e -> {
-                    try {
-                        new AddTaskDialogController(bucket, finalVBox);
-                    }
-                    catch (IOException e2) {
-                        e2.printStackTrace();
-                    }
-                });
-                addTask.getStyleClass().add("addTask");
-                ((VBox)(vBox.getChildren().get(0))).getChildren().add(addTask);
-                hBox.getChildren().add(0, vBox);
+                this.addBucketToPanel(bucket);
             }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        } catch (SQLException err) {
+            err.printStackTrace();
         }
+    }
 
-
+    public void addIconToControl(String path, Control control) {
+        Image iconImage = new Image(path, control.getWidth(), control.getHeight(), false, true, true);
+        BackgroundImage backgroundImage = new BackgroundImage(
+                iconImage,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundPosition.CENTER,
+                new BackgroundSize(control.getWidth(), control.getHeight(), true, true, true, false));
+        Background background = new Background(backgroundImage);
+        control.setBackground(background);
     }
 
     public void handleBackToHomeClick(MouseEvent e) {
         this.stage.close();
         this.homeController.toggleStage(true);
     }
-//addbucket ued dialog neegdene
     @FXML
-    void clickedAddBucket(ActionEvent event) {
+    void handleAddBucketClick(ActionEvent event) {
         try {
-            new AddBucketDialogController(panel, hBox);
+            new AddBucketDialogController(this, panel);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-    //bucket-d zoriulj vbox uusgene
-    public VBox newBucket(String bucketTitle, Bucket bucket){
+
+    public void addBucketToPanel(Bucket bucket) throws SQLException {
+        VBox bucketControlWrapper = newBucket(bucket);
+        getTasks(bucketControlWrapper, bucket);
+        hbox_bucketContainer.getChildren().add(bucketControlWrapper);
+    }
+
+    public VBox newBucket(Bucket bucket){
         VBox container = new VBox();
-        VBox vBox = new VBox();
+        VBox bucketControl = new VBox();
         Label title = new Label();
-        title.setText(bucketTitle);
+        title.setText(bucket.getTitle());
         title.getStyleClass().add("title");
         title.setCursor(Cursor.HAND);
-        vBox.getChildren().add(title);
-        vBox.getStylesheets().addAll("/css/bucket.css", "/css/global.css");
-        vBox.getStyleClass().add("bucket");
-        container.getChildren().add(vBox);
+        bucketControl.getChildren().add(title);
+        bucketControl.getStylesheets().addAll("/css/bucket.css", "/css/global.css");
+        bucketControl.getStyleClass().add("bucket");
+        container.getChildren().add(bucketControl);
         title.setOnMouseClicked(e -> {
             try {
-                new DeleteBucketDialogController(bucket, hBox, container);
+                new DeleteBucketDialogController(bucket, hbox_bucketContainer, container);
             }
             catch (IOException e2) {
                 e2.printStackTrace();
             }
         });
+        Button addTask = new Button("Add Task");
+        addTask.setCursor(Cursor.HAND);
+        addTask.setOnAction(e -> {
+            try {
+                new AddTaskDialogController(this, bucket, container);
+            }
+            catch (IOException e2) {
+                e2.printStackTrace();
+            }
+        });
+        addTask.getStyleClass().add("addTask");
+        ((VBox)(container.getChildren().get(0))).getChildren().add(addTask);
         return container;
     }
-    //bucket dotorhi taskuudiig avna
-    public VBox getTasks(VBox vBox, Bucket bucket) throws SQLException{
 
+    public void getTasks(VBox container, Bucket bucket) throws SQLException{
         taskList = taskDAO.getTasks(bucket);
-        for(Task task: taskList){
-            Button taskTitle = new Button();
-            taskTitle.setText(task.getTitle());
-            taskTitle.getStyleClass().add("task");
-            taskTitle.setCursor(Cursor.HAND);
-            taskTitle.setOnMouseClicked(e -> {
-                try {
-                    new DeleteTaskDialogController((VBox) vBox.getChildren().get(0), task, taskTitle);
-                }
-                catch (IOException e2) {
-                    e2.printStackTrace();
-                }
-            });
-            ((VBox)(vBox.getChildren().get(0))).getChildren().add(taskTitle);
-        }
-        return vBox;
+        for(Task task: taskList)
+            newTaskContainer(task, container);
     }
+
+    public void newTaskContainer(Task task, VBox container) {
+        Button btn_taskTitle = new Button(task.getTitle());
+        btn_taskTitle.getStyleClass().add("task");
+        btn_taskTitle.setCursor(Cursor.HAND);
+        btn_taskTitle.setOnMouseClicked(e -> {
+            try {
+                new DeleteTaskDialogController((VBox) container.getChildren().get(0), task, btn_taskTitle);
+            }
+            catch (IOException err) {
+                err.printStackTrace();
+            }
+        });
+        VBox bucketControl = ((VBox)(container.getChildren().get(0)));
+        bucketControl.getChildren().add(bucketControl.getChildren().size() - 1, btn_taskTitle);
+    }
+
     public HBox getHBox(){
-        return this.hBox;
+        return this.hbox_bucketContainer;
     }
     public Button getBtnAddBucket(){
-        return this.btnAddBucket;
+        return this.btn_addBucket;
     }
 }
+

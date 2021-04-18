@@ -21,28 +21,22 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class DeleteBucketDialogController implements Initializable {
-    private Bucket bucket;
-    private VBox root;
-    BucketDAO bucketDAO;
-    Stage stage;
-    private HBox hBox;
-    private VBox vBox;
 
     @FXML
-    private TextField txtTitle;
-    @FXML
-    private Button btnSave;
+    private TextField txt_bucketTitle;
 
-    @FXML
-    private Button btnDelete;
+    private final Bucket bucket;
+    private final BucketDAO bucketDAO;
+    private final Stage stage;
 
-    @FXML
-    private Button btnCancel;
+    private final VBox root;
+    private final HBox bucketContainer;
+    private final VBox bucketWrapper;
 
-    public DeleteBucketDialogController(Bucket bucket, HBox hBox, VBox vBox) throws IOException {
+    public DeleteBucketDialogController(Bucket bucket, HBox bucketContainer, VBox bucketWrapper) throws IOException {
         this.bucket = bucket;
-        this.hBox = hBox;
-        this.vBox = vBox;
+        this.bucketContainer = bucketContainer;
+        this.bucketWrapper = bucketWrapper;
         bucketDAO = new BucketDAO();
         FXMLLoader loader = new FXMLLoader(super.getClass().getResource("/dialogs/delete_bucket_dialog.fxml"));
         loader.setController(this);
@@ -53,37 +47,31 @@ public class DeleteBucketDialogController implements Initializable {
         this.stage.setTitle(bucket.getTitle());
         this.stage.setResizable(false);
         this.stage.show();
-
-    }
-
-
-    @FXML
-    void clickedCancel(ActionEvent event) {
-        Stage stage = (Stage) btnCancel.getScene().getWindow();
-        stage.close();
     }
 
     @FXML
-    void clickedDelete(ActionEvent event) {
-        bucketDAO.deleteBucket(bucket);
-        int index = vBox.getParent().getChildrenUnmodifiable().indexOf(vBox);
-        hBox.getChildren().remove(index);
-        Stage stage = (Stage) btnCancel.getScene().getWindow();
-        stage.close();
+    void handleCancelClick(ActionEvent event) {
+        this.stage.close();
+    }
+
+    @FXML
+    void handleDeleteClick(ActionEvent event) {
+        this.bucketDAO.deleteBucket(bucket);
+        int index = bucketWrapper.getParent().getChildrenUnmodifiable().indexOf(bucketWrapper);
+        this.bucketContainer.getChildren().remove(index);
+        this.stage.close();
     }
     @FXML
-    void clickedSave(ActionEvent event) {
-        //txtTitle.setText(txtTitle.getText());
-        bucketDAO.updateBucket(bucket, txtTitle.getText());
-        Stage stage = (Stage) btnCancel.getScene().getWindow();
-        stage.close();
-        VBox vbox = (VBox) vBox.getChildren().get(0);
+    void handleSaveClick(ActionEvent event) {
+        bucketDAO.updateBucket(bucket, txt_bucketTitle.getText());
+        VBox vbox = (VBox) bucketWrapper.getChildren().get(0);
         Label title = (Label) vbox.getChildren().get(0);
-        title.setText(txtTitle.getText());
+        title.setText(txt_bucketTitle.getText());
+        this.stage.close();
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        txtTitle.setText(bucket.getTitle());
+        txt_bucketTitle.setText(bucket.getTitle());
     }
 }

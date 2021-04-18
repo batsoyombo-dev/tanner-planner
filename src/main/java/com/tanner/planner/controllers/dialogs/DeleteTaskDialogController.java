@@ -19,31 +19,20 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class DeleteTaskDialogController implements Initializable {
-        private GridPane root;
-        private VBox vBox;
-        private Task task;
-        private Button taskTitle;
-        TaskDAO taskDAO;
-        Stage stage;
 
-        @FXML
-        private TextField txtTitle;
+    @FXML
+    private TextField inp_taskTitleField;
+    @FXML
+    private TextField inp_taskDescField;
+    @FXML
+    private TextField inp_taskStateField;
 
-        @FXML
-        private TextField txtDescription;
-
-        @FXML
-        private TextField txtState;
-
-        @FXML
-        private Button btnDelete;
-
-        @FXML
-        private Button btnCancel;
-
-        @FXML
-        private Button btnUpdate;
-
+    private final GridPane root;
+    private final VBox vBox;
+    private final Task task;
+    private final Button taskTitle;
+    private final TaskDAO taskDAO;
+    private final Stage stage;
 
     public DeleteTaskDialogController (VBox vBox, Task task, Button taskTitle) throws IOException {
             taskDAO = new TaskDAO();
@@ -59,40 +48,36 @@ public class DeleteTaskDialogController implements Initializable {
             this.stage.setTitle(task.getTitle());
             this.stage.setResizable(false);
             this.stage.show();
+    }
 
-        }
+    @FXML
+    void handleDeleteTaskClick(ActionEvent event) {
+        taskDAO.deleteTask(task);
+        int index = taskTitle.getParent().getChildrenUnmodifiable().indexOf(taskTitle);
+        vBox.getChildren().remove(index);
+        this.stage.close();
+    }
 
-        @FXML
-        void actionDelete(ActionEvent event) {
-            taskDAO.deleteTask(task);
-            int index = taskTitle.getParent().getChildrenUnmodifiable().indexOf(taskTitle);
-            vBox.getChildren().remove(index);
-            Stage stage = (Stage) btnCancel.getScene().getWindow();
-            stage.close();
-        }
+    @FXML
+    void handleUpdateTaskClick(ActionEvent event) {
+    String title = inp_taskTitleField.getText();
+    String description = inp_taskDescField.getText();
+    String state = inp_taskStateField.getText();
+    taskDAO.updateTask(task, title, description, state);
+    this.stage.close();
+    taskTitle.setText(inp_taskTitleField.getText());
+    }
 
-        @FXML
-        void actionUpdate(ActionEvent event) {
-        String title = txtTitle.getText();
-        String description = txtDescription.getText();
-        String state = txtState.getText();
-        taskDAO.updateTask(task, title, description, state);
-        Stage stage = (Stage) btnCancel.getScene().getWindow();
-        stage.close();
-        taskTitle.setText(txtTitle.getText());
-        }
-
-        @FXML
-        void taskCanceled(ActionEvent event) {
-            Stage stage = (Stage) btnCancel.getScene().getWindow();
-            stage.close();
-        }
+    @FXML
+    void handleCancelClick(ActionEvent event) {
+        this.stage.close();
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        txtTitle.setText(task.getTitle());
-        txtDescription.setText(task.getDescription());
-        txtState.setText(task.getState());
+        inp_taskTitleField.setText(task.getTitle());
+        inp_taskDescField.setText(task.getDescription());
+        inp_taskStateField.setText(task.getState());
     }
 }
 
