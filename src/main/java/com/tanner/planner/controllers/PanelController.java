@@ -3,6 +3,8 @@ package com.tanner.planner.controllers;
 
 import com.tanner.planner.controllers.dialogs.AddBucketDialogController;
 import com.tanner.planner.controllers.dialogs.AddTaskDialogController;
+import com.tanner.planner.controllers.dialogs.DeleteBucketDialogController;
+import com.tanner.planner.controllers.dialogs.DeleteTaskDialogController;
 import com.tanner.planner.data.BucketDAO;
 import com.tanner.planner.data.DBConnection;
 import com.tanner.planner.data.TaskDAO;
@@ -18,6 +20,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
+import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -158,13 +161,14 @@ public class PanelController implements Initializable {
             //bucket tus bolgond
             for(Bucket bucket : listBucket){
                 //shine vbox uusgeed, title-iig ugnu
-                VBox vBox = newBucket(bucket.getTitle());
+                VBox vBox = newBucket(bucket.getTitle(), bucket);
                 //taskuuda vbox ruu avna, DB-s taskuuda avna
                 vBox = getTasks(vBox, bucket);
 //                vBox.getStylesheets().addAll("/css/bucket.css", "/css/global.css");
 //                vBox.getStyleClass().add("bucket");
                 //add task button nemne
                 Button addTask = new Button("Add Task");
+                addTask.setCursor(Cursor.HAND);
                 //darah ued form neegdene
                 VBox finalVBox = vBox;
                 addTask.setOnAction(e -> {
@@ -200,16 +204,25 @@ public class PanelController implements Initializable {
         }
     }
     //bucket-d zoriulj vbox uusgene
-    public VBox newBucket(String bucketTitle){
+    public VBox newBucket(String bucketTitle, Bucket bucket){
         VBox container = new VBox();
         VBox vBox = new VBox();
         Label title = new Label();
         title.setText(bucketTitle);
         title.getStyleClass().add("title");
+        title.setCursor(Cursor.HAND);
         vBox.getChildren().add(title);
         vBox.getStylesheets().addAll("/css/bucket.css", "/css/global.css");
         vBox.getStyleClass().add("bucket");
         container.getChildren().add(vBox);
+        title.setOnMouseClicked(e -> {
+            try {
+                new DeleteBucketDialogController(bucket, hBox, container);
+            }
+            catch (IOException e2) {
+                e2.printStackTrace();
+            }
+        });
         return container;
     }
     //bucket dotorhi taskuudiig avna
@@ -220,6 +233,15 @@ public class PanelController implements Initializable {
             Button taskTitle = new Button();
             taskTitle.setText(task.getTitle());
             taskTitle.getStyleClass().add("task");
+            taskTitle.setCursor(Cursor.HAND);
+            taskTitle.setOnMouseClicked(e -> {
+                try {
+                    new DeleteTaskDialogController((VBox) vBox.getChildren().get(0), task, taskTitle);
+                }
+                catch (IOException e2) {
+                    e2.printStackTrace();
+                }
+            });
             ((VBox)(vBox.getChildren().get(0))).getChildren().add(taskTitle);
         }
         return vBox;

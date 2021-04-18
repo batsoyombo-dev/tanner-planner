@@ -37,6 +37,28 @@ public class TaskDAO {
             JOptionPane.showMessageDialog(null, e);
         }
     }
+    public void deleteTask(Task task) {
+        String query = "delete from task where id = '" + task.getId() +"' ";
+        try {
+            Connection con = DBConnection.getConnection();
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.execute();
+            JOptionPane.showMessageDialog(null, "Task Deleted successfully");
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }
+    public void updateTask(Task task, String title, String description, String state) {
+        String query = "update task set title = '"+title +"', description = '"+ description+"', state = '"+ state+"' where id = '"+task.getId() +"'";
+        try {
+            Connection con = DBConnection.getConnection();
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.execute();
+            JOptionPane.showMessageDialog(null, "Task Updated successfully");
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }
 
     public ObservableList<Task> getTasks(Bucket bucket) throws SQLException {
 

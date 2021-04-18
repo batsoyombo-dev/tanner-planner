@@ -9,6 +9,7 @@ import com.tanner.planner.models.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -73,10 +74,12 @@ public class AddBucketDialogController {
         Label title = new Label();
         title.getStyleClass().add("title");
         title.setText(txtTitle.getText());
+        title.setCursor(Cursor.HAND);
         vBox.getChildren().add(title);
 
         Button addTask = new Button("Add Task");
         addTask.getStyleClass().add("addTask");
+        addTask.setCursor(Cursor.HAND);
         addTask.setOnAction(e -> {
             try {
                 new AddTaskDialogController(bucket, container);
@@ -87,6 +90,14 @@ public class AddBucketDialogController {
         });
         vBox.getChildren().add(addTask);
         container.getChildren().add(vBox);
+        title.setOnMouseClicked(e -> {
+            try {
+                new DeleteBucketDialogController(bucket, hBox, container);
+            }
+            catch (IOException e2) {
+                e2.printStackTrace();
+            }
+        });
         hBox.getChildren().add(0, container);
     }
 

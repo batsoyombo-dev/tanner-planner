@@ -1,19 +1,16 @@
 package com.tanner.planner.controllers.dialogs;
 
-import com.tanner.planner.controllers.HomeController;
-import com.tanner.planner.controllers.PanelController;
 import com.tanner.planner.data.TaskDAO;
 import com.tanner.planner.models.Bucket;
-import com.tanner.planner.models.Panel;
 import com.tanner.planner.models.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -75,6 +72,15 @@ public class AddTaskDialogController {
         Button taskTitle = new Button();
         taskTitle.setText(task.getTitle());
         taskTitle.getStyleClass().add("task");
+        taskTitle.setCursor(Cursor.HAND);
+        taskTitle.setOnMouseClicked(e -> {
+            try {
+                new DeleteTaskDialogController((VBox) vBox.getChildren().get(0), task, taskTitle);
+            }
+            catch (IOException e2) {
+                e2.printStackTrace();
+            }
+        });
         ((VBox)(vBox.getChildren().get(0))).getChildren().add(1, taskTitle);
     }
 

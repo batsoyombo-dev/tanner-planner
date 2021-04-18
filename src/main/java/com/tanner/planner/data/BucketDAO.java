@@ -32,6 +32,31 @@ public class BucketDAO {
             JOptionPane.showMessageDialog(null, e);
         }
     }
+    public void deleteBucket(Bucket bucket) {
+        String query = "delete from task where bucket_id = '" + bucket.getID() +"' ";
+        String query2 = "delete from bucket where id = '"+ bucket.getID()+"' ";
+        try {
+            Connection con = DBConnection.getConnection();
+            PreparedStatement statement = con.prepareStatement(query);
+            PreparedStatement statement2 = con.prepareStatement(query2);
+            statement.execute();
+            statement2.execute();
+            JOptionPane.showMessageDialog(null, "Bucket Deleted successfully");
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }
+    public void updateBucket(Bucket bucket, String new_Title) {
+        String query = "update bucket set title = '" +new_Title +"' where id = '" + bucket.getID() +"' ";
+        try {
+            Connection con = DBConnection.getConnection();
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.execute();
+            JOptionPane.showMessageDialog(null, "Bucket Updated successfully");
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }
 
 
     public ObservableList<Bucket> getBuckets(Panel panel) throws SQLException {
