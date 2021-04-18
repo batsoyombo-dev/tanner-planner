@@ -11,7 +11,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -22,7 +24,7 @@ public class AddBucketDialogController {
     private Panel panel;
     private BucketDAO bucketDAO;
     private VBox root;
-    private PanelController panelController;
+    private HBox hBox;
     Stage stage;
 
     @FXML
@@ -32,9 +34,9 @@ public class AddBucketDialogController {
 
     @FXML
     private Button btnCancel;
-    public AddBucketDialogController(PanelController panelController, Panel panel) throws IOException {
+    public AddBucketDialogController(Panel panel, HBox hBox) throws IOException {
         this.panel = panel;
-        this.panelController = panelController;
+        this.hBox = hBox;
         this.bucketDAO = new BucketDAO();
         FXMLLoader loader = new FXMLLoader(super.getClass().getResource("/dialogs/add_bucket_dialog.fxml"));
         loader.setController(this);
@@ -60,8 +62,32 @@ public class AddBucketDialogController {
         bucketDAO.addBucket(bucket);
         Stage stage = (Stage) btnCancel.getScene().getWindow();
         stage.close();
-        panelController.getHBox().getChildren().clear();
-        panelController.initialize(null, null);
+        addBucket(hBox, bucket);
+    }
+
+    private void addBucket(HBox hBox, Bucket bucket){
+        VBox container = new VBox();
+        VBox vBox = new VBox();
+        vBox.getStylesheets().addAll("/css/bucket.css", "/css/global.css");
+        vBox.getStyleClass().add("bucket");
+        Label title = new Label();
+        title.getStyleClass().add("title");
+        title.setText(txtTitle.getText());
+        vBox.getChildren().add(title);
+
+        Button addTask = new Button("Add Task");
+        addTask.getStyleClass().add("addTask");
+        addTask.setOnAction(e -> {
+            try {
+                new AddTaskDialogController(bucket, container);
+            }
+            catch (IOException e2) {
+                e2.printStackTrace();
+            }
+        });
+        vBox.getChildren().add(addTask);
+        container.getChildren().add(vBox);
+        hBox.getChildren().add(0, container);
     }
 
 }

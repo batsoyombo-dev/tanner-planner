@@ -166,11 +166,10 @@ public class PanelController implements Initializable {
                 //add task button nemne
                 Button addTask = new Button("Add Task");
                 //darah ued form neegdene
+                VBox finalVBox = vBox;
                 addTask.setOnAction(e -> {
                     try {
-                        PanelController panelController;
-                        panelController = this;
-                        new AddTaskDialogController(panelController, bucket);
+                        new AddTaskDialogController(bucket, finalVBox);
                     }
                     catch (IOException e2) {
                         e2.printStackTrace();
@@ -178,7 +177,7 @@ public class PanelController implements Initializable {
                 });
                 addTask.getStyleClass().add("addTask");
                 ((VBox)(vBox.getChildren().get(0))).getChildren().add(addTask);
-                hBox.getChildren().add(vBox);
+                hBox.getChildren().add(0, vBox);
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -195,9 +194,7 @@ public class PanelController implements Initializable {
     @FXML
     void clickedAddBucket(ActionEvent event) {
         try {
-            PanelController panelController;
-            panelController = this;
-            new AddBucketDialogController(panelController, panel);
+            new AddBucketDialogController(panel, hBox);
         } catch (IOException e) {
             e.printStackTrace();
         }

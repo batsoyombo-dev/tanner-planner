@@ -16,6 +16,7 @@
 .title{
     -fx-font-weight: bold;
     -fx-padding: 10px;
+    -fx-text-fill: black;
 }
 .task{
     -fx-background-color: white;
@@ -23,7 +24,7 @@
     -fx-border-radius: 10;
     -fx-alignment: center-left;
     -fx-min-width: 285;
-    -fx-min-height: 50;
+    -fx-min-height: 55;
     -fx-padding: 5px 10px 10px 10px;
     -fx-border-insets: 5px 10px 10px 10px;
     -fx-background-insets: 5px 10px 10px 10px;

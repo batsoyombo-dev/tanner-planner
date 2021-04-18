@@ -24,7 +24,7 @@ public class AddTaskDialogController {
     private GridPane root;
     private Stage stage;
     private Bucket bucket;
-    private PanelController panelController;
+    private VBox vBox;
     TaskDAO taskDAO;
 
     @FXML
@@ -41,9 +41,9 @@ public class AddTaskDialogController {
 
     @FXML
     private Button btnCancel;
-    public AddTaskDialogController( PanelController panelController, Bucket bucket) throws IOException {
+    public AddTaskDialogController(Bucket bucket, VBox vBox) throws IOException {
         this.bucket = bucket;
-        this.panelController = panelController;
+        this.vBox = vBox;
         this.taskDAO = new TaskDAO();
         FXMLLoader loader = new FXMLLoader(super.getClass().getResource("/dialogs/add_task_dialog.fxml"));
         loader.setController(this);
@@ -62,10 +62,7 @@ public class AddTaskDialogController {
         taskDAO.addTask(task);
         Stage stage = (Stage) btnCancel.getScene().getWindow();
         stage.close();
-        panelController.getHBox().getChildren().clear();
-        panelController.initialize(null, null);
-
-
+        addTask(vBox, task);
     }
 
     @FXML
@@ -73,6 +70,12 @@ public class AddTaskDialogController {
         Stage stage = (Stage) btnCancel.getScene().getWindow();
         stage.close();
 
+    }
+    private void addTask(VBox vBox, Task task){
+        Button taskTitle = new Button();
+        taskTitle.setText(task.getTitle());
+        taskTitle.getStyleClass().add("task");
+        ((VBox)(vBox.getChildren().get(0))).getChildren().add(1, taskTitle);
     }
 
 }
