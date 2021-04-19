@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.String?>
-<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="380.0" styleClass="dlgContainer" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="400.0" styleClass="dgContainer" stylesheets="@../css/modify_task_dialog.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <columnConstraints>
-        <ColumnConstraints hgrow="SOMETIMES" maxWidth="178.0" minWidth="10.0" prefWidth="178.0" />
-        <ColumnConstraints hgrow="SOMETIMES" maxWidth="203.0" minWidth="10.0" prefWidth="170.0" />
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="241.0" minWidth="10.0" prefWidth="139.0" />
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="316.0" minWidth="10.0" prefWidth="261.0" />
     </columnConstraints>
     <rowConstraints>
         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -23,54 +23,58 @@
     </rowConstraints>
     <Label styleClass="dialogLabel" text="Title:">
         <GridPane.margin>
-          <Insets left="30.0" />
+            <Insets left="30.0" />
         </GridPane.margin>
     </Label>
     <TextField fx:id="inp_taskTitleField" styleClass="dialogTxtField" GridPane.columnIndex="1">
         <GridPane.margin>
-          <Insets right="30.0" />
+            <Insets right="30.0" />
         </GridPane.margin>
     </TextField>
     <TextField fx:id="inp_taskDescField" styleClass="dialogTxtField" GridPane.columnIndex="1" GridPane.rowIndex="1">
         <GridPane.margin>
-          <Insets right="30.0" />
+            <Insets right="30.0" />
         </GridPane.margin>
     </TextField>
     <TextField fx:id="inp_taskStateField" styleClass="dialogTxtField" GridPane.columnIndex="1" GridPane.rowIndex="2">
         <GridPane.margin>
-          <Insets right="30.0" />
+            <Insets right="30.0" />
         </GridPane.margin>
     </TextField>
     <Label styleClass="dialogLabel" text="Description:" GridPane.rowIndex="1">
         <GridPane.margin>
-          <Insets left="30.0" />
+            <Insets left="30.0" />
         </GridPane.margin>
     </Label>
     <Label styleClass="dialogLabel" text="State:" GridPane.rowIndex="2">
         <GridPane.margin>
-          <Insets left="30.0" />
+            <Insets left="30.0" />
         </GridPane.margin>
     </Label>
-    <Button fx:id="btnAddTask" mnemonicParsing="false" onAction="#taskAdded" text="Add task" GridPane.rowIndex="3">
-      <GridPane.margin>
-         <Insets left="30.0" />
-      </GridPane.margin>
+    <ButtonBar GridPane.columnIndex="1" GridPane.rowIndex="3">
+        <buttons>
+            <Button fx:id="btnDelete" mnemonicParsing="false" onAction="#handleDeleteTaskClick" text="Delete">
+            <styleClass>
+               <String fx:value="btn" />
+               <String fx:value="btnCancel" />
+            </styleClass></Button>
+            <Button fx:id="btnCancel" mnemonicParsing="false" onAction="#handleCancelClick" text="Cancel">
+            <styleClass>
+               <String fx:value="btn" />
+               <String fx:value="btnCancel" />
+            </styleClass></Button>
+        </buttons>
+        <GridPane.margin>
+            <Insets right="20.0" />
+        </GridPane.margin>
+    </ButtonBar>
+    <Button fx:id="btnUpdate" mnemonicParsing="false" onAction="#handleUpdateTaskClick" prefWidth="75.0" text="Update" GridPane.rowIndex="3">
+        <GridPane.margin>
+          <Insets left="30.0" />
+        </GridPane.margin>
       <styleClass>
          <String fx:value="btn" />
          <String fx:value="btnCreate" />
       </styleClass>
-   </Button>
-    <Button fx:id="btnCancel" mnemonicParsing="false" onAction="#taskCanceled" text="Cancel" GridPane.columnIndex="1" GridPane.rowIndex="3">
-      <styleClass>
-         <String fx:value="btn" />
-         <String fx:value="btnCancel" />
-      </styleClass>
-      <GridPane.margin>
-         <Insets left="20.0" />
-      </GridPane.margin>
-   </Button>
-   <stylesheets>
-      <URL value="@../css/add_task_dialog.css" />
-      <URL value="@../css/global.css" />
-   </stylesheets>
+    </Button>
 </GridPane>

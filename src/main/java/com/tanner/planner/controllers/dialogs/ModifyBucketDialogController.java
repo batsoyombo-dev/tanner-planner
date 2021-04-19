@@ -2,18 +2,18 @@ package com.tanner.planner.controllers.dialogs;
 
 import com.tanner.planner.data.BucketDAO;
 import com.tanner.planner.models.Bucket;
-import com.tanner.planner.models.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.effect.BoxBlur;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -38,14 +38,15 @@ public class ModifyBucketDialogController implements Initializable {
         this.bucketContainer = bucketContainer;
         this.bucketWrapper = bucketWrapper;
         bucketDAO = new BucketDAO();
-        FXMLLoader loader = new FXMLLoader(super.getClass().getResource("/dialogs/delete_bucket_dialog.fxml"));
+        FXMLLoader loader = new FXMLLoader(super.getClass().getResource("/dialogs/modify_bucket_dialog.fxml"));
         loader.setController(this);
         this.root = loader.load();
-        Scene scene = new Scene(this.root, 400, 100);
+        Scene scene = new Scene(this.root, 500, 150);
         this.stage = new Stage();
         this.stage.setScene(scene);
         this.stage.setTitle(bucket.getTitle());
         this.stage.setResizable(false);
+        this.stage.initModality(Modality.APPLICATION_MODAL);
         this.stage.show();
     }
 
@@ -63,6 +64,13 @@ public class ModifyBucketDialogController implements Initializable {
     }
     @FXML
     void handleSaveClick(ActionEvent event) {
+        String bucketTitle = txt_bucketTitle.getText();
+        if(bucketTitle.isEmpty()){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Bucket Name empty!");
+            alert.show();
+            return;
+        }
         bucketDAO.updateBucket(bucket, txt_bucketTitle.getText());
         VBox vbox = (VBox) bucketWrapper.getChildren().get(0);
         Label title = (Label) vbox.getChildren().get(0);

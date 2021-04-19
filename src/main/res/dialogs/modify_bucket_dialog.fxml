@@ -9,34 +9,39 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="140.0" prefWidth="400.0" styleClass="dialogContainer" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="500.0" styleClass="dialogContain" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <Label contentDisplay="RIGHT" styleClass="dialogLabel" text="Bucket Name">
         <VBox.margin>
-          <Insets left="50.0" top="30.0" />
+            <Insets left="50.0" top="30.0" />
         </VBox.margin>
         <graphic>
-          <TextField fx:id="txtTitle" styleClass="dialogTxtField" />
+            <TextField fx:id="txt_bucketTitle" styleClass="dialogTxtField" />
         </graphic>
     </Label>
     <ButtonBar prefHeight="40.0" prefWidth="200.0" styleClass="btnContainer">
-      <buttons>
-          <Button fx:id="btnCreate" mnemonicParsing="false" onAction="#handleSubmitClick" text="Create">
+        <buttons>
+            <Button mnemonicParsing="false" onAction="#handleDeleteClick" text="Delete">
             <styleClass>
-               <String fx:value="btn" />
                <String fx:value="btnCreate" />
+               <String fx:value="btn" />
             </styleClass></Button>
-          <Button fx:id="btnCancel" mnemonicParsing="false" onAction="#handleCancelClick" text="Cancel">
+            <Button mnemonicParsing="false" onAction="#handleSaveClick" text="Save">
             <styleClass>
                <String fx:value="btn" />
                <String fx:value="btnCancel" />
             </styleClass></Button>
-      </buttons>
+            <Button mnemonicParsing="false" onAction="#handleCancelClick" text="Cancel">
+            <styleClass>
+               <String fx:value="btn" />
+               <String fx:value="btnCancel" />
+            </styleClass></Button>
+        </buttons>
         <VBox.margin>
-          <Insets right="55.0" top="25.0" />
+            <Insets bottom="10.0" right="30.0" top="25.0" />
         </VBox.margin>
     </ButtonBar>
    <stylesheets>
-      <URL value="@../css/add_bucket_dialog.css" />
+      <URL value="@../css/modify_bucket_dialog.css" />
       <URL value="@../css/global.css" />
    </stylesheets>
 </VBox>

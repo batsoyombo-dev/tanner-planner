@@ -8,6 +8,7 @@ import com.tanner.planner.utils.Inflatable;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
 
 import javax.swing.*;
 import java.sql.*;
@@ -24,6 +25,7 @@ public class TaskDAO {
             COLUMN_TITLE = "title",
             COLUMN_DESCRIPTION = "description",
             COLUMN_STATE = "state";
+    private Alert alert = new Alert(Alert.AlertType.NONE);
 
     public void addTask(Task task) {
         String query = "insert into task(" + COLUMN_ID + ", " + COLUMN_BUCKET_ID + ", " + COLUMN_TITLE  +", " + COLUMN_DESCRIPTION + ", " + COLUMN_STATE +")" +
@@ -32,9 +34,13 @@ public class TaskDAO {
             Connection con = DBConnection.getConnection();
             PreparedStatement statement = con.prepareStatement(query);
             statement.execute();
-            JOptionPane.showMessageDialog(null, "Task Added successfully");
+            alert.setAlertType(Alert.AlertType.INFORMATION);
+            alert.setContentText("Task Added successfully");
+            alert.show();
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, e);
+            alert.setAlertType(Alert.AlertType.ERROR);
+            alert.setContentText(String.valueOf(e));
+            alert.show();
         }
     }
     public void deleteTask(Task task) {
@@ -43,9 +49,13 @@ public class TaskDAO {
             Connection con = DBConnection.getConnection();
             PreparedStatement statement = con.prepareStatement(query);
             statement.execute();
-            JOptionPane.showMessageDialog(null, "Task Deleted successfully");
+            alert.setAlertType(Alert.AlertType.INFORMATION);
+            alert.setContentText("Task Deleted successfully");
+            alert.show();
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, e);
+            alert.setAlertType(Alert.AlertType.ERROR);
+            alert.setContentText(String.valueOf(e));
+            alert.show();
         }
     }
     public void updateTask(Task task, String title, String description, String state) {
@@ -54,9 +64,13 @@ public class TaskDAO {
             Connection con = DBConnection.getConnection();
             PreparedStatement statement = con.prepareStatement(query);
             statement.execute();
-            JOptionPane.showMessageDialog(null, "Task Updated successfully");
+            alert.setAlertType(Alert.AlertType.INFORMATION);
+            alert.setContentText("Task Updated successfully");
+            alert.show();
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, e);
+            alert.setAlertType(Alert.AlertType.ERROR);
+            alert.setContentText(String.valueOf(e));
+            alert.show();
         }
     }
 

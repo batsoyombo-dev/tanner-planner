@@ -67,7 +67,7 @@ public class PanelController implements Initializable {
         FXMLLoader loader = new FXMLLoader(super.getClass().getResource("/controllers/panel_layout.fxml"));
         loader.setController(this);
         this.root = loader.load();
-        Scene scene = new Scene(this.root, 1440, 1024);
+        Scene scene = new Scene(this.root, 1440, 950);
         this.stage = new Stage();
         this.stage.setScene(scene);
         this.stage.setTitle(panel.getTitle());
@@ -191,5 +191,6 @@ public class PanelController implements Initializable {
     public Button getBtnAddBucket(){
         return this.btn_addBucket;
     }
+    public BorderPane getRoot(){return this.root;}
 }
 

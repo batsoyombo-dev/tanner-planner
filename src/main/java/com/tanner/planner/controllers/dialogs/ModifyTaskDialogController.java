@@ -6,12 +6,13 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -39,14 +40,15 @@ public class ModifyTaskDialogController implements Initializable {
             this.vBox = vBox;
             this.task = task;
             this.taskTitle = taskTitle;
-            FXMLLoader loader = new FXMLLoader(super.getClass().getResource("/dialogs/delete_task_dialog.fxml"));
+            FXMLLoader loader = new FXMLLoader(super.getClass().getResource("/dialogs/modify_task_dialog.fxml"));
             loader.setController(this);
             this.root = loader.load();
-            Scene scene = new Scene(this.root, 300, 300);
+            Scene scene = new Scene(this.root, 400, 300);
             this.stage = new Stage();
             this.stage.setScene(scene);
             this.stage.setTitle(task.getTitle());
             this.stage.setResizable(false);
+            this.stage.initModality(Modality.APPLICATION_MODAL);
             this.stage.show();
     }
 
@@ -61,8 +63,14 @@ public class ModifyTaskDialogController implements Initializable {
     @FXML
     void handleUpdateTaskClick(ActionEvent event) {
     String title = inp_taskTitleField.getText();
-    String description = inp_taskDescField.getText();
     String state = inp_taskStateField.getText();
+    String description = inp_taskDescField.getText();
+    if(title.isEmpty() || state.isEmpty()){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Fill title and state!");
+            alert.show();
+            return;
+    }
     taskDAO.updateTask(task, title, description, state);
     this.stage.close();
     taskTitle.setText(inp_taskTitleField.getText());
