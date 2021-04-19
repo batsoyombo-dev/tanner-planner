@@ -79,6 +79,7 @@ public class PanelController implements Initializable {
         this.addIconToControl("/images/analysis.png", btn_showAnalysis);
         this.addIconToControl("/images/favourite.png", btn_makeFavourite);
         this.addIconToControl("/images/settings.png", btn_showSettings);
+        txt_panelTitle.setText(panel.getTitle());
 
         this.stage.show();
         bp_panelMainContainer.setStyle("-fx-background-color:  " +  panel.getColorConfig());
