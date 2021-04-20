@@ -69,8 +69,8 @@ public class AddTaskDialogController {
         if(inp_taskStateField.getValue().equals("Normal"))
             taskState = "nm";
         if(inp_taskStateField.getValue().equals("None"))
-            taskState = "none";
-        if(taskTitle.isEmpty() || taskState.equals("none")){
+            taskState = "None";
+        if(taskTitle.isEmpty() || taskState.equals("None")){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText("Fill title and state!");
             alert.show();

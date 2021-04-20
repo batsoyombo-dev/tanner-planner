@@ -73,9 +73,9 @@ public class ModifyTaskDialogController implements Initializable {
     if(inp_taskStateField.getValue().equals("Normal"))
             state = "nm";
     if(inp_taskStateField.getValue().equals("None"))
-            state = "none";
+            state = "None";
 
-    if(title.isEmpty() || state.equals("none")){
+    if(title.isEmpty() || state.equals("None")){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText("Fill title and state!");
             alert.show();
