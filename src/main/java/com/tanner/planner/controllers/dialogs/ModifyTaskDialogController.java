@@ -9,6 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
@@ -26,7 +27,7 @@ public class ModifyTaskDialogController implements Initializable {
     @FXML
     private TextField inp_taskDescField;
     @FXML
-    private TextField inp_taskStateField;
+    private ChoiceBox<String> inp_taskStateField;
 
     private final GridPane root;
     private final VBox vBox;
@@ -63,9 +64,18 @@ public class ModifyTaskDialogController implements Initializable {
     @FXML
     void handleUpdateTaskClick(ActionEvent event) {
     String title = inp_taskTitleField.getText();
-    String state = inp_taskStateField.getText();
     String description = inp_taskDescField.getText();
-    if(title.isEmpty() || state.isEmpty()){
+    String state = null;
+    if(inp_taskStateField.getValue().equals("Completed"))
+            state = "cm";
+    if(inp_taskStateField.getValue().equals("Past due"))
+            state = "pd";
+    if(inp_taskStateField.getValue().equals("Normal"))
+            state = "nm";
+    if(inp_taskStateField.getValue().equals("None"))
+            state = "none";
+
+    if(title.isEmpty() || state.equals("none")){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText("Fill title and state!");
             alert.show();
@@ -85,7 +95,12 @@ public class ModifyTaskDialogController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         inp_taskTitleField.setText(task.getTitle());
         inp_taskDescField.setText(task.getDescription());
-        inp_taskStateField.setText(task.getState());
+        if(task.getState().equals("cm"))
+            inp_taskStateField.setValue("Completed");
+        if(task.getState().equals("pd"))
+            inp_taskStateField.setValue("Past due");
+        if(task.getState().equals("nm"))
+            inp_taskStateField.setValue("Normal");
     }
 }
 

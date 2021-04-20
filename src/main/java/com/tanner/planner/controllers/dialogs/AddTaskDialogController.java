@@ -11,6 +11,7 @@ import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
@@ -27,7 +28,7 @@ public class AddTaskDialogController {
     @FXML
     private TextField inp_taskDescField;
     @FXML
-    private TextField inp_taskStateField;
+    private ChoiceBox<String> inp_taskStateField;
     @FXML
     private Button btnAddTask;
     @FXML
@@ -60,14 +61,22 @@ public class AddTaskDialogController {
     @FXML
     public void taskAdded(ActionEvent event) {
         String taskTitle = inp_taskTitleField.getText();
-        String taskState = inp_taskStateField.getText();
-        if(taskTitle.isEmpty() || taskState.isEmpty()){
+        String taskState = null;
+        if(inp_taskStateField.getValue().equals("Completed"))
+            taskState = "cm";
+        if(inp_taskStateField.getValue().equals("Past due"))
+            taskState = "pd";
+        if(inp_taskStateField.getValue().equals("Normal"))
+            taskState = "nm";
+        if(inp_taskStateField.getValue().equals("None"))
+            taskState = "none";
+        if(taskTitle.isEmpty() || taskState.equals("none")){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText("Fill title and state!");
             alert.show();
             return;
         }
-        Task task = new Task( UUID.randomUUID().toString(),bucket.getID(),inp_taskTitleField.getText(),inp_taskDescField.getText(), inp_taskStateField.getText());
+        Task task = new Task( UUID.randomUUID().toString(),bucket.getID(),inp_taskTitleField.getText(),inp_taskDescField.getText(), taskState);
         taskDAO.addTask(task);
         this.stage.close();
         this.panelController.newTaskContainer(task, vBox);
