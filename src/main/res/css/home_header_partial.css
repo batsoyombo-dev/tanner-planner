@@ -8,7 +8,6 @@
 }
 .btn {
     -fx-background-color: none;
-    -fx-graphic: url("../images/circle.png");
 }
 
 .search-container {

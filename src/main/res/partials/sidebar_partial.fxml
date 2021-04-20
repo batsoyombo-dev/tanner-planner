@@ -8,6 +8,8 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
 <AnchorPane prefHeight="0" prefWidth="300" stylesheets="@../css/sidebar_partial.css, @../css/global.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
 
     <BorderPane styleClass="main-container" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
@@ -22,17 +24,35 @@
                 <VBox styleClass="sub-container">
                     <Label styleClass="sub-container-title" text="Category" />
                     <Button id="all" fx:id="btn_defaultNavBtn" onMouseClicked="#handleNavigation" styleClass="nav-btn, selected" text="All">
-                  <cursor>
-                     <Cursor fx:constant="HAND" />
-                  </cursor></Button>
+                        <graphic>
+                            <ImageView fitWidth="32" fitHeight="32">
+                                <Image url="@../images/white-circle.png" />
+                            </ImageView>
+                        </graphic>
+                        <cursor>
+                            <Cursor fx:constant="HAND" />
+                        </cursor>
+                    </Button>
                     <Button id="inp" onMouseClicked="#handleNavigation" styleClass="nav-btn" text="Important">
-                  <cursor>
-                     <Cursor fx:constant="HAND" />
-                  </cursor></Button>
+                        <graphic>
+                            <ImageView fitWidth="32" fitHeight="32">
+                                <Image url="@../images/white-circle.png" />
+                            </ImageView>
+                        </graphic>
+                        <cursor>
+                            <Cursor fx:constant="HAND" />
+                        </cursor>
+                    </Button>
                     <Button id="com" onMouseClicked="#handleNavigation" styleClass="nav-btn" text="Completed">
-                  <cursor>
-                     <Cursor fx:constant="HAND" />
-                  </cursor></Button>
+                        <graphic>
+                            <ImageView fitWidth="32" fitHeight="32">
+                                <Image url="@../images/white-circle.png" />
+                            </ImageView>
+                        </graphic>
+                        <cursor>
+                            <Cursor fx:constant="HAND" />
+                        </cursor>
+                    </Button>
                 </VBox>
                 <VBox styleClass="sub-container">
                     <Label styleClass="sub-container-title" text="Recent Activities" />
@@ -59,10 +79,13 @@
         <bottom>
             <HBox styleClass="footer-container">
                 <VBox styleClass="footer-sub-container" HBox.hgrow="ALWAYS">
-                    <Button styleClass="footer-btn" />
-                </VBox>
-                <VBox alignment="CENTER_RIGHT" styleClass="footer-sub-container" HBox.hgrow="ALWAYS">
-                    <Button styleClass="footer-btn" />
+                    <Button styleClass="footer-btn">
+                        <graphic>
+                            <ImageView fitWidth="32" fitHeight="32">
+                                <Image url="@../images/logout-white.png" />
+                            </ImageView>
+                        </graphic>
+                    </Button>
                 </VBox>
             </HBox>
         </bottom>

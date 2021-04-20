@@ -33,7 +33,6 @@
     -fx-border-radius: 10px;
     -fx-background-radius: 10px;
     -fx-text-fill: #f2f2f2;
-    -fx-graphic: url("../images/white-circle.png");
     -fx-graphic-text-gap: 10px;
     -fx-background-color: none;
 }
@@ -73,5 +72,4 @@
 
 .footer-btn {
     -fx-background-color: none;
-    -fx-graphic: url("../images/white-circle.png");
 }

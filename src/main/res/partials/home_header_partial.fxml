@@ -5,22 +5,42 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
 
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
 <HBox alignment="CENTER_RIGHT" styleClass="header" stylesheets="@../css/home_header_partial.css, @../css/global.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
 
     <HBox styleClass="search-container, sub-container">
         <TextField fx:id="inp_searchField" promptText="Search..." styleClass="search-input" HBox.hgrow="ALWAYS" />
-        <Button styleClass="btn, search-btn" onMouseClicked="#handleSearchBtnClick"  />
+        <Button styleClass="btn, search-btn" onMouseClicked="#handleSearchBtnClick">
+            <graphic>
+                <ImageView fitWidth="32" fitHeight="32">
+                    <Image url="@../images/search.png" />
+                </ImageView>
+            </graphic>
+        </Button>
     </HBox>
 
     <HBox styleClass="btn-container, sub-container">
-        <Button fx:id="btnHelp" onMouseClicked="#handleNewPanelClick" styleClass="btn">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor></Button>
+        <Button onMouseClicked="#handleNewPanelClick" styleClass="btn">
+            <graphic>
+                <ImageView fitWidth="32" fitHeight="32">
+                    <Image url="@../images/add.png" />
+                </ImageView>
+            </graphic>
+             <cursor>
+                <Cursor fx:constant="HAND" />
+             </cursor>
+        </Button>
         <Button styleClass="btn">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor></Button>
+            <graphic>
+                <ImageView fitWidth="32" fitHeight="32">
+                    <Image url="@../images/help_black.png" />
+                </ImageView>
+            </graphic>
+             <cursor>
+                <Cursor fx:constant="HAND" />
+             </cursor>
+        </Button>
     </HBox>
 
 </HBox>
