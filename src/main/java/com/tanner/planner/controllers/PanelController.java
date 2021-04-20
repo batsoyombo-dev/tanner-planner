@@ -1,5 +1,6 @@
 package com.tanner.planner.controllers;
 
+import com.tanner.planner.Main;
 import com.tanner.planner.controllers.dialogs.AddBucketDialogController;
 import com.tanner.planner.controllers.dialogs.AddTaskDialogController;
 import com.tanner.planner.controllers.dialogs.ModifyBucketDialogController;
@@ -23,6 +24,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
+import java.applet.AppletContext;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -61,6 +63,7 @@ public class PanelController implements Initializable {
     private final HomeController homeController;
     private final Stage stage;
     private boolean favourite;
+    private final Hyperlink redirect;
     ObservableList<Bucket> listBucket;
 
     public PanelController(HomeController homeController, Panel panel) throws IOException{
@@ -69,6 +72,7 @@ public class PanelController implements Initializable {
         this.bucketDAO = new BucketDAO();
         this.taskDAO = new TaskDAO();
         this.panelDAO = new PanelDAO();
+        this.redirect = new Hyperlink("https://github.com/batsoyombo-dev/tanner-planner");
         FXMLLoader loader = new FXMLLoader(super.getClass().getResource("/controllers/panel_layout.fxml"));
         loader.setController(this);
         this.root = loader.load();
@@ -185,6 +189,10 @@ public class PanelController implements Initializable {
         Button btn_taskTitle = new Button(task.getTitle());
         btn_taskTitle.getStyleClass().add("task");
         btn_taskTitle.setCursor(Cursor.HAND);
+        if(task.getState().equals("cm"))
+            btn_taskTitle.setStyle("-fx-border-color: #59ad00");
+        if(task.getState().equals("pd"))
+            btn_taskTitle.setStyle("-fx-border-color: #be1e2d");
         btn_taskTitle.setOnMouseClicked(e -> {
             try {
                 new ModifyTaskDialogController((VBox) container.getChildren().get(0), task, btn_taskTitle);
@@ -209,6 +217,12 @@ public class PanelController implements Initializable {
             favourite = true;
         }
     }
+    @FXML
+    void handleRedirectGithub(ActionEvent event) {
+        //Main main = new Main();
+        //main.getServices().showDocument(redirect.getText());
+    }
+    
 
     public HBox getHBox(){
         return this.hbox_bucketContainer;
@@ -217,5 +231,6 @@ public class PanelController implements Initializable {
         return this.btn_addBucket;
     }
     public BorderPane getRoot(){return this.root;}
+    
 }
 

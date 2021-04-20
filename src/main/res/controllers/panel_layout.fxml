@@ -33,7 +33,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Label>
-            <Button fx:id="btn_redirectGithub" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0">
+            <Button fx:id="btn_redirectGithub" mnemonicParsing="false" onAction="#handleRedirectGithub" prefHeight="40.0" prefWidth="40.0">
                <HBox.margin>
                   <Insets left="1048.0" top="20.0" />
                </HBox.margin>

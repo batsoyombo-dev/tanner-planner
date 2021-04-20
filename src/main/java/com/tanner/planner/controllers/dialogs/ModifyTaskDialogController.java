@@ -66,14 +66,20 @@ public class ModifyTaskDialogController implements Initializable {
     String title = inp_taskTitleField.getText();
     String description = inp_taskDescField.getText();
     String state = null;
-    if(inp_taskStateField.getValue().equals("Completed"))
-            state = "cm";
-    if(inp_taskStateField.getValue().equals("Past due"))
-            state = "pd";
-    if(inp_taskStateField.getValue().equals("Normal"))
-            state = "nm";
-    if(inp_taskStateField.getValue().equals("None"))
-            state = "None";
+    if(inp_taskStateField.getValue().equals("Completed")) {
+        state = "cm";
+        taskTitle.setStyle("-fx-border-color: #59ad00");
+    }
+    if(inp_taskStateField.getValue().equals("Past due")) {
+        state = "pd";
+        taskTitle.setStyle("-fx-border-color: #be1e2d");
+    }
+    if(inp_taskStateField.getValue().equals("Normal")) {
+        state = "nm";
+    }
+    if(inp_taskStateField.getValue().equals("None")) {
+        state = "None";
+    }
 
     if(title.isEmpty() || state.equals("None")){
             Alert alert = new Alert(Alert.AlertType.ERROR);
