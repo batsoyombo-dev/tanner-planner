@@ -1,10 +1,12 @@
 package com.tanner.planner.controllers;
 
+import com.tanner.planner.Main;
 import com.tanner.planner.controllers.dialogs.AddBucketDialogController;
 import com.tanner.planner.controllers.dialogs.AddTaskDialogController;
 import com.tanner.planner.controllers.dialogs.ModifyBucketDialogController;
 import com.tanner.planner.controllers.dialogs.ModifyTaskDialogController;
 import com.tanner.planner.data.BucketDAO;
+import com.tanner.planner.data.PanelDAO;
 import com.tanner.planner.data.TaskDAO;
 import com.tanner.planner.models.Bucket;
 import com.tanner.planner.models.Panel;
@@ -22,6 +24,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
+import java.applet.AppletContext;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -50,13 +53,17 @@ public class PanelController implements Initializable {
     @FXML
     private HBox hbox_bucketContainer;
 
+
     private BorderPane root;
     private final BucketDAO bucketDAO;
     private final TaskDAO taskDAO;
+    private final PanelDAO panelDAO;
     ObservableList<Task> taskList;
     private final Panel panel;
     private final HomeController homeController;
     private final Stage stage;
+    private boolean favourite;
+    private final Hyperlink redirect;
     ObservableList<Bucket> listBucket;
 
     public PanelController(HomeController homeController, Panel panel) throws IOException{
@@ -64,10 +71,12 @@ public class PanelController implements Initializable {
         this.homeController = homeController;
         this.bucketDAO = new BucketDAO();
         this.taskDAO = new TaskDAO();
+        this.panelDAO = new PanelDAO();
+        this.redirect = new Hyperlink("https://github.com/batsoyombo-dev/tanner-planner");
         FXMLLoader loader = new FXMLLoader(super.getClass().getResource("/controllers/panel_layout.fxml"));
         loader.setController(this);
         this.root = loader.load();
-        Scene scene = new Scene(this.root, 1440, 1024);
+        Scene scene = new Scene(this.root, 1440, 950);
         this.stage = new Stage();
         this.stage.setScene(scene);
         this.stage.setTitle(panel.getTitle());
@@ -77,8 +86,16 @@ public class PanelController implements Initializable {
         this.addIconToControl("/images/help_white.png", btn_redirectGithub);
         this.addIconToControl("/images/notification_white.png", btn_showNotifications);
         this.addIconToControl("/images/analysis.png", btn_showAnalysis);
-        this.addIconToControl("/images/favourite.png", btn_makeFavourite);
+        if(panel.getCategory().equals("inp")) {
+            this.addIconToControl("/images/favourite-filled.png", btn_makeFavourite);
+            favourite = true;
+        }
+        else {
+            this.addIconToControl("/images/favourite.png", btn_makeFavourite);
+            favourite = false;
+        }
         this.addIconToControl("/images/settings.png", btn_showSettings);
+        txt_panelTitle.setText(panel.getTitle());
 
         this.stage.show();
         bp_panelMainContainer.setStyle("-fx-background-color:  " +  panel.getColorConfig());
@@ -172,6 +189,10 @@ public class PanelController implements Initializable {
         Button btn_taskTitle = new Button(task.getTitle());
         btn_taskTitle.getStyleClass().add("task");
         btn_taskTitle.setCursor(Cursor.HAND);
+        if(task.getState().equals("cm"))
+            btn_taskTitle.setStyle("-fx-border-color: #59ad00");
+        if(task.getState().equals("pd"))
+            btn_taskTitle.setStyle("-fx-border-color: #be1e2d");
         btn_taskTitle.setOnMouseClicked(e -> {
             try {
                 new ModifyTaskDialogController((VBox) container.getChildren().get(0), task, btn_taskTitle);
@@ -183,6 +204,25 @@ public class PanelController implements Initializable {
         VBox bucketControl = ((VBox)(container.getChildren().get(0)));
         bucketControl.getChildren().add(bucketControl.getChildren().size() - 1, btn_taskTitle);
     }
+    @FXML
+    void handleFavouriteClick(ActionEvent event) {
+        if(favourite){
+            panelDAO.changeCategory(this.panel, false);
+            this.addIconToControl("/images/favourite.png", btn_makeFavourite);
+            favourite = false;
+        }
+        else{
+            panelDAO.changeCategory(this.panel, true);
+            this.addIconToControl("/images/favourite-filled.png", btn_makeFavourite);
+            favourite = true;
+        }
+    }
+    @FXML
+    void handleRedirectGithub(ActionEvent event) {
+        //Main main = new Main();
+        //main.getServices().showDocument(redirect.getText());
+    }
+    
 
     public HBox getHBox(){
         return this.hbox_bucketContainer;
@@ -190,5 +230,7 @@ public class PanelController implements Initializable {
     public Button getBtnAddBucket(){
         return this.btn_addBucket;
     }
+    public BorderPane getRoot(){return this.root;}
+    
 }
 

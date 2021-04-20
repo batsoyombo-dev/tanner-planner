@@ -1,0 +1,27 @@
+.dlgContainer{
+    -fx-background-color: #25333D;
+}
+.dialogLabel{
+    -fx-text-fill: white;
+    -fx-font-size: 18;
+}
+.dialogTxtField{
+    -fx-pref-height: 30;
+    -fx-pref-width: 180;
+    -fx-background-radius: 15;
+}
+.btnContainer{
+}
+.btn{
+    -fx-pref-width: 140;
+    -fx-pref-height: 40;
+    -fx-font-size: 20;
+    -fx-background-radius: 20;
+}
+.btnCreate{
+    -fx-background-color: #489FB5;
+    -fx-text-fill: white;
+}
+.btnCancel{
+    -fx-background-color: white;
+}

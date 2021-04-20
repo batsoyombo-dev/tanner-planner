@@ -36,6 +36,7 @@ public class UserDAO {
             }
             return false;
         } catch (SQLException e) {
+            e.printStackTrace();
             return false;
         }
     }

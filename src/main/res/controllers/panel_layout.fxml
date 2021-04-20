@@ -10,100 +10,96 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="bp_panelMainContainer" prefHeight="1024.0" prefWidth="1440.0" styleClass="main" stylesheets="@../css/panel_layout.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:id="bp_panelMainContainer" prefHeight="950.0" prefWidth="1440.0" styleClass="main" stylesheets="@../css/panel_layout.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <top>
       <VBox prefHeight="160.0" prefWidth="1440.0" BorderPane.alignment="CENTER">
          <HBox prefHeight="80.0" prefWidth="1440.0" styleClass="top">
-            <Button fx:id="btn_hamburgerMenu" maxHeight="40.0" maxWidth="40.0" mnemonicParsing="false"
-                    prefHeight="40.0" prefWidth="40.0">
+            <Button fx:id="btn_hamburgerMenu" maxHeight="40.0" maxWidth="40.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0">
                <HBox.margin>
-                  <Insets left="20.0" top="20.0"/>
+                  <Insets left="20.0" top="20.0" />
                </HBox.margin>
                <cursor>
-                  <Cursor fx:constant="HAND"/>
+                  <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Label minHeight="56.0" onMouseClicked="#handleBackToHomeClick" prefHeight="56.0"
-                   prefWidth="152.0" styleClass="text" text="tanner">
+            <Label minHeight="56.0" onMouseClicked="#handleBackToHomeClick" prefHeight="56.0" prefWidth="172.0" styleClass="text" text="tanner">
                <HBox.margin>
-                  <Insets left="40.0" top="10.0"/>
+                  <Insets left="40.0" top="10.0" />
                </HBox.margin>
                <font>
-                  <Font name="System Bold" size="48.0"/>
+                  <Font name="System Bold" size="48.0" />
                </font>
                <cursor>
-                  <Cursor fx:constant="HAND"/>
+                  <Cursor fx:constant="HAND" />
                </cursor>
             </Label>
-            <Button fx:id="btn_redirectGithub" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0">
+            <Button fx:id="btn_redirectGithub" mnemonicParsing="false" onAction="#handleRedirectGithub" prefHeight="40.0" prefWidth="40.0">
                <HBox.margin>
-                  <Insets left="1068.0" top="20.0"/>
+                  <Insets left="1048.0" top="20.0" />
                </HBox.margin>
                <cursor>
-                  <Cursor fx:constant="HAND"/>
+                  <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
             <Button fx:id="btn_showNotifications" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0">
                <HBox.margin>
-                  <Insets left="20.0" top="20.0"/>
+                  <Insets left="20.0" top="20.0" />
                </HBox.margin>
                <cursor>
-                  <Cursor fx:constant="HAND"/>
+                  <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
          </HBox>
          <HBox prefHeight="80.0" prefWidth="1440.0" styleClass="top">
             <Button fx:id="btn_showAnalysis" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0">
                <HBox.margin>
-                  <Insets left="20.0" top="20.0"/>
+                  <Insets left="20.0" top="20.0" />
                </HBox.margin>
                <cursor>
-                  <Cursor fx:constant="HAND"/>
+                  <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Label fx:id="txt_panelTitle" minHeight="33.0" prefHeight="33.0" prefWidth="76.0" styleClass="text"
-                   text="Panel">
+            <Label fx:id="txt_panelTitle" minHeight="33.0" prefHeight="40.0" prefWidth="296.0" styleClass="text" text="Panel">
                <HBox.margin>
-                  <Insets left="40.0" top="27.0"/>
+                  <Insets left="40.0" top="27.0" />
                </HBox.margin>
                <font>
-                  <Font name="System Bold" size="28.0"/>
+                  <Font name="System Bold" size="28.0" />
                </font>
             </Label>
-            <Button fx:id="btn_addBucket" mnemonicParsing="false" onAction="#handleAddBucketClick" prefHeight="60.0"
-                    prefWidth="320.0" style="-fx-background-radius: 30;" styleClass="addBucket" text="+Add Bucket">
+            <Button fx:id="btn_addBucket" mnemonicParsing="false" onAction="#handleAddBucketClick" prefHeight="60.0" prefWidth="320.0" style="-fx-background-radius: 30;" styleClass="addBucket" text="+Add Bucket">
                <font>
-                  <Font size="24.0"/>
+                  <Font size="24.0" />
                </font>
                <cursor>
-                  <Cursor fx:constant="HAND"/>
+                  <Cursor fx:constant="HAND" />
                </cursor>
                <HBox.margin>
-                  <Insets left="753.0" top="10.0"/>
+                  <Insets left="533.0" top="10.0" />
                </HBox.margin>
             </Button>
-            <Button fx:id="btn_makeFavourite" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0">
+            <Button fx:id="btn_makeFavourite" mnemonicParsing="false" onAction="#handleFavouriteClick" prefHeight="40.0" prefWidth="40.0">
                <HBox.margin>
-                  <Insets left="70.0" top="20.0"/>
+                  <Insets left="70.0" top="20.0" />
                </HBox.margin>
                <cursor>
-                  <Cursor fx:constant="HAND"/>
+                  <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
             <Button fx:id="btn_showSettings" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0">
                <HBox.margin>
-                  <Insets left="20.0" top="20.0"/>
+                  <Insets left="20.0" top="20.0" />
                </HBox.margin>
                <cursor>
-                  <Cursor fx:constant="HAND"/>
+                  <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
          </HBox>
       </VBox>
    </top>
    <center>
-      <ScrollPane fx:id="sp_bucketScrollContainer" styleClass="scroll-bucket-container" maxHeight="800.0" style="-fx-background-color: transparent;">
-         <HBox fx:id="hbox_bucketContainer" maxHeight="865.0" prefHeight="0" prefWidth="1440.0" BorderPane.alignment="CENTER"/>
+      <ScrollPane fx:id="sp_bucketScrollContainer" maxHeight="800.0" style="-fx-background-color: transparent;" styleClass="scroll-bucket-container">
+         <HBox fx:id="hbox_bucketContainer" maxHeight="865.0" prefHeight="0" prefWidth="1440.0" BorderPane.alignment="CENTER" />
       </ScrollPane>
    </center>
 </BorderPane>

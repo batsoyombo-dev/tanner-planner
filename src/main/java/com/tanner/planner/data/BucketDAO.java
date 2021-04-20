@@ -6,6 +6,7 @@ import com.tanner.planner.utils.Inflatable;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
 
 import javax.swing.*;
 import java.sql.*;
@@ -19,6 +20,7 @@ public class BucketDAO {
             COLUMN_ID = "id",
             COLUMN_PANEL_ID = "panel_id",
             COLUMN_TITLE = "title";
+    private Alert alert = new Alert(Alert.AlertType.NONE);
 
     public void addBucket(Bucket bucket) {
         String query = "insert into bucket(" + COLUMN_ID + ", " + COLUMN_PANEL_ID + ", " + COLUMN_TITLE  + ")" +
@@ -27,9 +29,13 @@ public class BucketDAO {
             Connection con = DBConnection.getConnection();
             PreparedStatement statement = con.prepareStatement(query);
             statement.execute();
-            JOptionPane.showMessageDialog(null, "Bucket Added successfully");
+            alert.setAlertType(Alert.AlertType.INFORMATION);
+            alert.setContentText("Bucket Added successfully");
+            alert.show();
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, e);
+            alert.setAlertType(Alert.AlertType.ERROR);
+            alert.setContentText(String.valueOf(e));
+            alert.show();
         }
     }
     public void deleteBucket(Bucket bucket) {
@@ -41,9 +47,13 @@ public class BucketDAO {
             PreparedStatement statement2 = con.prepareStatement(query2);
             statement.execute();
             statement2.execute();
-            JOptionPane.showMessageDialog(null, "Bucket Deleted successfully");
+            alert.setAlertType(Alert.AlertType.INFORMATION);
+            alert.setContentText("Bucket Deleted Successfully");
+            alert.show();
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, e);
+            alert.setAlertType(Alert.AlertType.ERROR);
+            alert.setContentText(String.valueOf(e));
+            alert.show();
         }
     }
     public void updateBucket(Bucket bucket, String new_Title) {
@@ -52,9 +62,13 @@ public class BucketDAO {
             Connection con = DBConnection.getConnection();
             PreparedStatement statement = con.prepareStatement(query);
             statement.execute();
-            JOptionPane.showMessageDialog(null, "Bucket Updated successfully");
+            alert.setAlertType(Alert.AlertType.INFORMATION);
+            alert.setContentText("Bucket Updated Successfully");
+            alert.show();
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, e);
+            alert.setAlertType(Alert.AlertType.ERROR);
+            alert.setContentText(String.valueOf(e));
+            alert.show();
         }
     }
 

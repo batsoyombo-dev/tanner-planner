@@ -9,7 +9,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Cursor;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
@@ -22,11 +24,11 @@ import java.util.UUID;
 public class AddTaskDialogController {
 
     @FXML
-    private TextField inp_bucketTitleField;
+    private TextField inp_taskTitleField;
     @FXML
-    private TextField inp_bucketDescField;
+    private TextField inp_taskDescField;
     @FXML
-    private TextField inp_bucketStateField;
+    private ChoiceBox<String> inp_taskStateField;
     @FXML
     private Button btnAddTask;
     @FXML
@@ -47,7 +49,7 @@ public class AddTaskDialogController {
         FXMLLoader loader = new FXMLLoader(super.getClass().getResource("/dialogs/add_task_dialog.fxml"));
         loader.setController(this);
         this.root = loader.load();
-        Scene scene = new Scene(this.root, 300, 300);
+        Scene scene = new Scene(this.root, 380, 300);
         this.stage = new Stage();
         this.stage.setScene(scene);
         this.stage.setTitle(bucket.getTitle());
@@ -57,8 +59,24 @@ public class AddTaskDialogController {
 
     }
     @FXML
-    void taskAdded(ActionEvent event) {
-        Task task = new Task( UUID.randomUUID().toString(),bucket.getID(),inp_bucketTitleField.getText(),inp_bucketDescField.getText(), inp_bucketStateField.getText());
+    public void taskAdded(ActionEvent event) {
+        String taskTitle = inp_taskTitleField.getText();
+        String taskState = null;
+        if(inp_taskStateField.getValue().equals("Completed"))
+            taskState = "cm";
+        if(inp_taskStateField.getValue().equals("Past due"))
+            taskState = "pd";
+        if(inp_taskStateField.getValue().equals("Normal"))
+            taskState = "nm";
+        if(inp_taskStateField.getValue().equals("None"))
+            taskState = "None";
+        if(taskTitle.isEmpty() || taskState.equals("None")){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Fill title and state!");
+            alert.show();
+            return;
+        }
+        Task task = new Task( UUID.randomUUID().toString(),bucket.getID(),inp_taskTitleField.getText(),inp_taskDescField.getText(), taskState);
         taskDAO.addTask(task);
         this.stage.close();
         this.panelController.newTaskContainer(task, vBox);

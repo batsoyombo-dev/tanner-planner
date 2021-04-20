@@ -4,6 +4,7 @@ import com.tanner.planner.controllers.HomeController;
 import com.tanner.planner.models.Panel;
 import com.tanner.planner.utils.Inflatable;
 import javafx.application.Platform;
+import javafx.scene.control.Alert;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -79,6 +80,23 @@ public class PanelDAO {
             }
         }, "list-panels-thread");
         listPanelsThread.start();
+    }
+    public void changeCategory(Panel panel, Boolean favourite){
+        String query;
+        if(favourite)
+            query= "UPDATE panel SET category = '"+ "inp" +"' WHERE id = '"+panel.getId()+"' ";
+        else
+            query= "UPDATE panel SET category = '"+ "nor" +"' WHERE id = '"+panel.getId()+"' ";
+        try {
+            Connection con = DBConnection.getConnection();
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.execute();
+        } catch (SQLException e) {
+            Alert alert =  new Alert(Alert.AlertType.NONE);
+            alert.setAlertType(Alert.AlertType.ERROR);
+            alert.setContentText(String.valueOf(e));
+            alert.show();
+        }
     }
 
 }
