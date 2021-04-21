@@ -50,8 +50,10 @@ public class HomeController {
     }
 
     public void toggleStage(boolean shouldShow) {
-        if (shouldShow)
+        if (shouldShow) {
+            this.panelContainerController.inflatePanelItemContainer(this.panelContainerController.getCurrentCategory());
             this.stage.show();
+        }
         else
             this.stage.hide();
     }

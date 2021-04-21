@@ -54,17 +54,19 @@ public class PanelController implements Initializable {
     private HBox hbox_bucketContainer;
 
 
-    private BorderPane root;
+    private final BorderPane root;
     private final BucketDAO bucketDAO;
     private final TaskDAO taskDAO;
     private final PanelDAO panelDAO;
-    ObservableList<Task> taskList;
     private final Panel panel;
     private final HomeController homeController;
     private final Stage stage;
-    private boolean favourite;
     private final Hyperlink redirect;
+
     ObservableList<Bucket> listBucket;
+    ObservableList<Task> taskList;
+
+    private boolean favourite;
 
     public PanelController(HomeController homeController, Panel panel) throws IOException{
         this.panel = panel;

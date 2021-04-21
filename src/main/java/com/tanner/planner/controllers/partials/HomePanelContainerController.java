@@ -92,6 +92,10 @@ public class HomePanelContainerController implements Inflatable<Panel> {
         return container;
     }
 
+    public String getCurrentCategory() {
+        return this.currentCategory;
+    }
+
     public boolean isPanelLoading() {
         return this.isLoading;
     }
