@@ -86,6 +86,25 @@ public class TaskDAO {
         return list;
 
     }
+    public ObservableList<Task> getNotification(Panel panel) throws SQLException {
+
+        Connection conn = DBConnection.getConnection();
+        ObservableList<Task> list = FXCollections.observableArrayList();
+        try{
+            PreparedStatement ps = conn.prepareStatement("SELECT * FROM task WHERE state = 'pd' and bucket_id = (SELECT id from bucket WHERE panel_id = '"+panel.getId()+"') ");
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                list.add(new Task(rs.getString("id"), rs.getString("bucket_id"), rs.getString("title"), rs.getString("description"), rs.getString("state"), rs.getString("date")));
+            }
+        }
+        catch(Exception e){
+            alert.setAlertType(Alert.AlertType.ERROR);
+            alert.setContentText(String.valueOf(e));
+            alert.show();
+        }
+        return list;
+
+    }
 
 
 }

@@ -1,8 +1,6 @@
 package com.tanner.planner.controllers;
 
-import com.tanner.planner.Main;
 import com.tanner.planner.controllers.dialogs.*;
-import com.tanner.planner.controllers.partials.ColorBtnContainerController;
 import com.tanner.planner.data.BucketDAO;
 import com.tanner.planner.data.PanelDAO;
 import com.tanner.planner.data.TaskDAO;
@@ -24,15 +22,13 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
-import java.applet.AppletContext;
-import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
-public class PanelController implements Initializable {
+public class PanelController implements Initializable{
 
     @FXML
     private BorderPane bp_panelMainContainer;
@@ -239,10 +235,21 @@ public class PanelController implements Initializable {
     @FXML
     void handleSettingsClick(ActionEvent event) throws IOException {
         try {
-            new BucketModifyColorController(panel, bp_panelMainContainer);
+            new BucketModifyColorDialogController(panel, bp_panelMainContainer);
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @FXML
+    void handleNotificationClick(ActionEvent event) throws IOException {
+        try{
+            new BucketNotificationDialogController(panel);
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
+
     }
     
 

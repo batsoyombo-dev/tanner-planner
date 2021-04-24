@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.VBox?>
+
+<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="400.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/15.0.1" hbarPolicy="NEVER">
+   <content>
+      <VBox fx:id="containerVBox" prefHeight="500.0" prefWidth="400.0" styleClass="dlgContainer" />
+   </content>
+   <stylesheets>
+      <URL value="@../css/global.css" />
+      <URL value="@../css/bucket_notification_dialog.css" />
+   </stylesheets>
+</ScrollPane>

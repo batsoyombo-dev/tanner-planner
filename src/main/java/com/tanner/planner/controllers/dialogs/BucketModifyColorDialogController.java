@@ -20,7 +20,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 
-public class BucketModifyColorController {
+public class BucketModifyColorDialogController {
     private Panel panel;
     private PanelController panelController;
     private VBox root;
@@ -30,7 +30,7 @@ public class BucketModifyColorController {
     @FXML
     private ColorBtnContainerController colorBtnContainerController;
 
-    public BucketModifyColorController(Panel panel, BorderPane borderPane) throws IOException {
+    public BucketModifyColorDialogController(Panel panel, BorderPane borderPane) throws IOException {
         this.panel = panel;
         this.panelDAO = new PanelDAO();
         this.borderPane = borderPane;
