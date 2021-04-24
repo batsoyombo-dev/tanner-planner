@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<TilePane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.tanner.planner.controllers.partials.ColorBtnContainerController"
+            prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/global.css, @../css/color-btn-container.css" styleClass="color-btn-container">
+
+    <Button styleClass="color-btn" style="-fx-background-color: #0EB1D2" id="#0EB1D2" onMouseClicked="#handlePanelColorClick" />
+    <Button styleClass="color-btn" style="-fx-background-color: #3D3F56" id="#3D3F56" onMouseClicked="#handlePanelColorClick" />
+    <Button styleClass="color-btn" style="-fx-background-color: #6C63FF" id="#6C63FF" onMouseClicked="#handlePanelColorClick" />
+    <Button styleClass="color-btn" style="-fx-background-color: #BC69AA" id="#BC69AA" onMouseClicked="#handlePanelColorClick" />
+    <Button styleClass="color-btn" style="-fx-background-color: #CD4631" id="#CD4631" onMouseClicked="#handlePanelColorClick" />
+    <Button styleClass="color-btn" style="-fx-background-color: #45CB85" id="#45CB85" onMouseClicked="#handlePanelColorClick" />
+    <Button styleClass="color-btn" style="-fx-background-color: #6A7FDB" id="#6A7FDB" onMouseClicked="#handlePanelColorClick" />
+    <Button styleClass="color-btn" style="-fx-background-color: #E08DAC" id="#E08DAC" onMouseClicked="#handlePanelColorClick" />
+    <Button styleClass="color-btn" style="-fx-background-color: #DB5461" id="#DB5461" onMouseClicked="#handlePanelColorClick" />
+    <Button styleClass="color-btn" style="-fx-background-color: #E3655B" id="#E3655B" onMouseClicked="#handlePanelColorClick" />
+    <Button styleClass="color-btn" style="-fx-background-color: #3891A6" id="#3891A6" onMouseClicked="#handlePanelColorClick" />
+    <Button styleClass="color-btn" style="-fx-background-color: #2C8C99" id="#2C8C99" onMouseClicked="#handlePanelColorClick" />
+
+</TilePane>

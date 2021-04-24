@@ -20,3 +20,9 @@
     -fx-font-family: Raleway-Semi-Bold;
     -fx-font-weight: bold;
 }
+
+.color-btn-container {
+    -fx-vgap: 10px;
+    -fx-hgap: 10px;
+    -fx-alignment: center;
+}

@@ -1,10 +1,12 @@
 package com.tanner.planner.controllers.dialogs;
 
 import com.tanner.planner.controllers.HomeController;
+import com.tanner.planner.controllers.partials.ColorBtnContainerController;
 import com.tanner.planner.models.Panel;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
@@ -20,12 +22,14 @@ public class AddPanelDialogController {
             inp_panelTitleField,
             inp_panelDescField,
             inp_panelColorField;
-
     @FXML
     private ChoiceBox<String> cb_categoryChoice;
+    @FXML
+    private ColorBtnContainerController colorBtnContainerController;
+    private final Stage stage;
 
     private Panel createdPanel = null;
-    private final Stage stage;
+
 
     public AddPanelDialogController() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/dialogs/add_panel_dialog.fxml"));
@@ -58,7 +62,7 @@ public class AddPanelDialogController {
         String titleField = this.inp_panelTitleField.getText(),
                 descField = this.inp_panelDescField.getText(),
                 categoryField = this.cb_categoryChoice.getValue(),
-                colorField = this.inp_panelColorField.getText();
+                colorField = this.colorBtnContainerController.getSelectedColor();
 
         if(titleField.isEmpty()
                 || descField.isEmpty()

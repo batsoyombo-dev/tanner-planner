@@ -14,5 +14,6 @@
     <TextField promptText="Description" fx:id="inp_panelDescField" styleClass="text-input" />
     <ChoiceBox styleClass="text-input" fx:id="cb_categoryChoice" />
     <TextField promptText="Color" text="#"  fx:id="inp_panelColorField" styleClass="text-input" />
+    <fx:include source="../partials/color-btn-container-partial.fxml" fx:id="colorBtnContainer" />
     <Button text="Submit" onMouseClicked="#handlePanelSubmit" styleClass="btn" />
 </VBox>
