@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox prefHeight="0.0" prefWidth="400.0" styleClass="dialogContainer" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label styleClass="dialogLabel" text="Color Modify">
+         <VBox.margin>
+            <Insets bottom="20.0" />
+         </VBox.margin></Label>
+       <fx:include fx:id="colorBtnContainer" source="../partials/color-btn-container-partial.fxml" />
+      <HBox styleClass="btnContainer">
+         <children>
+            <Button mnemonicParsing="false" onAction="#handleSubmitClick" text="Submit">
+               <styleClass>
+                  <String fx:value="btn" />
+                  <String fx:value="btnCreate" />
+               </styleClass>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#handleCancelClick" text="Cancel">
+               <styleClass>
+                  <String fx:value="btn" />
+                  <String fx:value="btnCancel" />
+               </styleClass>
+               <HBox.margin>
+                  <Insets left="20.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+         <VBox.margin>
+            <Insets top="20.0" />
+         </VBox.margin>
+      </HBox>
+   </children>
+   <stylesheets>
+      <URL value="@../css/global.css" />
+      <URL value="@../css/bucket_color_modify.css" />
+   </stylesheets>
+</VBox>

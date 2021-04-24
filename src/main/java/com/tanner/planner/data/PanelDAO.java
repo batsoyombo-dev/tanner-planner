@@ -98,5 +98,18 @@ public class PanelDAO {
             alert.show();
         }
     }
+    public void changeColor(Panel panel){
+        String query = "UPDATE panel SET color = '"+panel.getColorConfig()+"' WHERE id = '"+panel.getId()+"'";
+        try {
+            Connection con = DBConnection.getConnection();
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.execute();
+        } catch (SQLException e) {
+            Alert alert =  new Alert(Alert.AlertType.NONE);
+            alert.setAlertType(Alert.AlertType.ERROR);
+            alert.setContentText(String.valueOf(e));
+            alert.show();
+        }
+    }
 
 }

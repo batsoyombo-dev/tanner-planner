@@ -1,10 +1,8 @@
 package com.tanner.planner.controllers;
 
 import com.tanner.planner.Main;
-import com.tanner.planner.controllers.dialogs.AddBucketDialogController;
-import com.tanner.planner.controllers.dialogs.AddTaskDialogController;
-import com.tanner.planner.controllers.dialogs.ModifyBucketDialogController;
-import com.tanner.planner.controllers.dialogs.ModifyTaskDialogController;
+import com.tanner.planner.controllers.dialogs.*;
+import com.tanner.planner.controllers.partials.ColorBtnContainerController;
 import com.tanner.planner.data.BucketDAO;
 import com.tanner.planner.data.PanelDAO;
 import com.tanner.planner.data.TaskDAO;
@@ -19,12 +17,15 @@ import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
 import java.applet.AppletContext;
+import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -223,6 +224,14 @@ public class PanelController implements Initializable {
     void handleRedirectGithub(ActionEvent event) {
         //Main main = new Main();
         //main.getServices().showDocument(redirect.getText());
+    }
+    @FXML
+    void handleSettingsClick(ActionEvent event) throws IOException {
+        try {
+            new BucketModifyColorController(panel, bp_panelMainContainer);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     
 
