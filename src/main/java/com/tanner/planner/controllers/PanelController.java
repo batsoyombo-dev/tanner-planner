@@ -29,6 +29,7 @@ import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class PanelController implements Initializable {
@@ -192,6 +193,16 @@ public class PanelController implements Initializable {
         Button btn_taskTitle = new Button(task.getTitle());
         btn_taskTitle.getStyleClass().add("task");
         btn_taskTitle.setCursor(Cursor.HAND);
+        if(!task.getState().equals("cm")) {
+            LocalDate dueDate = LocalDate.parse(task.getDate());
+            LocalDate datePresent = LocalDate.now();
+            if (datePresent.compareTo(dueDate) <= 0) {
+                task.setState("nm");
+            } else{
+                task.setState("pd");
+            }
+            taskDAO.updateTask(task, task.getTitle(), task.getDescription(), task.getState());
+        }
         if(task.getState().equals("cm"))
             btn_taskTitle.setStyle("-fx-border-color: #59ad00");
         if(task.getState().equals("pd"))

@@ -29,9 +29,6 @@ public class BucketDAO {
             Connection con = DBConnection.getConnection();
             PreparedStatement statement = con.prepareStatement(query);
             statement.execute();
-            alert.setAlertType(Alert.AlertType.INFORMATION);
-            alert.setContentText("Bucket Added successfully");
-            alert.show();
         } catch (SQLException e) {
             alert.setAlertType(Alert.AlertType.ERROR);
             alert.setContentText(String.valueOf(e));
@@ -47,9 +44,6 @@ public class BucketDAO {
             PreparedStatement statement2 = con.prepareStatement(query2);
             statement.execute();
             statement2.execute();
-            alert.setAlertType(Alert.AlertType.INFORMATION);
-            alert.setContentText("Bucket Deleted Successfully");
-            alert.show();
         } catch (SQLException e) {
             alert.setAlertType(Alert.AlertType.ERROR);
             alert.setContentText(String.valueOf(e));
@@ -62,9 +56,6 @@ public class BucketDAO {
             Connection con = DBConnection.getConnection();
             PreparedStatement statement = con.prepareStatement(query);
             statement.execute();
-            alert.setAlertType(Alert.AlertType.INFORMATION);
-            alert.setContentText("Bucket Updated Successfully");
-            alert.show();
         } catch (SQLException e) {
             alert.setAlertType(Alert.AlertType.ERROR);
             alert.setContentText(String.valueOf(e));
@@ -85,7 +76,9 @@ public class BucketDAO {
             }
         }
         catch(Exception e){
-
+            alert.setAlertType(Alert.AlertType.ERROR);
+            alert.setContentText(String.valueOf(e));
+            alert.show();
         }
         return list;
 

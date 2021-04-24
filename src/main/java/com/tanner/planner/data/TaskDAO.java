@@ -24,19 +24,17 @@ public class TaskDAO {
             COLUMN_BUCKET_ID = "bucket_id",
             COLUMN_TITLE = "title",
             COLUMN_DESCRIPTION = "description",
-            COLUMN_STATE = "state";
+            COLUMN_STATE = "state",
+            COLUMN_DATE = "date";
     private Alert alert = new Alert(Alert.AlertType.NONE);
 
     public void addTask(Task task) {
-        String query = "insert into task(" + COLUMN_ID + ", " + COLUMN_BUCKET_ID + ", " + COLUMN_TITLE  +", " + COLUMN_DESCRIPTION + ", " + COLUMN_STATE +")" +
-                "value ('" + task.getId() + "', '" + task.getBucket_id() + "', '" + task.getTitle()  + "', '" + task.getDescription()+ "', '" + task.getState()+"');";
+        String query = "insert into task(" + COLUMN_ID + ", " + COLUMN_BUCKET_ID + ", " + COLUMN_TITLE  +", " + COLUMN_DESCRIPTION + ", " + COLUMN_STATE +", " + COLUMN_DATE +")" +
+                "value ('" + task.getId() + "', '" + task.getBucket_id() + "', '" + task.getTitle()  + "', '" + task.getDescription()+ "', '" + task.getState()+ "', '" + task.getDate()+"');";
         try {
             Connection con = DBConnection.getConnection();
             PreparedStatement statement = con.prepareStatement(query);
             statement.execute();
-            alert.setAlertType(Alert.AlertType.INFORMATION);
-            alert.setContentText("Task Added successfully");
-            alert.show();
         } catch (SQLException e) {
             alert.setAlertType(Alert.AlertType.ERROR);
             alert.setContentText(String.valueOf(e));
@@ -49,9 +47,6 @@ public class TaskDAO {
             Connection con = DBConnection.getConnection();
             PreparedStatement statement = con.prepareStatement(query);
             statement.execute();
-            alert.setAlertType(Alert.AlertType.INFORMATION);
-            alert.setContentText("Task Deleted successfully");
-            alert.show();
         } catch (SQLException e) {
             alert.setAlertType(Alert.AlertType.ERROR);
             alert.setContentText(String.valueOf(e));
@@ -64,9 +59,6 @@ public class TaskDAO {
             Connection con = DBConnection.getConnection();
             PreparedStatement statement = con.prepareStatement(query);
             statement.execute();
-            alert.setAlertType(Alert.AlertType.INFORMATION);
-            alert.setContentText("Task Updated successfully");
-            alert.show();
         } catch (SQLException e) {
             alert.setAlertType(Alert.AlertType.ERROR);
             alert.setContentText(String.valueOf(e));
@@ -83,11 +75,13 @@ public class TaskDAO {
             PreparedStatement ps = conn.prepareStatement("SELECT * FROM task WHERE bucket_id = '"+ bucketId+"' ");
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
-                list.add(new Task(rs.getString("id"), rs.getString("bucket_id"), rs.getString("title"), rs.getString("description"), rs.getString("state")));
+                list.add(new Task(rs.getString("id"), rs.getString("bucket_id"), rs.getString("title"), rs.getString("description"), rs.getString("state"), rs.getString("date")));
             }
         }
         catch(Exception e){
-
+            alert.setAlertType(Alert.AlertType.ERROR);
+            alert.setContentText(String.valueOf(e));
+            alert.show();
         }
         return list;
 

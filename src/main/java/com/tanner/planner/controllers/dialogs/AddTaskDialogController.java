@@ -9,16 +9,18 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Cursor;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Date;
+import java.util.Locale;
 import java.util.UUID;
 
 public class AddTaskDialogController {
@@ -28,7 +30,7 @@ public class AddTaskDialogController {
     @FXML
     private TextField inp_taskDescField;
     @FXML
-    private ChoiceBox<String> inp_taskStateField;
+    private DatePicker dueDatePicker;
     @FXML
     private Button btnAddTask;
     @FXML
@@ -60,23 +62,24 @@ public class AddTaskDialogController {
     }
     @FXML
     public void taskAdded(ActionEvent event) {
-        String taskTitle = inp_taskTitleField.getText();
-        String taskState = null;
-        if(inp_taskStateField.getValue().equals("Completed"))
-            taskState = "cm";
-        if(inp_taskStateField.getValue().equals("Past due"))
-            taskState = "pd";
-        if(inp_taskStateField.getValue().equals("Normal"))
-            taskState = "nm";
-        if(inp_taskStateField.getValue().equals("None"))
-            taskState = "None";
-        if(taskTitle.isEmpty() || taskState.equals("None")){
+        if(inp_taskTitleField.getText().isEmpty() || dueDatePicker.getValue()==null){
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("Fill title and state!");
+            alert.setContentText("Fill title and date!");
             alert.show();
             return;
         }
-        Task task = new Task( UUID.randomUUID().toString(),bucket.getID(),inp_taskTitleField.getText(),inp_taskDescField.getText(), taskState);
+        String taskTitle = inp_taskTitleField.getText();
+        String dueDate = dueDatePicker.getValue().toString();
+        LocalDate taskDueDate = LocalDate.parse(dueDate);
+        LocalDate datePresent = LocalDate.now();
+        String state;
+        if(datePresent.compareTo(taskDueDate) <= 0){
+            state = "nm";
+        }
+        else
+            state = "pd";
+
+        Task task = new Task( UUID.randomUUID().toString(),bucket.getID(),inp_taskTitleField.getText(),inp_taskDescField.getText(), state, dueDate);
         taskDAO.addTask(task);
         this.stage.close();
         this.panelController.newTaskContainer(task, vBox);

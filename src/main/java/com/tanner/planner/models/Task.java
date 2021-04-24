@@ -1,13 +1,18 @@
 package com.tanner.planner.models;
 
 public class Task {
-    String id, bucket_id, title, description, state;
-    public Task(String id, String bucket_id, String title, String description, String state){
+    String id, bucket_id, title, description, state, date;
+    public Task(String id, String bucket_id, String title, String description, String state, String date){
         this.id = id;
         this.bucket_id = bucket_id;
         this.title = title;
         this.description = description;
         this.state = state;
+        this.date = date;
+    }
+
+    public String getDate() {
+        return date;
     }
 
     public String getTitle() {
@@ -28,5 +33,9 @@ public class Task {
 
     public String getState() {
         return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
     }
 }

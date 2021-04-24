@@ -63,33 +63,31 @@ public class ModifyTaskDialogController implements Initializable {
 
     @FXML
     void handleUpdateTaskClick(ActionEvent event) {
-    String title = inp_taskTitleField.getText();
-    String description = inp_taskDescField.getText();
-    String state = null;
-    if(inp_taskStateField.getValue().equals("Completed")) {
-        state = "cm";
-        taskTitle.setStyle("-fx-border-color: #59ad00");
-    }
-    if(inp_taskStateField.getValue().equals("Past due")) {
-        state = "pd";
-        taskTitle.setStyle("-fx-border-color: #be1e2d");
-    }
-    if(inp_taskStateField.getValue().equals("Normal")) {
-        state = "nm";
-    }
-    if(inp_taskStateField.getValue().equals("None")) {
-        state = "None";
-    }
-
-    if(title.isEmpty() || state.equals("None")){
+        if(inp_taskTitleField.getText().isEmpty() ){
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("Fill title and state!");
+            alert.setContentText("Fill title!");
             alert.show();
             return;
-    }
-    taskDAO.updateTask(task, title, description, state);
-    this.stage.close();
-    taskTitle.setText(inp_taskTitleField.getText());
+        }
+        String title = inp_taskTitleField.getText();
+        String description = inp_taskDescField.getText();
+        String state = null;
+        if(inp_taskStateField.getValue().equals("Completed")) {
+            state = "cm";
+            taskTitle.setStyle("-fx-border-color: #59ad00");
+        }
+         else
+            state = "None";
+
+        if(state.equals("None")){
+            taskDAO.updateTask(task, title, description, task.getState());
+        }
+        if(state.equals("cm")){
+            taskDAO.updateTask(task, title, description, state);
+        }
+
+        this.stage.close();
+        taskTitle.setText(inp_taskTitleField.getText());
     }
 
     @FXML
