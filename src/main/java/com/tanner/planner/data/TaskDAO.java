@@ -91,7 +91,7 @@ public class TaskDAO {
         Connection conn = DBConnection.getConnection();
         ObservableList<Task> list = FXCollections.observableArrayList();
         try{
-            PreparedStatement ps = conn.prepareStatement("SELECT * FROM task WHERE state = 'pd' and bucket_id = (SELECT id from bucket WHERE panel_id = '"+panel.getId()+"') ");
+            PreparedStatement ps = conn.prepareStatement("SELECT * FROM task WHERE state = 'pd' and bucket_id = ANY(SELECT id from bucket WHERE panel_id = '"+panel.getId()+"') ");
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 list.add(new Task(rs.getString("id"), rs.getString("bucket_id"), rs.getString("title"), rs.getString("description"), rs.getString("state"), rs.getString("date")));
