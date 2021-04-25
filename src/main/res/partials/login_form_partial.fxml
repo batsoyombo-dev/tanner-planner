@@ -8,11 +8,11 @@
 
 <VBox xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            stylesheets="@../css/auth_layout.css" styleClass="form-container">
+            stylesheets="@../css/auth_layout.css" fx:id="vbox_rootContainer" styleClass="form-container">
 
     <TextField fx:id="inp_usernameField" styleClass="input-field" promptText="Username..." />
     <PasswordField fx:id="inp_passwordField" styleClass="input-field" promptText="Password..." />
-    <Button styleClass="btn" onMouseClicked="#handleLoginClick" text="LOGIN" />
+    <Button fx:id="btn_login" styleClass="btn" onAction="#handleLoginClick" text="LOGIN" />
     <Button styleClass="sub-btn" onMouseClicked="#handleNavigationClick" text="Register" id="register" />
 
 </VBox>

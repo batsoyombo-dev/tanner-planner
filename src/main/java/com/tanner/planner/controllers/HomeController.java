@@ -3,6 +3,7 @@ package com.tanner.planner.controllers;
 import com.tanner.planner.controllers.partials.HomeHeaderController;
 import com.tanner.planner.controllers.partials.HomePanelContainerController;
 import com.tanner.planner.controllers.partials.SidebarController;
+import com.tanner.planner.models.Activity;
 import com.tanner.planner.models.User;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -18,6 +19,7 @@ public class HomeController {
 
     private final BorderPane root;
     private final HomePanelContainerController panelContainerController;
+    private final SidebarController sidebarController;
     private final Stage stage;
 
     private static User user = null;
@@ -27,11 +29,12 @@ public class HomeController {
         this.stage = stage;
         this.root = new BorderPane();
         this.panelContainerController = new HomePanelContainerController(this);
+        this.sidebarController = new SidebarController(this.panelContainerController);
         BorderPane bp_mainContainer = new BorderPane();
         FXMLLoader sidebarLoader = new FXMLLoader(super.getClass().getResource("/partials/sidebar_partial.fxml"));
         FXMLLoader headerLoader = new FXMLLoader(super.getClass().getResource("/partials/home_header_partial.fxml"));
         FXMLLoader panelContainerLoader = new FXMLLoader(super.getClass().getResource("/partials/home_panel_container_partial.fxml"));
-        sidebarLoader.setController(new SidebarController(this.panelContainerController));
+        sidebarLoader.setController(this.sidebarController);
         headerLoader.setController(new HomeHeaderController(this.panelContainerController));
         panelContainerLoader.setController(this.panelContainerController);
         bp_mainContainer.setTop(headerLoader.load());
@@ -47,6 +50,10 @@ public class HomeController {
 
     public static User getUser() {
         return user;
+    }
+
+    public void addActivity(Activity activity) {
+        this.sidebarController.addActivityToContainer(activity);
     }
 
     public void toggleStage(boolean shouldShow) {

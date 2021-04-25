@@ -81,28 +81,23 @@ public class PanelDAO {
         }, "list-panels-thread");
         listPanelsThread.start();
     }
+
     public void changeCategory(Panel panel, Boolean favourite){
         String query;
         if(favourite)
             query= "UPDATE panel SET category = '"+ "inp" +"' WHERE id = '"+panel.getId()+"' ";
         else
             query= "UPDATE panel SET category = '"+ "nor" +"' WHERE id = '"+panel.getId()+"' ";
-        try {
-            Connection con = DBConnection.getConnection();
-            PreparedStatement statement = con.prepareStatement(query);
-            statement.execute();
-        } catch (SQLException e) {
-            Alert alert =  new Alert(Alert.AlertType.NONE);
-            alert.setAlertType(Alert.AlertType.ERROR);
-            alert.setContentText(String.valueOf(e));
-            alert.show();
-        }
+        this.executeQuery(query);
     }
     public void changeColor(Panel panel){
         String query = "UPDATE panel SET color = '"+panel.getColorConfig()+"' WHERE id = '"+panel.getId()+"'";
-        try {
-            Connection con = DBConnection.getConnection();
-            PreparedStatement statement = con.prepareStatement(query);
+        this.executeQuery(query);
+    }
+
+    private void executeQuery(String query) {
+        try (Connection con = DBConnection.getConnection();
+             PreparedStatement statement = con.prepareStatement(query);) {
             statement.execute();
         } catch (SQLException e) {
             Alert alert =  new Alert(Alert.AlertType.NONE);

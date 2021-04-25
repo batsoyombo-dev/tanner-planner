@@ -1,14 +1,20 @@
+.color-btn-container {
+    -fx-vgap: 10px;
+    -fx-hgap: 10px;
+    -fx-alignment: center;
+}
+
 .color-btn {
     -fx-pref-height: 75px;
     -fx-pref-width: 75px;
     -fx-background-radius: 10px;
+    -fx-border-width: 0;
 }
 
 .color-selected {
     -fx-border-width: 2;
+    -fx-border-radius: 10px;
     /*-fx-border-radius: 10px;*/
     /*-fx-background-radius: 15px;*/
     -fx-background-insets: 10px;
-
-    -fx-border-color: #333;
 }

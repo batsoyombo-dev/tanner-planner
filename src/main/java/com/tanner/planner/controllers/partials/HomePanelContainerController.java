@@ -2,7 +2,9 @@ package com.tanner.planner.controllers.partials;
 
 import com.tanner.planner.controllers.HomeController;
 import com.tanner.planner.controllers.PanelController;
+import com.tanner.planner.data.ActivityDAO;
 import com.tanner.planner.data.PanelDAO;
+import com.tanner.planner.models.Activity;
 import com.tanner.planner.models.Panel;
 import com.tanner.planner.utils.Inflatable;
 import javafx.fxml.FXML;
@@ -26,6 +28,7 @@ public class HomePanelContainerController implements Inflatable<Panel> {
     private GridPane gp_panelItemContainer;
 
     private final PanelDAO panelDAO;
+    private final ActivityDAO activityDAO;
     private final HomeController homeController;
 
     private int totalPanelItems = 0;
@@ -38,6 +41,7 @@ public class HomePanelContainerController implements Inflatable<Panel> {
      * */
     public HomePanelContainerController(HomeController homeController) {
         this.panelDAO = new PanelDAO();
+        this.activityDAO = new ActivityDAO();
         this.homeController = homeController;
     }
 
@@ -67,6 +71,7 @@ public class HomePanelContainerController implements Inflatable<Panel> {
 
     public void addNewPanelItemToTheContainer(Panel panel) {
         this.panelDAO.addPanelConcurrently(panel);
+        this.homeController.addActivity(new Activity(-1, "insert", panel));
         if (!this.currentCategory.equals("all") && !this.currentCategory.equals(panel.getCategory()))
             return;
         this.gp_panelItemContainer.add(newPanelItemContainer(panel), this.totalPanelItems % this.totalItemsInRow, this.totalPanelItems / this.totalItemsInRow, 1, 1);
@@ -84,6 +89,9 @@ public class HomePanelContainerController implements Inflatable<Panel> {
         container.setOnMouseClicked(e -> {
             try {
                 homeController.toggleStage(false);
+                Activity activity = new Activity(-1, "insert", panel);
+                this.activityDAO.addActivity(activity);
+                this.homeController.addActivity(activity);
                 new PanelController(homeController, panel);
             } catch (IOException ioException) {
                 ioException.printStackTrace();

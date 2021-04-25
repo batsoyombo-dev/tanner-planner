@@ -7,11 +7,11 @@
 
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
-<HBox alignment="CENTER_RIGHT" styleClass="header" stylesheets="@../css/home_header_partial.css, @../css/global.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
+<HBox alignment="CENTER_RIGHT" fx:id="hbox_rootContainer" styleClass="header" stylesheets="@../css/home_header_partial.css, @../css/global.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
 
     <HBox styleClass="search-container, sub-container">
         <TextField fx:id="inp_searchField" promptText="Search..." styleClass="search-input" HBox.hgrow="ALWAYS" />
-        <Button styleClass="btn, search-btn" onMouseClicked="#handleSearchBtnClick">
+        <Button fx:id="btn_search" styleClass="btn, search-btn" onAction="#handleSearchBtnClick">
             <graphic>
                 <ImageView fitWidth="32" fitHeight="32">
                     <Image url="@../images/search.png" />

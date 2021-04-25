@@ -54,39 +54,21 @@
                         </cursor>
                     </Button>
                 </VBox>
-                <VBox styleClass="sub-container">
-                    <Label styleClass="sub-container-title" text="Recent Activities" />
-                    <Label styleClass="nav-item" text="Panels">
-                  <cursor>
-                     <Cursor fx:constant="HAND" />
-                  </cursor></Label>
-                    <Label styleClass="nav-item" text="Panels">
-                  <cursor>
-                     <Cursor fx:constant="HAND" />
-                  </cursor></Label>
-                    <Label styleClass="nav-item" text="Panels">
-                  <cursor>
-                     <Cursor fx:constant="HAND" />
-                  </cursor></Label>
-                    <Label styleClass="nav-item" text="Panels">
-                  <cursor>
-                     <Cursor fx:constant="HAND" />
-                  </cursor></Label>
+                <VBox styleClass="sub-container" fx:id="vbox_activityContainer">
+                    <Label styleClass="sub-container-title" id="title" text="Recent Activities" />
                 </VBox>
             </VBox>
         </center>
 
         <bottom>
             <HBox styleClass="footer-container">
-                <VBox styleClass="footer-sub-container" HBox.hgrow="ALWAYS">
-                    <Button styleClass="footer-btn">
-                        <graphic>
-                            <ImageView fitWidth="32" fitHeight="32">
-                                <Image url="@../images/logout-white.png" />
-                            </ImageView>
-                        </graphic>
-                    </Button>
-                </VBox>
+                <Button styleClass="footer-btn" onMouseClicked="#handleLogoutClick">
+                    <graphic>
+                        <ImageView fitWidth="32" fitHeight="32">
+                            <Image url="@../images/logout-white.png" />
+                        </ImageView>
+                    </graphic>
+                </Button>
             </HBox>
         </bottom>
     </BorderPane>
