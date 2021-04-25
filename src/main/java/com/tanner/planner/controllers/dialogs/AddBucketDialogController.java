@@ -25,23 +25,42 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.UUID;
 
+/**
+ * AddBucketDialog manages creating Add bucket dialog
+ *
+ * #########     #      ##     ##  ##     ##  ########  #######
+ *    ##        # #     ## #   ##  ## #   ##  ##        ##    ##
+ *    ##       #   #    ##  #  ##  ##  #  ##  ########  #######
+ *    ##      #######   ##   # ##  ##   # ##  ##        ## ##
+ *    ##     #       #  ##     ##  ##     ##  ########  ##   ##
+ *
+ * @author Tanner Team
+ * @version 1.0
+ * @since 2021/05/07
+ * @link https://github.com/batsoyombo-dev/tanner-planner
+ */
 public class AddBucketDialogController {
 
     @FXML
     private Button btnCreate;
     @FXML
-    private TextField txtTitle;
+    private Button btnCancel;
+    @FXML
+    private final VBox root;
 
+    private TextField txtTitle;
     private final Panel currentPanel;
-    private final BucketDAO bucketDAO;
     private final Stage stage;
+
+    private final BucketDAO bucketDAO;
     private final PanelController panelController;
 
-    private VBox root;
-
-
-    @FXML
-    private Button btnCancel;
+    /**
+     * Constructor method of the AddBucketDialogController class
+     * @param panelController a controller object of specific panel layout
+     * @param currentPanel a main panel object
+     * @throws IOException if FXML file is not properly loaded
+     */
     public AddBucketDialogController(PanelController panelController, Panel currentPanel) throws IOException {
         this.currentPanel = currentPanel;
         this.panelController = panelController;
@@ -60,12 +79,21 @@ public class AddBucketDialogController {
         panelController.getRoot().setEffect(new BoxBlur(5, 5, 10));
     }
 
+    /**
+     * Handles cancel button action
+     * @param event object of ActionEvent class
+     */
     @FXML
     void handleCancelClick(ActionEvent event) {
         panelController.getRoot().setEffect(new BoxBlur(0, 0, 0));
         ((Stage) btnCancel.getScene().getWindow()).close();
     }
 
+    /**
+     * Handles submit button action
+     * @param event object of ActionEvent class
+     * @throws SQLException error occurs when calling addBucket method of bucketDAO fails
+     */
     @FXML
     public void handleSubmitClick(ActionEvent event) throws SQLException {
         String bucketTitle = txtTitle.getText();

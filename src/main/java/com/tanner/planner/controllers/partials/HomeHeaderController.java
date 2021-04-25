@@ -17,6 +17,20 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * HomeHeaderController class manages the search and panel creation
+ *
+ * #########     #      ##     ##  ##     ##  ########  #######
+ *    ##        # #     ## #   ##  ## #   ##  ##        ##    ##
+ *    ##       #   #    ##  #  ##  ##  #  ##  ########  #######
+ *    ##      #######   ##   # ##  ##   # ##  ##        ## ##
+ *    ##     #       #  ##     ##  ##     ##  ########  ##   ##
+ *
+ * @author Tanner Team
+ * @version 1.0
+ * @since 2021/05/07
+ * @link https://github.com/batsoyombo-dev/tanner-planner
+ */
 public class HomeHeaderController implements Initializable {
 
     @FXML
@@ -28,6 +42,10 @@ public class HomeHeaderController implements Initializable {
 
     private final HomePanelContainerController panelContainer;
 
+    /**
+     * Constructor method of the HomeHeaderController class
+     * @param panelContainer a controller object of home panel container partial
+     */
     public HomeHeaderController(HomePanelContainerController panelContainer) {
         this.panelContainer = panelContainer;
     }
@@ -41,6 +59,10 @@ public class HomeHeaderController implements Initializable {
         });
     }
 
+    /**
+     * Handles Search event
+     * @param e event argument
+     */
     @FXML
     public void handleSearchBtnClick(ActionEvent e) {
         String search = this.inp_searchField.getText();
@@ -49,6 +71,11 @@ public class HomeHeaderController implements Initializable {
         this.panelContainer.inflatePanelItemContainer(search);
     }
 
+    /**
+     * Handles new panel button click event
+     * @param e Event arguments
+     * @throws IOException If FXML file is not properly loaded
+     */
     @FXML
     public void handleNewPanelClick(MouseEvent e) throws IOException {
         AddPanelDialogController dialog = new AddPanelDialogController();

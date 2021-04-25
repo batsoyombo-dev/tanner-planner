@@ -19,21 +19,43 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-
+/**
+ * BucketModifyColorDialogController manages modification of color
+ *
+ * #########     #      ##     ##  ##     ##  ########  #######
+ *    ##        # #     ## #   ##  ## #   ##  ##        ##    ##
+ *    ##       #   #    ##  #  ##  ##  #  ##  ########  #######
+ *    ##      #######   ##   # ##  ##   # ##  ##        ## ##
+ *    ##     #       #  ##     ##  ##     ##  ########  ##   ##
+ *
+ * @author Tanner Team
+ * @version 1.0
+ * @since 2021/05/07
+ * @link https://github.com/batsoyombo-dev/tanner-planner
+ */
 public class BucketModifyColorDialogController {
-    private Panel panel;
-    private PanelController panelController;
-    private VBox root;
-    private Stage stage;
-    private BorderPane borderPane;
-    private PanelDAO panelDAO;
+
     @FXML
     private ColorBtnContainerController colorBtnContainerController;
 
-    public BucketModifyColorDialogController(Panel panel, BorderPane borderPane) throws IOException {
+    private VBox root;
+    private Stage stage;
+    private BorderPane bucketContainer;
+
+    private Panel panel;
+    private PanelController panelController;
+    private PanelDAO panelDAO;
+
+    /**
+     * Constructor method of the BucketModifyColorDialogController class
+     * @param panel A main panel object
+     * @param bucketContainer a bucket containing node
+     * @throws IOException If FXML file is not properly loaded
+     */
+    public BucketModifyColorDialogController(Panel panel, BorderPane bucketContainer) throws IOException {
         this.panel = panel;
         this.panelDAO = new PanelDAO();
-        this.borderPane = borderPane;
+        this.bucketContainer = bucketContainer;
         FXMLLoader loader = new FXMLLoader(super.getClass().getResource("/dialogs/panel_controller_modify_color_dialog.fxml"));
         loader.setController(this);
         this.root = loader.load();
@@ -44,6 +66,12 @@ public class BucketModifyColorDialogController {
         this.stage.initModality(Modality.APPLICATION_MODAL);
         this.stage.show();
     }
+
+    /**
+     * Handles submit button action
+     * Changes color of Bucket container
+     * @param event object of ActionEvent class
+     */
     @FXML
     public void handleSubmitClick(ActionEvent event) {
         String colorField = this.colorBtnContainerController.getSelectedColor();
@@ -51,9 +79,15 @@ public class BucketModifyColorDialogController {
             return;
         this.panel.setColorConfig(colorField);
         panelDAO.changeColor(panel);
-        borderPane.setStyle("-fx-background-color:  " +  panel.getColorConfig());
+        bucketContainer.setStyle("-fx-background-color:  " +  panel.getColorConfig());
         stage.close();
     }
+
+    /**
+     * Handles cancel button
+     * Closes window of dialog
+     * @param event object of ActionEvent class
+     */
     @FXML
     public void handleCancelClick(ActionEvent event) {
         stage.close();

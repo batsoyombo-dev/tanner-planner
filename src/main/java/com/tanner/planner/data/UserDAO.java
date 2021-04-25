@@ -7,6 +7,20 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+/**
+ * UserDAO manages activity models database access
+ *
+ * #########     #      ##     ##  ##     ##  ########  #######
+ *    ##        # #     ## #   ##  ## #   ##  ##        ##    ##
+ *    ##       #   #    ##  #  ##  ##  #  ##  ########  #######
+ *    ##      #######   ##   # ##  ##   # ##  ##        ## ##
+ *    ##     #       #  ##     ##  ##     ##  ########  ##   ##
+ *
+ * @author Tanner Team
+ * @version 1.0
+ * @since 2021/05/07
+ * @link https://github.com/batsoyombo-dev/tanner-planner
+ */
 public class UserDAO {
 
     public String
@@ -14,6 +28,11 @@ public class UserDAO {
             COLUMN_USERNAME = "username",
             COLUMN_PASSWORD = "password";
 
+    /**
+     * Registers new user
+     * @param user A user object to be registered
+     * @return If registration is sucessful returns true otherwise false
+     */
     public boolean register(User user) {
         String query = "insert into " + TABLE_NAME + " (" + COLUMN_USERNAME + ", " + COLUMN_PASSWORD + ")" +
                 "value ('" + user.getUsername() + "', '" + user.getPassword() + "');";
@@ -25,6 +44,11 @@ public class UserDAO {
         }
     }
 
+    /**
+     * Checks if the user exist in the user table
+     * @param user object of User class
+     * @return boolean type variable that indicates if the user exists
+     */
     public boolean authenticate(User user) {
         String query = "select * from " + TABLE_NAME + " where " + COLUMN_USERNAME + "='" + user.getUsername() + "'";
         try (Connection con = DBConnection.getConnection();

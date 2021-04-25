@@ -25,14 +25,37 @@ import java.util.ResourceBundle;
 
 import static java.time.temporal.ChronoUnit.DAYS;
 
+/**
+ * BucketNotificationDialogController manages notifications
+ *
+ * #########     #      ##     ##  ##     ##  ########  #######
+ *    ##        # #     ## #   ##  ## #   ##  ##        ##    ##
+ *    ##       #   #    ##  #  ##  ##  #  ##  ########  #######
+ *    ##      #######   ##   # ##  ##   # ##  ##        ## ##
+ *    ##     #       #  ##     ##  ##     ##  ########  ##   ##
+ *
+ * @author Tanner Team
+ * @version 1.0
+ * @since 2021/05/07
+ * @link https://github.com/batsoyombo-dev/tanner-planner
+ */
 public class BucketNotificationDialogController implements Initializable {
+
     @FXML
     private VBox containerVBox;
-    private Panel panel;
-    private TaskDAO taskDAO;
+
     private ScrollPane root;
     private Stage stage;
+
+    private Panel panel;
+    private TaskDAO taskDAO;
     private ObservableList<Task> pastDueTasks;
+
+    /**
+     * Constructor method of the BucketNotificationDialogController class
+     * @param panel A main panel object
+     * @throws IOException If FXML file is not properly loaded
+     */
     public BucketNotificationDialogController(Panel panel) throws IOException{
         this.panel = panel;
         this.taskDAO = new TaskDAO();
@@ -49,14 +72,16 @@ public class BucketNotificationDialogController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        try {
-            pastDueTasks = taskDAO.getNotification(panel);
-            for(Task task: pastDueTasks)
-                newNotification(task, containerVBox);
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
+        pastDueTasks = taskDAO.getNotification(panel);
+        for(Task task: pastDueTasks)
+            newNotification(task, containerVBox);
     }
+
+    /**
+     * Creates notification and adds to the container Vbox
+     * @param task object of Task class
+     * @param containerVBox object of Vbox class
+     */
     public void newNotification(Task task, VBox containerVBox){
         Label labelNotification = new Label();
         labelNotification.getStyleClass().add("dialogLabel");

@@ -12,6 +12,20 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+ * LoginPartialClass manages the authentication process
+ *
+ * #########     #      ##     ##  ##     ##  ########  #######
+ *    ##        # #     ## #   ##  ## #   ##  ##        ##    ##
+ *    ##       #   #    ##  #  ##  ##  #  ##  ########  #######
+ *    ##      #######   ##   # ##  ##   # ##  ##        ## ##
+ *    ##     #       #  ##     ##  ##     ##  ########  ##   ##
+ *
+ * @author Tanner Team
+ * @version 1.0
+ * @since 2021/05/07
+ * @link https://github.com/batsoyombo-dev/tanner-planner
+ */
 public class LoginPartialController {
 
     @FXML
@@ -21,6 +35,10 @@ public class LoginPartialController {
 
     private final AuthController authController;
 
+    /**
+     * Constructor method of the LoginPartialController class
+     * @param authController a controller object of auth layout
+     */
     public LoginPartialController(AuthController authController) {
         this.authController = authController;
     }
@@ -40,6 +58,11 @@ public class LoginPartialController {
         }
     }
 
+    /**
+     * Handles register button
+     * @param e object of MouseEvent
+     * @throws IOException error occurs when creating RegisterPartialController
+     */
     public void handleNavigationClick(MouseEvent e) throws IOException {
         this.authController.navigateTo(new RegisterPartialController(authController), "register_form_partial.fxml");
     }

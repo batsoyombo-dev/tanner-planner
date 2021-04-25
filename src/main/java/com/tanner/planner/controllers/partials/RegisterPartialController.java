@@ -10,7 +10,21 @@ import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
 
-public class RegisterPartialController {
+public class
+/**
+ * RegisterPartialController manages registrations process
+ *
+ * #########     #      ##     ##  ##     ##  ########  #######
+ *    ##        # #     ## #   ##  ## #   ##  ##        ##    ##
+ *    ##       #   #    ##  #  ##  ##  #  ##  ########  #######
+ *    ##      #######   ##   # ##  ##   # ##  ##        ## ##
+ *    ##     #       #  ##     ##  ##     ##  ########  ##   ##
+ *
+ * @author Tanner Team
+ * @version 1.0
+ * @since 2021/05/07
+ * @link https://github.com/batsoyombo-dev/tanner-planner
+ */RegisterPartialController {
 
 
     @FXML
@@ -22,10 +36,20 @@ public class RegisterPartialController {
 
     private final AuthController authController;
 
+    /**
+     * Constructor method of the RegisterPartialController class
+     * @param authController a controller object of auth layout
+     */
     public RegisterPartialController(AuthController authController) {
         this.authController = authController;
     }
 
+    /**
+     * Goes back to Login screen
+     * Handles Login button action
+     * @param e object of MouseEvent class
+     * @throws IOException error occurs when calling handleNavigationClick function fails
+     */
     public void handleRegisterClick(MouseEvent e) throws IOException {
         String usernameField = this.inp_usernameField.getText(),
                 passwordField = this.inp_passwordField.getText(),
@@ -45,6 +69,11 @@ public class RegisterPartialController {
             this.handleNavigationClick(e);
     }
 
+    /**
+     * Handles navigation button click event
+     * @param e Event arguments
+     * @throws IOException If FXML is not properly loaded
+     */
     public void handleNavigationClick(MouseEvent e) throws IOException {
         this.authController.navigateTo(new LoginPartialController(authController), "login_form_partial.fxml");
     }
