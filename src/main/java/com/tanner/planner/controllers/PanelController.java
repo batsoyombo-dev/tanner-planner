@@ -22,7 +22,10 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
+import java.awt.*;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -228,9 +231,9 @@ public class PanelController implements Initializable{
         }
     }
     @FXML
-    void handleRedirectGithub(ActionEvent event) {
-        //Main main = new Main();
-        //main.getServices().showDocument(redirect.getText());
+    void handleRedirectGithub(ActionEvent event) throws URISyntaxException, IOException {
+        URI uri = new URI("https://github.com/batsoyombo-dev/tanner-planner");
+        Desktop.getDesktop().browse(uri);
     }
     @FXML
     void handleSettingsClick(ActionEvent event) throws IOException {
