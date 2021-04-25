@@ -12,8 +12,20 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 /**
- * @author Batsyombo
- * */
+ * Main class for Tanner Planner Application
+ * Inherits Application class and instantiates the application
+ *
+ * #########     #      ##     ##  ##     ##  ########  #######
+ *    ##        # #     ## #   ##  ## #   ##  ##        ##    ##
+ *    ##       #   #    ##  #  ##  ##  #  ##  ########  #######
+ *    ##      #######   ##   # ##  ##   # ##  ##        ## ##
+ *    ##     #       #  ##     ##  ##     ##  ########  ##   ##
+ *
+ * @author Tanner Team
+ * @version 1.0
+ * @since 2021/05/07
+ * @link https://github.com/batsoyombo-dev/tanner-planner
+ */
 public class HomeController {
 
     private final BorderPane root;
@@ -22,7 +34,12 @@ public class HomeController {
     private final Stage stage;
 
     private static User user = null;
-
+    /**
+     * Constructor method of the HomeController class
+     * @param stage the stage to contain the UI
+     * @param authenticatedUser the User object of authenticated user
+     * @throws IOException If the FXML file is not properly loaded
+     */
     public HomeController(Stage stage, User authenticatedUser) throws IOException {
         user = authenticatedUser;
         this.stage = new Stage();
@@ -47,14 +64,26 @@ public class HomeController {
         this.stage.show();
     }
 
+    /**
+     * Getter method for the user
+     * @return User This returns instance of User class
+     */
     public static User getUser() {
         return user;
     }
 
+    /**
+     * Adds new activity to the sidebar
+     * @param activity  an Activity object to be added to the sidebar container
+     */
     public void addActivity(Activity activity) {
         this.sidebarController.addActivityToContainer(activity);
     }
 
+    /**
+     * Toggles the visibility of the stage
+     * @param shouldShow boolean value to be used to toggle the stage
+     */
     public void toggleStage(boolean shouldShow) {
         if (shouldShow) {
             this.panelContainerController.inflatePanelItemContainer(this.panelContainerController.getCurrentCategory());

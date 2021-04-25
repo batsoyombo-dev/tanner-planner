@@ -19,14 +19,26 @@ import java.util.Random;
 import java.util.UUID;
 import java.util.concurrent.ThreadLocalRandom;
 
+/**
+ * Main class for Tanner Planner Application
+ * Inherits Application class and instantiates the application
+ *
+ *#########     #      ##     ##  ##     ##  ########  #######
+ *   ##        # #     ## #   ##  ## #   ##  ##        ##    ##
+ *   ##       #   #    ##  #  ##  ##  #  ##  ########  #######
+ *   ##      #######   ##   # ##  ##   # ##  ##        ## ##
+ *   ##     #       #  ##     ##  ##     ##  ########  ##   ##
+ *
+ * @author Tanner Team
+ * @version 1.0
+ * @since 2021/05/07
+ * @link https://github.com/batsoyombo-dev/tanner-planner
+ * */
 public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
         new AuthController(primaryStage);
-    }
-    public HostServices getServices(){
-        return getHostServices();
     }
 
     public static void main(String[] args) {

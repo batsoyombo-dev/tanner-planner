@@ -9,8 +9,25 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * ActivityDAO manages activity models database access
+ *
+ * #########     #      ##     ##  ##     ##  ########  #######
+ *    ##        # #     ## #   ##  ## #   ##  ##        ##    ##
+ *    ##       #   #    ##  #  ##  ##  #  ##  ########  #######
+ *    ##      #######   ##   # ##  ##   # ##  ##        ## ##
+ *    ##     #       #  ##     ##  ##     ##  ########  ##   ##
+ *
+ * @author Tanner Team
+ * @version 1.0
+ * @since 2021/05/07
+ * @link https://github.com/batsoyombo-dev/tanner-planner
+ */
 public class ActivityDAO {
-
+    /**
+     * Gets recent activities from table
+     * @return Activity List
+     */
     public List<Activity> getActivities() {
         List<Activity> activities = new ArrayList<>();
         String query = "select * from activity, panel " +
@@ -37,6 +54,11 @@ public class ActivityDAO {
         }
     }
 
+    /**
+     * Adds new activity to the database
+     * @param activity An acitivty object to be added to the database
+     * @return If execution was successful returns true and false otherwise
+     */
     public boolean addActivity(Activity activity) {
         String query = "insert into activity (panel_id, action)" +
                 "value ('" + activity.getPanel().getId() + "', '" + activity.getAction() + "')";

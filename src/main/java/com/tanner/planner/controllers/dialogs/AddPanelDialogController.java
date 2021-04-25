@@ -15,6 +15,20 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.UUID;
 
+/**
+ * AddPanelDialog manages creation of panel
+ *
+ * #########     #      ##     ##  ##     ##  ########  #######
+ *    ##        # #     ## #   ##  ## #   ##  ##        ##    ##
+ *    ##       #   #    ##  #  ##  ##  #  ##  ########  #######
+ *    ##      #######   ##   # ##  ##   # ##  ##        ## ##
+ *    ##     #       #  ##     ##  ##     ##  ########  ##   ##
+ *
+ * @author Tanner Team
+ * @version 1.0
+ * @since 2021/05/07
+ * @link https://github.com/batsoyombo-dev/tanner-planner
+ */
 public class AddPanelDialogController {
 
     @FXML
@@ -26,11 +40,15 @@ public class AddPanelDialogController {
     private ChoiceBox<String> cb_categoryChoice;
     @FXML
     private ColorBtnContainerController colorBtnContainerController;
+
     private final Stage stage;
 
     private Panel createdPanel = null;
 
-
+    /**
+     * Constructor method of the AddPanelDialogController class
+     * @throws IOException if FXML file is not properly loaded
+     */
     public AddPanelDialogController() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/dialogs/add_panel_dialog.fxml"));
         loader.setController(this);
@@ -54,10 +72,18 @@ public class AddPanelDialogController {
         stage.showAndWait();
     }
 
+    /**
+     * Returns created panel
+     * @return object of Panel class
+     */
     public Panel getCreatedPanel() {
         return this.createdPanel;
     }
 
+    /**
+     * Handles Add Panel button
+     * @param e object of MouseEvent
+     */
     public void handlePanelSubmit(MouseEvent e) {
         String titleField = this.inp_panelTitleField.getText(),
                 descField = this.inp_panelDescField.getText(),

@@ -20,6 +20,20 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * ModifyTaskDialogController manages modification of task
+ *
+ * #########     #      ##     ##  ##     ##  ########  #######
+ *    ##        # #     ## #   ##  ## #   ##  ##        ##    ##
+ *    ##       #   #    ##  #  ##  ##  #  ##  ########  #######
+ *    ##      #######   ##   # ##  ##   # ##  ##        ## ##
+ *    ##     #       #  ##     ##  ##     ##  ########  ##   ##
+ *
+ * @author Tanner Team
+ * @version 1.0
+ * @since 2021/05/07
+ * @link https://github.com/batsoyombo-dev/tanner-planner
+ */
 public class ModifyTaskDialogController implements Initializable {
 
     @FXML
@@ -30,15 +44,23 @@ public class ModifyTaskDialogController implements Initializable {
     private ChoiceBox<String> inp_taskStateField;
 
     private final GridPane root;
-    private final VBox vBox;
-    private final Task task;
-    private final Button taskTitle;
-    private final TaskDAO taskDAO;
     private final Stage stage;
+    private final VBox taskContainer;
+    private final Button taskTitle;
 
-    public ModifyTaskDialogController(VBox vBox, Task task, Button taskTitle) throws IOException {
+    private final TaskDAO taskDAO;
+    private final Task task;
+
+    /**
+     * Constructor method of the ModifyTaskDialogController class
+     * @param taskContainer A container node for tasks
+     * @param task A chosen task
+     * @param taskTitle A task title containing button
+     * @throws IOException If FXML is not properly loaded
+     */
+    public ModifyTaskDialogController(VBox taskContainer, Task task, Button taskTitle) throws IOException {
             taskDAO = new TaskDAO();
-            this.vBox = vBox;
+            this.taskContainer = taskContainer;
             this.task = task;
             this.taskTitle = taskTitle;
             FXMLLoader loader = new FXMLLoader(super.getClass().getResource("/dialogs/modify_task_dialog.fxml"));
@@ -53,14 +75,24 @@ public class ModifyTaskDialogController implements Initializable {
             this.stage.show();
     }
 
+    /**
+     * Handles delete button action
+     * Deletes task from bucket
+     * @param event object of ActionEvent class
+     */
     @FXML
     void handleDeleteTaskClick(ActionEvent event) {
         taskDAO.deleteTask(task);
         int index = taskTitle.getParent().getChildrenUnmodifiable().indexOf(taskTitle);
-        vBox.getChildren().remove(index);
+        taskContainer.getChildren().remove(index);
         this.stage.close();
     }
 
+    /**
+     * Handles update button action
+     * Updates and writes changes of a task to database
+     * @param event object of ActionEvent class
+     */
     @FXML
     void handleUpdateTaskClick(ActionEvent event) {
         if(inp_taskTitleField.getText().isEmpty() ){
@@ -90,6 +122,11 @@ public class ModifyTaskDialogController implements Initializable {
         taskTitle.setText(inp_taskTitleField.getText());
     }
 
+    /**
+     * Handles cancel button action
+     * Closes the window of a dialog
+     * @param event object of ActionEvent class
+     */
     @FXML
     void handleCancelClick(ActionEvent event) {
         this.stage.close();

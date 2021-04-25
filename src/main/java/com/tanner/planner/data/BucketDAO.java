@@ -13,6 +13,20 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * BucketDAO manages bucket model databse access
+ *
+ * #########     #      ##     ##  ##     ##  ########  #######
+ *    ##        # #     ## #   ##  ## #   ##  ##        ##    ##
+ *    ##       #   #    ##  #  ##  ##  #  ##  ########  #######
+ *    ##      #######   ##   # ##  ##   # ##  ##        ## ##
+ *    ##     #       #  ##     ##  ##     ##  ########  ##   ##
+ *
+ * @author Tanner Team
+ * @version 1.0
+ * @since 2021/05/07
+ * @link https://github.com/batsoyombo-dev/tanner-planner
+ */
 public class BucketDAO {
 
     public static String
@@ -22,6 +36,10 @@ public class BucketDAO {
             COLUMN_TITLE = "title";
     private Alert alert = new Alert(Alert.AlertType.NONE);
 
+    /**
+     * Adds a bucket to the bucket table
+     * @param bucket object of Bucket class
+     */
     public void addBucket(Bucket bucket) {
         String query = "insert into bucket(" + COLUMN_ID + ", " + COLUMN_PANEL_ID + ", " + COLUMN_TITLE  + ")" +
                 "value ('" + bucket.getID() + "', '" + bucket.getPanel_id() + "', '" + bucket.getTitle()  + "');";
@@ -35,6 +53,11 @@ public class BucketDAO {
             alert.show();
         }
     }
+
+    /**
+     * Deletes bucket from database
+     * @param bucket Bucket to be deleted from database
+     */
     public void deleteBucket(Bucket bucket) {
         String query = "delete from task where bucket_id = '" + bucket.getID() +"' ";
         String query2 = "delete from bucket where id = '"+ bucket.getID()+"' ";
@@ -50,6 +73,12 @@ public class BucketDAO {
             alert.show();
         }
     }
+
+    /**
+     * Updates a bucket and writes to the table
+     * @param bucket object of Bucket class
+     * @param new_Title String variable contains new title of bucket
+     */
     public void updateBucket(Bucket bucket, String new_Title) {
         String query = "update bucket set title = '" +new_Title +"' where id = '" + bucket.getID() +"' ";
         try {
@@ -63,14 +92,16 @@ public class BucketDAO {
         }
     }
 
-
-    public ObservableList<Bucket> getBuckets(Panel panel) throws SQLException {
-
-        Connection conn = DBConnection.getConnection();
+    /**
+     * Fetches all the buckets of the panel
+     * @param panel A panel object to be fetched
+     * @return Selection result
+     */
+    public ObservableList<Bucket> getBuckets(Panel panel) {
         ObservableList<Bucket> list = FXCollections.observableArrayList();
-        try{
-            PreparedStatement ps = conn.prepareStatement("SELECT * FROM bucket WHERE panel_id = '"+ panel.getId()+"'");
-            ResultSet rs = ps.executeQuery();
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement("SELECT * FROM bucket WHERE panel_id = '"+ panel.getId()+"'");
+             ResultSet rs = ps.executeQuery();) {
             while(rs.next()){
                 list.add(new Bucket(rs.getString("id"),rs.getString("panel_id") , rs.getString("title")));
             }

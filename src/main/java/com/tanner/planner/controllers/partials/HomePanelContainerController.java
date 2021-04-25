@@ -22,6 +22,20 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
+/**
+ * HomePanelContainerController manages panels
+ *
+ * #########     #      ##     ##  ##     ##  ########  #######
+ *    ##        # #     ## #   ##  ## #   ##  ##        ##    ##
+ *    ##       #   #    ##  #  ##  ##  #  ##  ########  #######
+ *    ##      #######   ##   # ##  ##   # ##  ##        ## ##
+ *    ##     #       #  ##     ##  ##     ##  ########  ##   ##
+ *
+ * @author Tanner Team
+ * @version 1.0
+ * @since 2021/05/07
+ * @link https://github.com/batsoyombo-dev/tanner-planner
+ */
 public class HomePanelContainerController implements Inflatable<Panel> {
 
     @FXML
@@ -37,14 +51,19 @@ public class HomePanelContainerController implements Inflatable<Panel> {
     private String currentCategory = "none";
 
     /**
-     * @param homeController Controller for home window
-     * */
+     * Constructor method of the HomePanelContainerController class
+     * @param homeController a controller object of home layout
+     */
     public HomePanelContainerController(HomeController homeController) {
         this.panelDAO = new PanelDAO();
         this.activityDAO = new ActivityDAO();
         this.homeController = homeController;
     }
 
+    /**
+     * Adds Panels to the container
+     * @param objects Panel type of object list
+     */
     @Override
     public void inflate(List<Panel> objects) {
         this.isLoading = false;
@@ -57,6 +76,10 @@ public class HomePanelContainerController implements Inflatable<Panel> {
         }
     }
 
+    /**
+     * Fetches data from database and inflates container
+     * @param category a category string to be searched from database
+     */
     public void inflatePanelItemContainer(String category) {
         this.isLoading = true;
         System.out.println(category);
@@ -64,6 +87,9 @@ public class HomePanelContainerController implements Inflatable<Panel> {
         this.panelDAO.getPanelsConcurrently(category, this);
     }
 
+    /**
+     * Removes all the panels from container
+     */
     public void clearPanelItemContainer() {
         this.gp_panelItemContainer.getChildren().clear();
         this.totalPanelItems = 0;
@@ -71,13 +97,17 @@ public class HomePanelContainerController implements Inflatable<Panel> {
 
     public void addNewPanelItemToTheContainer(Panel panel) {
         this.panelDAO.addPanelConcurrently(panel);
-        this.homeController.addActivity(new Activity(-1, "insert", panel));
         if (!this.currentCategory.equals("all") && !this.currentCategory.equals(panel.getCategory()))
             return;
         this.gp_panelItemContainer.add(newPanelItemContainer(panel), this.totalPanelItems % this.totalItemsInRow, this.totalPanelItems / this.totalItemsInRow, 1, 1);
         this.totalPanelItems++;
     }
 
+    /**
+     * Creates Vbox for panel
+     * @param panel Object of Panel class
+     * @return container VBox of panel
+     */
     public VBox newPanelItemContainer(Panel panel) {
         VBox container = new VBox();
         Label title = new Label(panel.getTitle());
@@ -100,10 +130,18 @@ public class HomePanelContainerController implements Inflatable<Panel> {
         return container;
     }
 
+    /**
+     * Gets category of a panel
+     * @return String value category of a panel
+     */
     public String getCurrentCategory() {
         return this.currentCategory;
     }
 
+    /**
+     * Returns if the panel is loading
+     * @return Boolean value of loading action
+     */
     public boolean isPanelLoading() {
         return this.isLoading;
     }

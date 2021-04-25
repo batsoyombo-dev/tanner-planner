@@ -10,6 +10,20 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * PanelDAO manages panel models database access
+ *
+ * #########     #      ##     ##  ##     ##  ########  #######
+ *    ##        # #     ## #   ##  ## #   ##  ##        ##    ##
+ *    ##       #   #    ##  #  ##  ##  #  ##  ########  #######
+ *    ##      #######   ##   # ##  ##   # ##  ##        ## ##
+ *    ##     #       #  ##     ##  ##     ##  ########  ##   ##
+ *
+ * @author Tanner Team
+ * @version 1.0
+ * @since 2021/05/07
+ * @link https://github.com/batsoyombo-dev/tanner-planner
+ */
 public class PanelDAO {
 
     public static String
@@ -21,21 +35,10 @@ public class PanelDAO {
             COLUMN_CATEGORY = "category",
             COLUMN_COLOR = "color";
 
-    public int addPanel(Panel panel) {
-        String query = "insert into panel(" + COLUMN_USER_ID + ", " + COLUMN_TITLE + ", " + COLUMN_DESC + ", " + COLUMN_CATEGORY + ", " + COLUMN_COLOR + ")" +
-                "value (" + panel.getUserId() + ", '" + panel.getTitle() + "', '" + panel.getDescription() + "', '" + panel.getCategory() + "', '" + panel.getColorConfig() + "');";
-        try (Connection con = DBConnection.getConnection(); PreparedStatement statement = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
-            statement.executeUpdate();
-            ResultSet resultSet = statement.getGeneratedKeys();
-            if (resultSet.next()) {
-                return resultSet.getInt(1);
-            }
-            return -1;
-        } catch (SQLException e) {
-            return -1;
-        }
-    }
-
+    /**
+     * Concurrently adds panel to the database
+     * @param panel A panel object to be added to the database
+     */
     public void addPanelConcurrently(Panel panel) {
         Thread newPanelThread = new Thread(() -> {
             String query = "insert into panel(" + COLUMN_ID + ", " + COLUMN_USER_ID + ", " + COLUMN_TITLE + ", " + COLUMN_DESC + ", " + COLUMN_CATEGORY + ", " + COLUMN_COLOR + ")" +
@@ -49,6 +52,11 @@ public class PanelDAO {
         newPanelThread.start();
     }
 
+    /**
+     * Concurrently fetches panel data from database
+     * @param category A category to be filtered
+     * @param callback A callback inflater object
+     */
     public void getPanelsConcurrently(String category, Inflatable<Panel> callback) {
         Thread listPanelsThread = new Thread(() -> {
             String query = "SELECT * FROM " + TABLE_NAME;
@@ -82,6 +90,11 @@ public class PanelDAO {
         listPanelsThread.start();
     }
 
+    /**
+     * Changes category of panel
+     * @param panel object of Panel class
+     * @param favourite boolean type of variable that indicates if the panel is important or not
+     */
     public void changeCategory(Panel panel, Boolean favourite){
         String query;
         if(favourite)
@@ -90,11 +103,20 @@ public class PanelDAO {
             query= "UPDATE panel SET category = '"+ "nor" +"' WHERE id = '"+panel.getId()+"' ";
         this.executeQuery(query);
     }
+
+    /**
+     * Changes color configuration of panel
+     * @param panel object of Panel class
+     */
     public void changeColor(Panel panel){
         String query = "UPDATE panel SET color = '"+panel.getColorConfig()+"' WHERE id = '"+panel.getId()+"'";
         this.executeQuery(query);
     }
 
+    /**
+     * Executes certain query
+     * @param query A query string to be executed
+     */
     private void executeQuery(String query) {
         try (Connection con = DBConnection.getConnection();
              PreparedStatement statement = con.prepareStatement(query);) {

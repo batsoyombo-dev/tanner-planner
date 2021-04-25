@@ -23,6 +23,20 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.UUID;
 
+/**
+ * AddTaskDialog manages creation of task
+ *
+ * #########     #      ##     ##  ##     ##  ########  #######
+ *    ##        # #     ## #   ##  ## #   ##  ##        ##    ##
+ *    ##       #   #    ##  #  ##  ##  #  ##  ########  #######
+ *    ##      #######   ##   # ##  ##   # ##  ##        ## ##
+ *    ##     #       #  ##     ##  ##     ##  ########  ##   ##
+ *
+ * @author Tanner Team
+ * @version 1.0
+ * @since 2021/05/07
+ * @link https://github.com/batsoyombo-dev/tanner-planner
+ */
 public class AddTaskDialogController {
 
     @FXML
@@ -38,15 +52,23 @@ public class AddTaskDialogController {
 
     private final GridPane root;
     private final Stage stage;
-    private final Bucket bucket;
-    private final VBox vBox;
+    private final VBox taskContainer;
+
     private final TaskDAO taskDAO;
+    private final Bucket bucket;
     private final PanelController panelController;
 
-    public AddTaskDialogController(PanelController panelController, Bucket bucket, VBox vBox) throws IOException {
+    /**
+     * Constructor method of the AddTaskDialogController class
+     * @param panelController a controller object of panel layout
+     * @param bucket a chosen bucket object
+     * @param taskContainer a task containing node
+     * @throws IOException If FXML is not properly loaded
+     */
+    public AddTaskDialogController(PanelController panelController, Bucket bucket, VBox taskContainer) throws IOException {
         this.panelController = panelController;
         this.bucket = bucket;
-        this.vBox = vBox;
+        this.taskContainer = taskContainer;
         this.taskDAO = new TaskDAO();
         FXMLLoader loader = new FXMLLoader(super.getClass().getResource("/dialogs/add_task_dialog.fxml"));
         loader.setController(this);
@@ -58,8 +80,13 @@ public class AddTaskDialogController {
         this.stage.setResizable(false);
         this.stage.initModality(Modality.APPLICATION_MODAL);
         this.stage.show();
-
     }
+
+    /**
+     * Handles add task button action
+     * Creates task object of class Task and adds to the database
+     * @param event object of ActionEvent class
+     */
     @FXML
     public void taskAdded(ActionEvent event) {
         if(inp_taskTitleField.getText().isEmpty() || dueDatePicker.getValue()==null){
@@ -82,9 +109,14 @@ public class AddTaskDialogController {
         Task task = new Task( UUID.randomUUID().toString(),bucket.getID(),inp_taskTitleField.getText(),inp_taskDescField.getText(), state, dueDate);
         taskDAO.addTask(task);
         this.stage.close();
-        this.panelController.newTaskContainer(task, vBox);
+        this.panelController.newTaskContainer(task, taskContainer);
     }
 
+    /**
+     * Handles button cancel
+     * Closes the dialog
+     * @param event object of class ActionEvent
+     */
     @FXML
     void taskCanceled(ActionEvent event) {
         this.stage.close();

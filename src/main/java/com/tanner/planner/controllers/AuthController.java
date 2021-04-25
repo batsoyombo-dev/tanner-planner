@@ -14,6 +14,21 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+ * AuthController class for Authentication management
+ * Manages both authentication and registration
+ *
+ *#########     #      ##     ##  ##     ##  ########  #######
+ *   ##        # #     ## #   ##  ## #   ##  ##        ##    ##
+ *   ##       #   #    ##  #  ##  ##  #  ##  ########  #######
+ *   ##      #######   ##   # ##  ##   # ##  ##        ## ##
+ *   ##     #       #  ##     ##  ##     ##  ########  ##   ##
+ *
+ * @author Tanner Team
+ * @version 1.0
+ * @since 2021/05/07
+ * @link https://github.com/batsoyombo-dev/tanner-planner
+ */
 public class AuthController {
 
     @FXML
@@ -21,7 +36,11 @@ public class AuthController {
 
     private final HBox root;
     private final Stage stage;
-
+    /**
+     * Constructor method of AuthController class
+     * @param stage instance of Stage class to contain the UI
+     * @throws IOException If fxml file is not properly loaded
+     */
     public AuthController(Stage stage) throws IOException {
         this.stage = stage;
         FXMLLoader loader = new FXMLLoader(super.getClass().getResource("/controllers/auth_layout.fxml"));
@@ -34,7 +53,12 @@ public class AuthController {
         stage.setMaximized(true);
         stage.show();
     }
-
+    /**
+     * Navigates between partial screens
+     * @param controller Controller object of the desired FXML
+     * @param path Path of the screen's FXML file
+     * @throws IOException If FXML file is not properly loaded
+     */
     public void navigateTo(Object controller, String path) throws IOException {
         FXMLLoader loader = new FXMLLoader(super.getClass().getResource("/partials/" + path));
         loader.setController(controller);
@@ -42,6 +66,9 @@ public class AuthController {
         this.vbox_formContainer.getChildren().add(loader.load());
     }
 
+    /**
+     * Closes the stage
+     */
     public void close() {
         this.stage.close();
     }

@@ -20,19 +20,40 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * ModifyBucketDialogController manages modification of bucket
+ *
+ * #########     #      ##     ##  ##     ##  ########  #######
+ *    ##        # #     ## #   ##  ## #   ##  ##        ##    ##
+ *    ##       #   #    ##  #  ##  ##  #  ##  ########  #######
+ *    ##      #######   ##   # ##  ##   # ##  ##        ## ##
+ *    ##     #       #  ##     ##  ##     ##  ########  ##   ##
+ *
+ * @author Tanner Team
+ * @version 1.0
+ * @since 2021/05/07
+ * @link https://github.com/batsoyombo-dev/tanner-planner
+ */
 public class ModifyBucketDialogController implements Initializable {
 
     @FXML
     private TextField txt_bucketTitle;
 
-    private final Bucket bucket;
-    private final BucketDAO bucketDAO;
     private final Stage stage;
-
     private final VBox root;
     private final HBox bucketContainer;
     private final VBox bucketWrapper;
 
+    private final Bucket bucket;
+    private final BucketDAO bucketDAO;
+
+    /**
+     * Constructor method of the ModifyBucketDialogController class
+     * @param bucket A chosen bucket object
+     * @param bucketContainer A bucket containing node
+     * @param bucketWrapper A wrapper for cucket container
+     * @throws IOException If FXML is not properly loaded
+     */
     public ModifyBucketDialogController(Bucket bucket, HBox bucketContainer, VBox bucketWrapper) throws IOException {
         this.bucket = bucket;
         this.bucketContainer = bucketContainer;
@@ -50,11 +71,26 @@ public class ModifyBucketDialogController implements Initializable {
         this.stage.show();
     }
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        txt_bucketTitle.setText(bucket.getTitle());
+    }
+
+    /**
+     * Handles cancel button action
+     * Closes the window of dialog
+     * @param event object of ActionEvent class
+     */
     @FXML
     void handleCancelClick(ActionEvent event) {
         this.stage.close();
     }
 
+    /**
+     * Handles delete button action
+     * Deletes bucket from panel
+     * @param event object of ActionEvent class
+     */
     @FXML
     void handleDeleteClick(ActionEvent event) {
         this.bucketDAO.deleteBucket(bucket);
@@ -62,6 +98,12 @@ public class ModifyBucketDialogController implements Initializable {
         this.bucketContainer.getChildren().remove(index);
         this.stage.close();
     }
+
+    /**
+     * Handles save button action
+     * Saves and writes any changes in bucket
+     * @param event object of ActionEventClass
+     */
     @FXML
     void handleSaveClick(ActionEvent event) {
         String bucketTitle = txt_bucketTitle.getText();
@@ -78,8 +120,4 @@ public class ModifyBucketDialogController implements Initializable {
         this.stage.close();
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        txt_bucketTitle.setText(bucket.getTitle());
-    }
 }
