@@ -52,7 +52,7 @@ public class PanelDAO {
     public void getPanelsConcurrently(String category, Inflatable<Panel> callback) {
         Thread listPanelsThread = new Thread(() -> {
             String query = "SELECT * FROM " + TABLE_NAME;
-                    switch (category) {
+            switch (category) {
                 case "all" -> query += " where " + COLUMN_USER_ID + " = " + HomeController.getUser().getId() + "";
                 case "inp", "com" -> query +=" where " + COLUMN_CATEGORY + " = '" + category + "'";
                 default -> query += " where " + COLUMN_TITLE + " = '" + category + "'";

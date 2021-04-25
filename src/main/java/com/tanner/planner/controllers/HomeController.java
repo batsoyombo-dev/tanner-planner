@@ -14,14 +14,13 @@ import java.io.IOException;
 /**
  * @author Batsyombo
  * */
-
 public class HomeController {
-//
+
     private final BorderPane root;
     private final HomePanelContainerController panelContainerController;
     private final SidebarController sidebarController;
     private final Stage stage;
-//
+
     private static User user = null;
 
     public HomeController(Stage stage, User authenticatedUser) throws IOException {
