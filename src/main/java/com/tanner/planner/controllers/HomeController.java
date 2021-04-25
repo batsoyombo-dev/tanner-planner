@@ -16,17 +16,17 @@ import java.io.IOException;
  * */
 
 public class HomeController {
-
+//
     private final BorderPane root;
     private final HomePanelContainerController panelContainerController;
     private final SidebarController sidebarController;
     private final Stage stage;
-
+//
     private static User user = null;
 
     public HomeController(Stage stage, User authenticatedUser) throws IOException {
         user = authenticatedUser;
-        this.stage = stage;
+        this.stage = new Stage();
         this.root = new BorderPane();
         this.panelContainerController = new HomePanelContainerController(this);
         this.sidebarController = new SidebarController(this.panelContainerController);
