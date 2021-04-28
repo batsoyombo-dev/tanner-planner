@@ -1,6 +1,7 @@
 package com.tanner.planner.data;
 
 import com.tanner.planner.models.User;
+import com.tanner.planner.utils.LoggerHandler;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -40,6 +41,7 @@ public class UserDAO {
             statement.execute(query);
             return true;
         } catch (SQLException e) {
+            LoggerHandler.error(e.getMessage(), this.getClass().getName());
             return false;
         }
     }
@@ -56,11 +58,12 @@ public class UserDAO {
              ResultSet resultSet = statement.executeQuery(query);) {
             if (resultSet.next() && user.getPassword().equals(resultSet.getString(3))) {
                 user.setId(resultSet.getInt(1));
+                LoggerHandler.info("User " + user.getId() + " is logged in!", this.getClass().getName());
                 return true;
             }
             return false;
         } catch (SQLException e) {
-            e.printStackTrace();
+            LoggerHandler.error(e.getMessage(), this.getClass().getName());
             return false;
         }
     }

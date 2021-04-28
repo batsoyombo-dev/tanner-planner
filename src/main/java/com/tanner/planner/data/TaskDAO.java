@@ -5,6 +5,7 @@ import com.tanner.planner.models.Bucket;
 import com.tanner.planner.models.Panel;
 import com.tanner.planner.models.Task;
 import com.tanner.planner.utils.Inflatable;
+import com.tanner.planner.utils.LoggerHandler;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -49,15 +50,7 @@ public class TaskDAO {
     public void addTask(Task task) {
         String query = "insert into task(" + COLUMN_ID + ", " + COLUMN_BUCKET_ID + ", " + COLUMN_TITLE  +", " + COLUMN_DESCRIPTION + ", " + COLUMN_STATE +", " + COLUMN_DATE +")" +
                 "value ('" + task.getId() + "', '" + task.getBucket_id() + "', '" + task.getTitle()  + "', '" + task.getDescription()+ "', '" + task.getState()+ "', '" + task.getDate()+"');";
-        try {
-            Connection con = DBConnection.getConnection();
-            PreparedStatement statement = con.prepareStatement(query);
-            statement.execute();
-        } catch (SQLException e) {
-            alert.setAlertType(Alert.AlertType.ERROR);
-            alert.setContentText(String.valueOf(e));
-            alert.show();
-        }
+        DBConnection.executeQuery(query, this.getClass().getName());
     }
 
     /**
@@ -66,14 +59,7 @@ public class TaskDAO {
      */
      public void deleteTask(Task task) {
         String query = "delete from task where id = '" + task.getId() +"' ";
-        try (Connection con = DBConnection.getConnection();
-                 PreparedStatement statement = con.prepareStatement(query);) {
-            statement.execute();
-        } catch (SQLException e) {
-             alert.setAlertType(Alert.AlertType.ERROR);
-             alert.setContentText(String.valueOf(e));
-             alert.show();
-         }
+         DBConnection.executeQuery(query, this.getClass().getName());
      }
 
     /**
@@ -85,15 +71,7 @@ public class TaskDAO {
      */
     public void updateTask(Task task, String title, String description, String state) {
         String query = "update task set title = '"+title +"', description = '"+ description+"', state = '"+ state+"' where id = '"+task.getId() +"'";
-        try {
-            Connection con = DBConnection.getConnection();
-            PreparedStatement statement = con.prepareStatement(query);
-            statement.execute();
-        } catch (SQLException e) {
-            alert.setAlertType(Alert.AlertType.ERROR);
-            alert.setContentText(String.valueOf(e));
-            alert.show();
-        }
+        DBConnection.executeQuery(query, this.getClass().getName());
     }
 
     /**
@@ -102,10 +80,24 @@ public class TaskDAO {
      * @return List of tasks
      */
     public ObservableList<Task> getTasks(Bucket bucket) {
+        String query = "SELECT * FROM task WHERE bucket_id = '"+ bucket.getID() +"' ";
+        return getTaskQuery(query);
+    }
+
+    /**
+     * Gets tasks of the panel that are past due
+     * @param panel object of Panel class
+     * @return Past due task list
+     */
+    public ObservableList<Task> getNotification(Panel panel){
+        String query = "SELECT * FROM task WHERE state = 'pd' and bucket_id = ANY(SELECT id from bucket WHERE panel_id = '"+panel.getId()+"') ";
+        return getTaskQuery(query);
+    }
+
+    public ObservableList<Task> getTaskQuery(String query) {
         ObservableList<Task> list = FXCollections.observableArrayList();
-        String bucketId = bucket.getID();
         try (Connection conn = DBConnection.getConnection();
-             PreparedStatement ps = conn.prepareStatement("SELECT * FROM task WHERE bucket_id = '"+ bucketId+"' ");
+             PreparedStatement ps = conn.prepareStatement(query);
              ResultSet rs = ps.executeQuery();){
             while(rs.next()){
                 list.add(new Task(rs.getString("id"), rs.getString("bucket_id"), rs.getString("title"), rs.getString("description"), rs.getString("state"), rs.getString("date")));
@@ -117,34 +109,6 @@ public class TaskDAO {
             alert.show();
         }
         return list;
-
     }
-
-    /**
-     * Gets tasks of the panel that are past due
-     * @param panel object of Panel class
-     * @return Past due task list
-     */
-    public ObservableList<Task> getNotification(Panel panel){
-
-
-        ObservableList<Task> list = FXCollections.observableArrayList();
-        try(Connection conn = DBConnection.getConnection();
-            PreparedStatement ps = conn.prepareStatement("SELECT * FROM task WHERE state = 'pd' and bucket_id = ANY(SELECT id from bucket WHERE panel_id = '"+panel.getId()+"') ");
-            ResultSet rs = ps.executeQuery();){
-
-            while(rs.next()){
-                list.add(new Task(rs.getString("id"), rs.getString("bucket_id"), rs.getString("title"), rs.getString("description"), rs.getString("state"), rs.getString("date")));
-            }
-        }
-        catch(Exception e){
-            alert.setAlertType(Alert.AlertType.ERROR);
-            alert.setContentText(String.valueOf(e));
-            alert.show();
-        }
-        return list;
-
-    }
-
 
 }

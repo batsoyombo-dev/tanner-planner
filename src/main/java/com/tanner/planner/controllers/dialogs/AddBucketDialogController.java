@@ -47,7 +47,7 @@ public class AddBucketDialogController {
     private Button btnCancel;
     @FXML
     private final VBox root;
-
+    @FXML
     private TextField txtTitle;
     private final Panel currentPanel;
     private final Stage stage;

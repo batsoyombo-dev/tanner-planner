@@ -12,7 +12,7 @@
       stylesheets="@../css/auth_layout.css" styleClass="main-container">
 
     <VBox styleClass="logo-container" HBox.hgrow="ALWAYS">
-        <Label text="tanner" styleClass="logo" />
+        <Label fx:id="test" id="test" text="tanner" styleClass="logo" />
     </VBox>
 
     <VBox fx:id="vbox_formContainer" HBox.hgrow="ALWAYS" alignment="CENTER">

@@ -3,11 +3,16 @@ package com.tanner.planner.data;
 import com.tanner.planner.controllers.HomeController;
 import com.tanner.planner.models.Activity;
 import com.tanner.planner.models.Panel;
+import com.tanner.planner.utils.LoggerHandler;
 import javafx.scene.control.Alert;
 
+import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.FileHandler;
+import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 
 /**
  * ActivityDAO manages activity models database access
@@ -50,6 +55,7 @@ public class ActivityDAO {
                 ));
             return activities;
         } catch (SQLException e) {
+            LoggerHandler.error(e.getMessage(), this.getClass().getName());
             return activities;
         }
     }
@@ -67,6 +73,7 @@ public class ActivityDAO {
             statement.execute(query);
             return true;
         } catch (SQLException e) {
+            LoggerHandler.error(e.getMessage(), this.getClass().getName());
             return false;
         }
     }

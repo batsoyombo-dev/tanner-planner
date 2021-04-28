@@ -3,6 +3,7 @@ package com.tanner.planner.data;
 import com.tanner.planner.controllers.HomeController;
 import com.tanner.planner.models.Panel;
 import com.tanner.planner.utils.Inflatable;
+import com.tanner.planner.utils.LoggerHandler;
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
 
@@ -46,7 +47,7 @@ public class PanelDAO {
             try (Connection con = DBConnection.getConnection(); Statement statement = con.createStatement()) {
                 statement.execute(query);
             } catch (SQLException e) {
-                e.printStackTrace();
+                LoggerHandler.error(e.getMessage(), this.getClass().getName());
             }
         }, "new-panel-thread");
         newPanelThread.start();
@@ -84,6 +85,7 @@ public class PanelDAO {
                     callback.inflate(list);
                 });
             } catch (SQLException e) {
+                LoggerHandler.error(e.getMessage(), this.getClass().getName());
                 e.printStackTrace();
             }
         }, "list-panels-thread");
@@ -122,6 +124,7 @@ public class PanelDAO {
              PreparedStatement statement = con.prepareStatement(query);) {
             statement.execute();
         } catch (SQLException e) {
+            LoggerHandler.error(e.getMessage(), this.getClass().getName());
             Alert alert =  new Alert(Alert.AlertType.NONE);
             alert.setAlertType(Alert.AlertType.ERROR);
             alert.setContentText(String.valueOf(e));

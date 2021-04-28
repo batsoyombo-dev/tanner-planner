@@ -3,6 +3,7 @@ package com.tanner.planner.data;
 import com.tanner.planner.models.Bucket;
 import com.tanner.planner.models.Panel;
 import com.tanner.planner.utils.Inflatable;
+import com.tanner.planner.utils.LoggerHandler;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -43,15 +44,7 @@ public class BucketDAO {
     public void addBucket(Bucket bucket) {
         String query = "insert into bucket(" + COLUMN_ID + ", " + COLUMN_PANEL_ID + ", " + COLUMN_TITLE  + ")" +
                 "value ('" + bucket.getID() + "', '" + bucket.getPanel_id() + "', '" + bucket.getTitle()  + "');";
-        try {
-            Connection con = DBConnection.getConnection();
-            PreparedStatement statement = con.prepareStatement(query);
-            statement.execute();
-        } catch (SQLException e) {
-            alert.setAlertType(Alert.AlertType.ERROR);
-            alert.setContentText(String.valueOf(e));
-            alert.show();
-        }
+        DBConnection.executeQuery(query, this.getClass().getName());
     }
 
     /**
@@ -59,19 +52,8 @@ public class BucketDAO {
      * @param bucket Bucket to be deleted from database
      */
     public void deleteBucket(Bucket bucket) {
-        String query = "delete from task where bucket_id = '" + bucket.getID() +"' ";
-        String query2 = "delete from bucket where id = '"+ bucket.getID()+"' ";
-        try {
-            Connection con = DBConnection.getConnection();
-            PreparedStatement statement = con.prepareStatement(query);
-            PreparedStatement statement2 = con.prepareStatement(query2);
-            statement.execute();
-            statement2.execute();
-        } catch (SQLException e) {
-            alert.setAlertType(Alert.AlertType.ERROR);
-            alert.setContentText(String.valueOf(e));
-            alert.show();
-        }
+        String query = "delete from task where bucket_id = '" + bucket.getID() +"';" + " delete from bucket where id = '"+ bucket.getID()+"';";
+        DBConnection.executeQuery(query, this.getClass().getName());
     }
 
     /**
@@ -81,15 +63,7 @@ public class BucketDAO {
      */
     public void updateBucket(Bucket bucket, String new_Title) {
         String query = "update bucket set title = '" +new_Title +"' where id = '" + bucket.getID() +"' ";
-        try {
-            Connection con = DBConnection.getConnection();
-            PreparedStatement statement = con.prepareStatement(query);
-            statement.execute();
-        } catch (SQLException e) {
-            alert.setAlertType(Alert.AlertType.ERROR);
-            alert.setContentText(String.valueOf(e));
-            alert.show();
-        }
+        DBConnection.executeQuery(query, this.getClass().getName());
     }
 
     /**
@@ -107,12 +81,12 @@ public class BucketDAO {
             }
         }
         catch(Exception e){
+            LoggerHandler.error(e.getMessage(), this.getClass().getName());
             alert.setAlertType(Alert.AlertType.ERROR);
             alert.setContentText(String.valueOf(e));
             alert.show();
         }
         return list;
-
     }
 
 }
