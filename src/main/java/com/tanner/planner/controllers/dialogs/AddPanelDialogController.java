@@ -102,5 +102,8 @@ public class AddPanelDialogController {
         this.createdPanel = new Panel(UUID.randomUUID().toString(), HomeController.getUser().getId(), titleField, descField, category, colorField);
         this.stage.close();
     }
+    public Scene getScene(){
+        return this.stage.getScene();
+    }
 
 }

@@ -28,12 +28,13 @@ import java.io.IOException;
  */
 public class HomeController {
 
+    public static User user = null;
+
     private final BorderPane root;
     private final HomePanelContainerController panelContainerController;
     private final SidebarController sidebarController;
     private final Stage stage;
 
-    private static User user = null;
     /**
      * Constructor method of the HomeController class
      * @param stage the stage to contain the UI

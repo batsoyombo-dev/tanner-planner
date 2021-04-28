@@ -21,7 +21,7 @@
     </HBox>
 
     <HBox styleClass="btn-container, sub-container">
-        <Button onMouseClicked="#handleNewPanelClick" styleClass="btn">
+        <Button fx:id="btn_addPanel" onMouseClicked="#handleNewPanelClick" styleClass="btn">
             <graphic>
                 <ImageView fitWidth="32" fitHeight="32">
                     <Image url="@../images/add.png" />

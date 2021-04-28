@@ -39,6 +39,8 @@ public class HomeHeaderController implements Initializable {
     private HBox hbox_rootContainer;
     @FXML
     private Button btn_search;
+    @FXML
+    private Button btn_addPanel;
 
     private final HomePanelContainerController panelContainer;
 

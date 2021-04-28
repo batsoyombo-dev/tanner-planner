@@ -12,7 +12,7 @@
 
     <TextField fx:id="inp_usernameField" styleClass="input-field" promptText="Username..." />
     <PasswordField fx:id="inp_passwordField" styleClass="input-field" promptText="Password..." />
-    <Button styleClass="btn" onMouseClicked="#handleLoginClick" text="LOGIN" />
+    <Button styleClass="btn" fx:id="loginButton" onMouseClicked="#handleLoginClick" text="LOGIN" />
     <Button styleClass="sub-btn" onMouseClicked="#handleNavigationClick" text="Register" id="register" />
 
 </VBox>
