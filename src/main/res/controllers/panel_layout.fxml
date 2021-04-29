@@ -22,7 +22,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Label minHeight="56.0" onMouseClicked="#handleBackToHomeClick" prefHeight="56.0" prefWidth="172.0" styleClass="text" text="tanner">
+            <Label minHeight="56.0" onMouseClicked="#handleBackToHomeClick" prefHeight="56.0" prefWidth="300.0" styleClass="text" text="tanner">
                <HBox.margin>
                   <Insets left="40.0" top="10.0" />
                </HBox.margin>
@@ -35,7 +35,7 @@
             </Label>
             <Button fx:id="btn_redirectGithub" mnemonicParsing="false" onAction="#handleRedirectGithub" prefHeight="40.0" prefWidth="40.0">
                <HBox.margin>
-                  <Insets left="1048.0" top="20.0" />
+                  <Insets left="920.0" top="20.0" />
                </HBox.margin>
                <cursor>
                   <Cursor fx:constant="HAND" />

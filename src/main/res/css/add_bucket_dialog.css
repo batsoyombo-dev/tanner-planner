@@ -1,8 +1,7 @@
 .dialogContainer{
-    -fx-background-color: #25333D;
 }
 .dialogLabel{
-    -fx-text-fill: white;
+    -fx-text-fill: black;
     -fx-font-size: 18;
 }
 .dialogTxtField{
@@ -23,5 +22,4 @@
     -fx-text-fill: white;
 }
 .btnCancel{
-    -fx-background-color: white;
 }

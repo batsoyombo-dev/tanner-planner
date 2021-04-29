@@ -1,5 +1,7 @@
 package com.tanner.planner.controllers.dialogs;
 
+
+
 import com.tanner.planner.controllers.HomeController;
 import com.tanner.planner.models.User;
 import javafx.stage.Stage;
@@ -28,6 +30,7 @@ public class AddPanelDialogControllerTest extends ApplicationTest {
     @After
     public void tearDown() throws Exception {
     }
+
     @Test
     public void addPanel() throws Exception{
         clickOn("#inp_panelTitleField");

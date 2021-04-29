@@ -1,8 +1,7 @@
 .dlgContainer{
-    -fx-background-color: #25333D;
 }
 .dialogLabel{
-    -fx-text-fill: white;
+    -fx-text-fill: black;
     -fx-pref-width: 400;
     -fx-font-size: 18;
     -fx-padding: 20px;
