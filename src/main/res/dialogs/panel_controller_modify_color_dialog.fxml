@@ -12,7 +12,7 @@
    <children>
       <Label styleClass="dialogLabel" text="Color Modify">
          <VBox.margin>
-            <Insets bottom="20.0" left="40.0" top="10.0" />
+            <Insets bottom="20.0" left="40.0" top="20.0" />
          </VBox.margin></Label>
        <fx:include fx:id="colorBtnContainer" source="../partials/color-btn-container-partial.fxml" />
       <HBox styleClass="btnContainer">
@@ -34,7 +34,7 @@
             </Button>
          </children>
          <VBox.margin>
-            <Insets bottom="10.0" top="20.0" />
+            <Insets bottom="20.0" top="20.0" />
          </VBox.margin>
       </HBox>
    </children>

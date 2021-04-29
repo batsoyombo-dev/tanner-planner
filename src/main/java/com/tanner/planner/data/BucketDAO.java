@@ -52,8 +52,10 @@ public class BucketDAO {
      * @param bucket Bucket to be deleted from database
      */
     public void deleteBucket(Bucket bucket) {
-        String query = "delete from task where bucket_id = '" + bucket.getID() +"';" + " delete from bucket where id = '"+ bucket.getID()+"';";
-        DBConnection.executeQuery(query, this.getClass().getName());
+        String query1 = "delete from task where bucket_id = '" + bucket.getID() +"';";
+        String query2 = " delete from bucket where id = '"+ bucket.getID()+"';";
+        DBConnection.executeQuery(query1, this.getClass().getName());
+        DBConnection.executeQuery(query2, this.getClass().getName());
     }
 
     /**

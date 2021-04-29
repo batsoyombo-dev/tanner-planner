@@ -27,11 +27,6 @@
     -fx-text-fill: white;
     -fx-background-radius: 10;
 }
-.addBucket{
-    -fx-background-color: #083c5c;
-    -fx-text-fill: white;
-    -fx-background-radius: 10;
-}
 
 .scroll-bucket-container,
 .scroll-bucket-container > .viewport {

@@ -67,20 +67,17 @@
                   <Font name="System Bold" size="28.0" />
                </font>
             </Label>
-            <Button fx:id="btn_addBucket" mnemonicParsing="false" onAction="#handleAddBucketClick" prefHeight="60.0" prefWidth="320.0" style="-fx-background-radius: 30;" styleClass="addBucket" text="+Add Bucket">
-               <font>
-                  <Font size="24.0" />
-               </font>
+            <Button fx:id="btn_addBucket" mnemonicParsing="false" onAction="#handleAddBucketClick" prefHeight="40.0" prefWidth="40.0" styleClass="addBucket">
+               <HBox.margin>
+                  <Insets left="863.0" top="20.0" />
+               </HBox.margin>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
-               <HBox.margin>
-                  <Insets left="533.0" top="10.0" />
-               </HBox.margin>
             </Button>
             <Button fx:id="btn_makeFavourite" mnemonicParsing="false" onAction="#handleFavouriteClick" prefHeight="40.0" prefWidth="40.0">
                <HBox.margin>
-                  <Insets left="70.0" top="20.0" />
+                  <Insets left="20.0" top="20.0" />
                </HBox.margin>
                <cursor>
                   <Cursor fx:constant="HAND" />

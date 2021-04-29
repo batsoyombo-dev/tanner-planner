@@ -13,7 +13,10 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 
+import java.awt.*;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -41,6 +44,8 @@ public class HomeHeaderController implements Initializable {
     private Button btn_search;
     @FXML
     private Button btn_addPanel;
+    @FXML
+    private Button btn_help;
 
     private final HomePanelContainerController panelContainer;
 
@@ -85,6 +90,12 @@ public class HomeHeaderController implements Initializable {
         if (newPanel != null) {
             this.panelContainer.addNewPanelItemToTheContainer(newPanel);
         }
+    }
+
+    @FXML
+    void handleHelpBtnClick(ActionEvent event) throws URISyntaxException, IOException {
+        URI uri = new URI("https://github.com/batsoyombo-dev/tanner-planner");
+        Desktop.getDesktop().browse(uri);
     }
 
 }

@@ -3,17 +3,17 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.image.Image?>
-<HBox alignment="CENTER_RIGHT" fx:id="hbox_rootContainer" styleClass="header" stylesheets="@../css/home_header_partial.css, @../css/global.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
+<HBox fx:id="hbox_rootContainer" alignment="CENTER_RIGHT" styleClass="header" stylesheets="@../css/home_header_partial.css, @../css/global.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
 
     <HBox styleClass="search-container, sub-container">
         <TextField fx:id="inp_searchField" promptText="Search..." styleClass="search-input" HBox.hgrow="ALWAYS" />
-        <Button fx:id="btn_search" styleClass="btn, search-btn" onAction="#handleSearchBtnClick">
+        <Button fx:id="btn_search" onAction="#handleSearchBtnClick" styleClass="btn, search-btn">
             <graphic>
-                <ImageView fitWidth="32" fitHeight="32">
+                <ImageView fitHeight="32" fitWidth="32">
                     <Image url="@../images/search.png" />
                 </ImageView>
             </graphic>
@@ -23,7 +23,7 @@
     <HBox styleClass="btn-container, sub-container">
         <Button fx:id="btn_addPanel" onMouseClicked="#handleNewPanelClick" styleClass="btn">
             <graphic>
-                <ImageView fitWidth="32" fitHeight="32">
+                <ImageView fitHeight="32" fitWidth="32">
                     <Image url="@../images/add.png" />
                 </ImageView>
             </graphic>
@@ -31,9 +31,9 @@
                 <Cursor fx:constant="HAND" />
              </cursor>
         </Button>
-        <Button styleClass="btn">
+        <Button fx:id="btn_help" onAction="#handleHelpBtnClick" styleClass="btn">
             <graphic>
-                <ImageView fitWidth="32" fitHeight="32">
+                <ImageView fitHeight="32" fitWidth="32">
                     <Image url="@../images/help_black.png" />
                 </ImageView>
             </graphic>

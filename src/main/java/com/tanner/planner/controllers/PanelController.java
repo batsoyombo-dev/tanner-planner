@@ -109,6 +109,7 @@ public class PanelController implements Initializable{
         this.addIconToControl("/images/help_white.png", btn_redirectGithub);
         this.addIconToControl("/images/notification_white.png", btn_showNotifications);
         this.addIconToControl("/images/analysis.png", btn_showAnalysis);
+        this.addIconToControl("/images/add-white.png", btn_addBucket);
         if(panel.getCategory().equals("inp")) {
             this.addIconToControl("/images/favourite-filled.png", btn_makeFavourite);
             favourite = true;
