@@ -7,6 +7,7 @@ import com.tanner.planner.models.Activity;
 import com.tanner.planner.models.User;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import java.io.IOException;
@@ -62,6 +63,7 @@ public class HomeController {
         Scene scene = new Scene(this.root);
         this.stage.setScene(scene);
         this.stage.setMaximized(true);
+        this.stage.getIcons().add(new Image("/images/app_icon.png"));
         this.stage.show();
     }
 

@@ -5,6 +5,7 @@ import com.tanner.planner.data.UserDAO;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -50,6 +51,7 @@ public class AuthController {
         Scene scene = new Scene(this.root);
         stage.setScene(scene);
         stage.setTitle("Authentication");
+        this.stage.getIcons().add(new Image("/images/app_icon.png"));
         stage.setMaximized(true);
         stage.show();
     }

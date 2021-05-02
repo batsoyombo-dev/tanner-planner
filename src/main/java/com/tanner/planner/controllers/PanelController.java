@@ -104,6 +104,7 @@ public class PanelController implements Initializable{
         this.stage.setScene(scene);
         this.stage.setTitle(panel.getTitle());
         this.stage.setResizable(false);
+        this.stage.getIcons().add(new Image("/images/app_icon.png"));
         this.stage.setOnCloseRequest(e -> homeController.toggleStage(true));
         this.addIconToControl("/images/menu.png", btn_hamburgerMenu);
         this.addIconToControl("/images/help_white.png", btn_redirectGithub);
